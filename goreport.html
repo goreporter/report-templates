@@ -166,7 +166,7 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive scroll-tb">
-                                <table class="table table-hover dashboard-task-infos">
+                                <table class="table table-hover dashboard-task-infos gr_copied_code_tb">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -188,7 +188,7 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive scroll-tb">
-                                <table class="table table-hover dashboard-task-infos">
+                                <table class="table table-hover dashboard-task-infos gr_notest_tb">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -256,7 +256,7 @@
                         </div>
                         <div class="body">
                             <div class="table-responsive scroll-tb">
-                                <table class="table table-hover dashboard-task-infos">
+                                <table class="table table-hover dashboard-task-infos gr_deadcode_tb">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -465,39 +465,52 @@ $(function() {
     $(".gr_simple_table").html(gr_simple_table);
     var c = 0;
     var gr_copied_code_table = "";
-    for (var key in resData.copycode) {
-        for (var k in resData.copycode[key]) {
-            c++;
-            var v = resData.copycode[key]
-            var files = v.Files
-            gr_copied_code_table += '<tr><td rowspan="' + files + '">' + c + '</td><td rowspan="' + files + '">' + files + '</td><td><a href="file://' + v.Path[0] + '">' + v.Path[0] + '</td></tr>'
-            for (fd in v.Path) {
-                if (fd != 0) {
-                    gr_copied_code_table += '<tr><td><a href="file://' + v.Path[fd] + '">' + v.Path[fd] + '</td></tr>';
-                }
+    if (resData.copycode.length > 0) {
+        for (var key in resData.copycode) {
+            for (var k in resData.copycode[key]) {
+                c++;
+                var v = resData.copycode[key]
+                var files = v.Files
+                gr_copied_code_table += '<tr><td rowspan="' + files + '">' + c + '</td><td rowspan="' + files + '">' + files + '</td><td><a href="file://' + v.Path[0] + '">' + v.Path[0] + '</td></tr>'
+                for (fd in v.Path) {
+                    if (fd != 0) {
+                        gr_copied_code_table += '<tr><td><a href="file://' + v.Path[fd] + '">' + v.Path[fd] + '</td></tr>';
+                    }
 
+                }
             }
         }
+        $(".gr_copied_code_table").html(gr_copied_code_table);
+    } else {
+        $(".gr_copied_code_tb").html('<center><img src="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADuElEQVR4Ae2bA7A0RxCAY9tmKbZt204hKjs2CrEtPds303v7jJm52Pxj2+jp1IT7glveZWfuuqofivt909s9q7nyHfWohy7Bxij4NSjgRioVt6gteAWHoWI/kQIyaf7Wih9YMwJQ8JcNeDBRsM/0tL9aTQgIgs+WAI/WugCkx/213Ib3/fkM7H8nP8ftBjgFK5YTgIoxx8eft3NZAQLecX0EnhdSAT85LQAVPF5eAPzsfPmHnAIfOglPdPE8qNhMqADJR9wUUOKnh8GbRMWvcK/0Z/iyqODjKAK0Yvs4JwAl3BVt9eFnPT6+uFurL2FrFICRBAhWcq7xkeAqDDzQAG9wbPXZWVHhTeoSO9wZeFL+cij4p7EEPFFYwaEdH2+IA4+KveDQfp+fGwfeJAp+t/3gTxQWRcXuiAtvUkt+sgN3edkrBiaRgOnC2vbCC76ZuamZFB4le9vqbm8AEsFLTjTSTsgaZize5vKHIwMLRjTRS+S3EA3cT9R+M1HrjYRDDzZY2u3ZPgbs/0xU7DtUfJyUd1TVb26igHerCRsuA26qDvxLAwuigLH8wAfHKRxZUXh6pmUBVLw7j/AmzcJUDv6psaVRcC+H4MGe8O2fB/xG8T2Kk6/Dex+96b9z6L83PG93lPz1nIIHK+CbxAJMzoH3Pvyj1LX01iUFp6JgxXyDBwVwL5UAk8QbcgsYfk+B75tewHBbPgE7biXqu5eIPfrrDpKmBohkAF7BRYY7vYCxrnwKaLuJqOt2ou67iPruIxp8kAgaicZ7CKeHug1zNgIm++wsfwH7ZSNgetBKAajAz0aAYJYKYN9mI0ByOwUI+CYbAQpszeGaFqBLcFA2AmROIc0ILDxCNNb9j9MUJb/SMLvdA8w+oOOW30T03kNUbKGfp4c+1dLb3/BmJ2CmYO/2NxMBU/1Wz//0AsZ7rJ7/6QWMtFs8/0METF7+ZLgAr8ni+R8ioHUfCBdQeMjq+Z9eQN89Fs7/EAHvTH1IP3zxI2mt6fvPfzT//7eAjlvyP/9n+j8Izv9QAQY+EEbCfwtovZFoZijvpf+5YYwsgDTNDk3lBYx25n30fRdLgFnx2RXwQ3kB/NG8j76ngqyResCvEvSv8Ob/8gJ67sq3AAlXRROQIKM9IvMX07KwA0q4FQV8X93VZ19pObhyhQS880Hsh6WPwfoo2bNVgtdasuMjHVgS+De89w9O+DHUQij5pajYl5VdeQOf4yDFl9QSzjBPkFHBmyjYj2m7vWl45pwPlH1I1KMevwCCyQloifV7DgAAAABJRU5ErkJggg==" style="margin-top:50px;" /></center><br/><center><h4>Sweet!</h4></center><center>No copied code</center>');
     }
-    $(".gr_copied_code_table").html(gr_copied_code_table);
 
     var c = 0;
     var gr_notest_table = "";
-    for (var key in resData.gotest.noTest) {
-        c++;
-        var v = resData.gotest.noTest[key];
-        gr_notest_table += '<tr><td>' + c + '</td><td>' + v + '</td></tr>'
+    if (resData.gotest.noTest.length > 0) {
+         for (var key in resData.gotest.noTest) {
+            c++;
+            var v = resData.gotest.noTest[key];
+            gr_notest_table += '<tr><td>' + c + '</td><td>' + v + '</td></tr>'
+        }
+        $(".gr_notest").html(gr_notest_table);
+    } else {
+        $(".gr_notest_tb").html('<center><i class="material-icons" style="color:#A6DB8A; border: 4px solid rgba(165, 220, 134, 0.2);border-radius: 50%; width:90px; height:90px;font-size:5.5em;margin-top:60px;">done</i></center><br/><center>All packages have been tested</center>');
     }
-    $(".gr_notest").html(gr_notest_table);
+
 
     var c = 0;
     var gr_deadcode = "";
-    for (var key in resData.deadcode) {
-        c++;
-        var v = resData.deadcode[key];
-        gr_deadcode += '<tr><td>' + c + '</td><td><a href="file://' + v.Path + '">' + v.Path + '</a></td><td>' + v.Info + '</td></tr>'
+    if (resData.deadcode.length > 0) {
+        for (var key in resData.deadcode) {
+            c++;
+            var v = resData.deadcode[key];
+            gr_deadcode += '<tr><td>' + c + '</td><td><a href="file://' + v.Path + '">' + v.Path + '</a></td><td>' + v.Info + '</td></tr>'
+        }
+        $(".gr_deadcode").html(gr_deadcode);
+    } else {
+        $(".gr_deadcode_tb").html('<center><img src="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADuElEQVR4Ae2bA7A0RxCAY9tmKbZt204hKjs2CrEtPds303v7jJm52Pxj2+jp1IT7glveZWfuuqofivt909s9q7nyHfWohy7Bxij4NSjgRioVt6gteAWHoWI/kQIyaf7Wih9YMwJQ8JcNeDBRsM/0tL9aTQgIgs+WAI/WugCkx/213Ib3/fkM7H8nP8ftBjgFK5YTgIoxx8eft3NZAQLecX0EnhdSAT85LQAVPF5eAPzsfPmHnAIfOglPdPE8qNhMqADJR9wUUOKnh8GbRMWvcK/0Z/iyqODjKAK0Yvs4JwAl3BVt9eFnPT6+uFurL2FrFICRBAhWcq7xkeAqDDzQAG9wbPXZWVHhTeoSO9wZeFL+cij4p7EEPFFYwaEdH2+IA4+KveDQfp+fGwfeJAp+t/3gTxQWRcXuiAtvUkt+sgN3edkrBiaRgOnC2vbCC76ZuamZFB4le9vqbm8AEsFLTjTSTsgaZize5vKHIwMLRjTRS+S3EA3cT9R+M1HrjYRDDzZY2u3ZPgbs/0xU7DtUfJyUd1TVb26igHerCRsuA26qDvxLAwuigLH8wAfHKRxZUXh6pmUBVLw7j/AmzcJUDv6psaVRcC+H4MGe8O2fB/xG8T2Kk6/Dex+96b9z6L83PG93lPz1nIIHK+CbxAJMzoH3Pvyj1LX01iUFp6JgxXyDBwVwL5UAk8QbcgsYfk+B75tewHBbPgE7biXqu5eIPfrrDpKmBohkAF7BRYY7vYCxrnwKaLuJqOt2ou67iPruIxp8kAgaicZ7CKeHug1zNgIm++wsfwH7ZSNgetBKAajAz0aAYJYKYN9mI0ByOwUI+CYbAQpszeGaFqBLcFA2AmROIc0ILDxCNNb9j9MUJb/SMLvdA8w+oOOW30T03kNUbKGfp4c+1dLb3/BmJ2CmYO/2NxMBU/1Wz//0AsZ7rJ7/6QWMtFs8/0METF7+ZLgAr8ni+R8ioHUfCBdQeMjq+Z9eQN89Fs7/EAHvTH1IP3zxI2mt6fvPfzT//7eAjlvyP/9n+j8Izv9QAQY+EEbCfwtovZFoZijvpf+5YYwsgDTNDk3lBYx25n30fRdLgFnx2RXwQ3kB/NG8j76ngqyResCvEvSv8Ob/8gJ67sq3AAlXRROQIKM9IvMX07KwA0q4FQV8X93VZ19pObhyhQS880Hsh6WPwfoo2bNVgtdasuMjHVgS+De89w9O+DHUQij5pajYl5VdeQOf4yDFl9QSzjBPkFHBmyjYj2m7vWl45pwPlH1I1KMevwCCyQloifV7DgAAAABJRU5ErkJggg==" style="margin-top:50px;" /></center><br/><center><h4>Sweet!</h4></center><center>No dead code</center>');
     }
-    $(".gr_deadcode").html(gr_deadcode);
 
     var c = 0;
     var gr_cyclo_table = "";
@@ -505,15 +518,15 @@ $(function() {
         c++;
         var v = resData.gocyclo[key];
         var label = "";
-        if (v.Size <= 20) {
+        if (v.Size <= 14) {
             label = '<span class="label bg-green">' + v.Size + '</span>';
-        } else if (20 < v.Size && v.Size <= 25) {
+        } else if (14 < v.Size && v.Size <= 20) {
             label = '<span class="label bg-light-blue">' + v.Size + '</span>';
-        } else if (25 < v.Size && v.Size <= 30) {
+        } else if (20 < v.Size && v.Size <= 25) {
             label = '<span class="label bg-blue">' + v.Size + '</span>';
-        } else if (30 < v.Size && v.Size <= 35) {
+        } else if (25 < v.Size && v.Size <= 30) {
             label = '<span class="label bg-orange">' + v.Size + '</span>';
-        } else if (35 < v.Size) {
+        } else if (30 < v.Size) {
             label = '<span class="label bg-red">' + v.Size + '</span>';
         }
         gr_cyclo_table += '<tr><td>' + c + '</td><td>' + v.Pkg + '</td><td>' + label + '</td></tr>'
