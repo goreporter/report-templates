@@ -123,7 +123,7 @@
                                 <i class="material-icons">code</i>
                             </div>
                             <div class="content">
-                                <div class="text">Cyclo > 50</div>
+                                <div class="text">Cyclo > 15</div>
                                 <div class="number count-to gr_cycol_count" data-from="0" data-to="0" data-speed="1000"></div>
                             </div>
                         </div>
@@ -479,10 +479,10 @@ $(function() {
                 c++;
                 var v = resData.copycode[key]
                 var files = v.Files
-                gr_copied_code_table += '<tr><td rowspan="' + files + '">' + c + '</td><td rowspan="' + files + '">' + files + '</td><td><a href="file://' + v.Path[0] + '">' + v.Path[0] + '</td></tr>'
+                gr_copied_code_table += '<tr><td rowspan="' + files + '">' + c + '</td><td rowspan="' + files + '">' + files + '</td><td><a href="file://' + v.Path[0] + '">' + v.Path[0] + '</a></td></tr>'
                 for (fd in v.Path) {
                     if (fd != 0) {
-                        gr_copied_code_table += '<tr><td><a href="file://' + v.Path[fd] + '">' + v.Path[fd] + '</td></tr>';
+                        gr_copied_code_table += '<tr><td><a href="file://' + v.Path[fd] + '">' + v.Path[fd] + '</a></td></tr>';
                     }
                 }
             }
@@ -512,7 +512,7 @@ $(function() {
         for (var key in resData.deadcode) {
             c++;
             var v = resData.deadcode[key];
-            gr_deadcode += '<tr><td>' + c + '</td><td><a href="file://' + v.Path + '">' + v.Path + '</a></td><td>' + v.Info + '</td></tr>'
+            gr_deadcode += '<tr><td>' + c + '</td><td><a href="file://' + v.Path + '">' + v.Path + '</a></td><td>' + v.Info + '</a></td></tr>'
         }
         $(".gr_deadcode").html(gr_deadcode);
     } else {
