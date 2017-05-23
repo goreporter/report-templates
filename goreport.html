@@ -475,15 +475,13 @@ $(function() {
     var gr_copied_code_table = "";
     if (resData.copycode.length > 0) {
         for (var key in resData.copycode) {
-            for (var k in resData.copycode[key]) {
-                c++;
-                var v = resData.copycode[key]
-                var files = v.Files
-                gr_copied_code_table += '<tr><td rowspan="' + files + '">' + c + '</td><td rowspan="' + files + '">' + files + '</td><td><a href="file://' + v.Path[0] + '">' + v.Path[0] + '</a></td></tr>'
-                for (fd in v.Path) {
-                    if (fd != 0) {
-                        gr_copied_code_table += '<tr><td><a href="file://' + v.Path[fd] + '">' + v.Path[fd] + '</a></td></tr>';
-                    }
+            c++;
+            var v = resData.copycode[key]
+            var files = v.Files
+            gr_copied_code_table += '<tr><td rowspan="' + files + '">' + c + '</td><td rowspan="' + files + '">' + files + '</td><td><a href="file://' + v.Path[0] + '">' + v.Path[0] + '</a></td></tr>'
+            for (fd in v.Path) {
+                if (fd != 0) {
+                    gr_copied_code_table += '<tr><td><a href="file://' + v.Path[fd] + '">' + v.Path[fd] + '</a></td></tr>';
                 }
             }
         }
