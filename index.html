@@ -35,13 +35,13 @@
 							<img src='img/logo.png'>
 							<p>Golang测试报告</p>
 						</li>
-						<li class="nav-item first">
+						<li class="nav-item active">
 							<i class="fa fa-home" aria-hidden="true"></i>
 							<a href='index.html'>首页</a>
 						</li>
 						<li class="nav-item">
 							<i class="fa fa-umbrella" aria-hidden="true"></i>
-							<a href='#'>单元测试</a>
+							<a href='view/unitTest.html'>单元测试</a>
 						</li>
 						<li class="nav-item">
 							<i class="fa fa-glass" aria-hidden="true"></i>
@@ -143,8 +143,8 @@
 						</li>
 					</ul>
 					<div class='row chart-container'>
-						<div class="col-sm-7 col-md-7 sub-chart">
-							<span>
+						<div class="col-sm-7 col-md-7">
+							<span class='chart-title'>
 								<span class='chart-legend-block green'></span>
 								<span class='chart-legend-block purple'></span>
 								单元测试
@@ -155,8 +155,8 @@
 						</div>
 						<div class="col-sm-5 col-md-5">
 							<div class='pie-chart'>
-									<div class="sub-chart">
-										<span>
+									<div>
+										<span class="chart-title">
 											<span class='chart-legend-block grey'></span>
 											包圈复杂度
 										</span>
@@ -164,16 +164,16 @@
 										</div>
 										
 									</div>
-									<div class="sub-chart">
-										<span>
+									<div>
+										<span class="chart-title">
 											<span class='chart-legend-block orange'></span>
 											包Issue
 										</span>
 										<div id="goIssue">
 										</div>
 									</div>
-									<div class="sub-chart">
-										<span>
+									<div>
+										<span class="chart-title">
 											<span class='chart-legend-block lavande'></span>
 											包代码量占比
 										</span>
@@ -391,6 +391,7 @@
 					</div>
 				</div>
 		</div>
-		<script src="js/index.js"></script>
+		<script src="js/preProcess.js"></script>
+		<script src="js/summary.js"></script>
 	</body>
 </html>

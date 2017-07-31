@@ -4,6 +4,8 @@
 				"project": "../apollo",    //路径请遵循这种写法： ../ + 项目名字
 				"issueNum": 52,
 				"gotest":{
+					"codeCover": '75',     //unit: percentage
+					"pkgCover":  '80',      //unit: percentage
 					"res": [{
 						path: "../apollo/gocode",      //path项可以直接去掉跟路径，也可以加上根路径。此项可以写成: /gocode,也可以写成：../apollo/gocode.但不要写成 “/apollo/gocode”
 						result: 1,

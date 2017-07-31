@@ -1,25 +1,6 @@
 	$(document).ready(function(){
-				//******************************* constants **********************************
-				var MEDIUM_GOCYCLO_SCORE = 15,
-					HIGH_GOCYCLO_SCORE = 50,
-					PATH_PREFIX = 3,
-					PROGRESS_BAR_LEN = 220,
-					project = resData.project,
-					pjLen = project.length;
-
-				//******************************* change to relative path **********************************
-				changeToRelativePath(resData.gotest.res, "path");
-				changeToRelativePath(resData.gotest.noTest);
-				changeToRelativePath(resData.gosimple, "path");
-				changeToRelativePath(resData.deadcode, "path");
-				for(var i=0 ;i<resData.copycode.length;i++){
-					changeToRelativePath(resData.copycode[i].infos);
-				}
-				
-
 				//******************************** summary ************************************
 				$("#score").text(resData.score);
-				//$("#project").text(resData.project);
 				$("#testCover").text(resData.gotest.summary);
 				$("#testPkgCover").text((resData.gotest.res.length / (+resData.gotest.res.length + +resData.gotest.noTest.length) * 100).toFixed(0));
 				$("#goIssueNum").text(resData.issueNum);
@@ -43,9 +24,9 @@
 				$("#highCycleNum").text(highscore);
 				//******************************** gotest ************************************
 
-				$("#gotestList").append(resData.gotest.noTest.map(function(d){
-					return $("<li>" + d + "</li>");
-				}));
+				// $("#gotestList").append(resData.gotest.noTest.map(function(d){
+				// 	return $("<li>" + d + "</li>");
+				// }));
 				gotestResult();
 				$("#gotestChart").highcharts({
 					chart: {
@@ -332,23 +313,6 @@
 					    }]
 				});
 
-
-			 
-				/**
-				 * 获取相对路径
-				 * @param  {[Array]} array [包含路径信息的数组]
-				 * @param  {[string]} key  [路径的key值。可选，没有传递的话表示该数组中的元素不是对象，而是“路径”字符串]
-				 */
-				function changeToRelativePath(array, key){
-					for(var i=0; i<array.length; i++){
-						var path = key ? array[i][key] : array[i];
-						if(path.indexOf(project) > -1){
-							key ? array[i][key] = path.substring(path.indexOf(project) + pjLen) : array[i] =  path.substring(path.indexOf(project) + pjLen);
-						}else if(path.indexOf(project.substring(PATH_PREFIX)) > -1){
-							key ? array[i][key] = path.substring(path.indexOf(project.substring(PATH_PREFIX)) + pjLen - PATH_PREFIX) : array[i] =  path.substring(path.indexOf(project.substring(PATH_PREFIX)) + pjLen - PATH_PREFIX);
-						}
-					}
-				}
 
 				function gotestResult(){
 					var gotest_result = {};

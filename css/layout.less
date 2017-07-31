@@ -30,16 +30,24 @@ html, body{
 	}
 	.nav-item{
     	height: 64px;
-    	padding: 20px 30px 20px 50px;
     	font-size: 16px;
+    	position: relative;
     	i{
     		font-size: 20px;
     		vertical-align: middle;
+    		position: absolute;
+    		top: 22px;
+    		left: 50px;
     	}
     	a{
     		padding-left: 20px;
     		vertical-align: middle;
     		text-decoration: none;
+    		display: inline-block;
+    		padding-left: 100px;
+    		width: 100%;
+    		height: 64px;
+    		line-height: 64px;
     	}
     	&:hover{
     		cursor: pointer;
@@ -104,18 +112,17 @@ html, body{
 .chart-container{
 	margin: 0;
 	width: 100%;
+	padding: 24px 48px;
 	>div{
-		padding: 24px 48px;
 		box-sizing: border-box;
 	}
 }
-.sub-chart{
-	>span{
-		display: inline-block;
-	    padding: 10px 30px 10px 20px;
-	    border: 2px solid #d2dae2;
-	    border-radius: 30px;
-	}
+
+.chart-title{
+	display: inline-block;
+    padding: 10px 30px 10px 20px;
+    border: 2px solid #d2dae2;
+    border-radius: 30px;
 }
 .pie-chart{
 	display: flex;
@@ -167,6 +174,22 @@ html, body{
 	display: inline-block;
 	width: 10px;
 	height: 10px;
+}
+.unit-title{
+    padding: 20px 10px;
+    border-radius: 3px;
+    margin:0;
+}
+.unit-absent-files{
+	list-style: none;
+    padding: 0 20px;
+    li{
+    	height: 48px;
+	    line-height: 48px;
+	    font-size: 16px;
+	    border-bottom-width: 2px;
+	    border-bottom-style: solid;
+    }
 }
 @media screen and (max-width: 1280px){
 	.sidebar{

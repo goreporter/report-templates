@@ -11,7 +11,7 @@
     	
     }
     .nav-item{
-    	&:hover{
+    	&:hover, &.active{
     		background-color: #2f3949;
     		a, i{
     			color: #fff;
@@ -79,11 +79,9 @@
 .chart-container{
 	background-color: #ecf2f6;
 }
-.sub-chart{
-	>span{
-	    color: #596679;
-	    background: #fff;
-	}
+.chart-title{
+    color: #596679;
+    background: #fff;
 }
 
 .divider{
@@ -111,10 +109,24 @@
 	&.lavande{
 		background-color: rgb(155,89,182)
 	}
+	&.white{
+		background-color: #fff;
+	}
 }
 #score{
 	color: #666;
 }
 .emphasize-num{
 	color: #666;
+}
+.unit-title{
+	background: #6f7d95;
+    color: #fff;
+}
+.unit-absent-files{
+	background-color: #fff;
+	li{
+		color: #596679;
+		border-bottom-color: #ecf2f6;
+	}
 }
