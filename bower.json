@@ -1,0 +1,20 @@
+{
+  "name": "golang-test",
+  "description": "go test report",
+  "main": "index.js",
+  "authors": [
+    "liufeifei-liufeifei@b.360.cn"
+  ],
+  "license": "UNLICENSED",
+  "keywords": [
+    "gotest"
+  ],
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.7.0",
+    "flat-ui": "^2.3.0",
+    "highcharts": "5.0.2"
+  }
+}
