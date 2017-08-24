@@ -16,7 +16,7 @@
 	    <meta name="coverage" content="Worldwide">
 	    <meta name="distribution" content="Global">
 	    <meta name="apple-mobile-web-app-capable" content="yes"/>
-		<title>Go Reporter unit test| A Golang tool that does static analysis, unit testing, code review and generate code quality report</title>
+		<title>Go Reporter code style| A Golang tool that does static analysis, unit testing, code review and generate code quality report</title>
 		<script src="../js/data.js"></script>
 		<script src="../bower_components/jquery/dist/jquery.js"></script>
 		<script src="../bower_components/highcharts/highcharts.js"></script>
@@ -38,11 +38,11 @@
 							<i class="fa fa-home" aria-hidden="true"></i>
 							<a href='../index.html'>首页</a>
 						</li>
-						<li class="nav-item active">
+						<li class="nav-item">
 							<i class="fa fa-umbrella" aria-hidden="true"></i>
 							<a href='unitTest.html'>单元测试</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item active">
 							<i class="fa fa-glass" aria-hidden="true"></i>
 							<a href='codeStyle.html'>代码风格</a>
 						</li>
@@ -68,7 +68,7 @@
 						<nav class="navbar">
 							<div class="container-fluid">
 								<div class="navbar-header">
-									<a class="navbar-brand" href="index.html">单元测试</a>
+									<a class="navbar-brand" href="index.html">代码风格</a>
 								</div>
 								<div id="navbar" class="navbar-collapse collapse">
 						          <ul class="nav navbar-nav navbar-right">
@@ -82,33 +82,30 @@
 					<ul>
 						<li>
 							<div>
-								<span>平均代码覆盖率</span>
+								<span>ISSUES</span>
 								<i class="fa fa-star-o fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 							<div class="summary-content">
-								<span class="emphasize-num" id="coverPct"></span>
+								<span class="emphasize-num" id="issueNum"></span>
 								<span>%</span>
 							</div>
-							<div class="progress-bar"></div>
 						</li>
 						<li>
 							<div>
-								<span>包测试覆盖率</span>
+								<span>文件数</span>
 								<i class="fa fa-check-square-o fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 							<div class="summary-content">
-								<span class="emphasize-num" id="pkgPct"></span>
-								<span>%</span>
+								<span class="emphasize-num" id="fileNum"></span>
 							</div>
 						</li>
 						<li>
 							<div>
-								<span>单元测试耗时</span>
+								<span>质量等级</span>
 								<i class="fa fa-info-circle fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 							<div class="summary-content">
-								<span class="emphasize-num" id="unitTestTime"></span>
-								<span>s</span>
+								<span class="emphasize-num" id="qualityRank"></span>
 							</div>
 						</li>
 					</ul>
