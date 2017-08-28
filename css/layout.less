@@ -1,13 +1,18 @@
 html, body{
 	height: 100%;
 }
+ul{
+	list-style: none;
+}
 
 .main-container{
 	display: flex;
 	flex-direction: row;
+	height: 100%;
 }
 .sidebar{
 	flex: 0 0 250px;
+	overflow: auto;
 	ul{
     	list-style: none;
     	margin: 0;
@@ -67,10 +72,12 @@ html, body{
 .main{
 	flex: 1 1 0;
 	padding: 0;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
 	>ul{
 		padding: 30px;
 		margin: 0;
-		overflow: hidden;
 		border-bottom-width: 2px;
 		border-bottom-style: solid;
 		li{
@@ -191,6 +198,40 @@ html, body{
 	    border-bottom-style: solid;
     }
 }
+//代码风格
+.right-content{
+	position: relative;
+}
+.sub-nav{
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 150px;
+	font-size: 16px;
+	li{
+		height: 40px;
+		cursor: pointer;
+	}
+}
+#content{
+	margin-left: 250px;
+	margin-right: 24px;
+	h5{
+		margin-left: 24px;
+	}
+	a{
+		display: block;
+		margin-left: 48px;
+		margin-top:24px;
+	}
+	h4>span:last-child{
+		margin-left: 24px;
+	}
+}
+.description{
+	margin-left: 24px;
+}
+
 @media screen and (max-width: 1280px){
 	.sidebar{
 		flex: 0 0 200px;

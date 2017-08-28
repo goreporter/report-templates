@@ -17,10 +17,6 @@
 	    <meta name="distribution" content="Global">
 	    <meta name="apple-mobile-web-app-capable" content="yes"/>
 		<title>Go Reporter code style| A Golang tool that does static analysis, unit testing, code review and generate code quality report</title>
-		<script src="../js/data.js"></script>
-		<script src="../bower_components/jquery/dist/jquery.js"></script>
-		<script src="../bower_components/highcharts/highcharts.js"></script>
-		<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../css/layout.css">
@@ -87,7 +83,6 @@
 							</div>
 							<div class="summary-content">
 								<span class="emphasize-num" id="issueNum"></span>
-								<span>%</span>
 							</div>
 						</li>
 						<li>
@@ -109,43 +104,20 @@
 							</div>
 						</li>
 					</ul>
-					<div class='chart-container'>
-							<span class="chart-title">
-								<span class='chart-legend-block green'></span>
-								<span class='chart-legend-block purple'></span>
-								包覆盖率详情
-							</span>
-							<div id="unitCover">
-							</div>
-					</div>
-					<div class='divider'>
-						<span class='line'>
-						</span>
-						<span class='icon'>
-						</span>
-						<span class='line'>
-						</span>
-					</div>
-					<div class='chart-container row'>
-						<div class="col-sm-6 col-md-6">
-							<span class="chart-title">
-								<span class='chart-legend-block purple'></span>
-								包耗时占比
-							</span>
-							<div id='pie-chart'></div>
-						</div>
-						<div class='col-sm-6 col-md-6'>
-							<h5 class='unit-title'>
-								<span class='chart-legend-block white'></span>
-										缺少单元测试的文件
-							</h5>
-							<ul id='unitAbsentFiles' class='unit-absent-files'>
-							</ul>
+					<div class='right-content'>
+						<ul class='sub-nav' id='subNav'>
+							<li>Index</li>
+						</ul>
+						<div id='content'>
 						</div>
 					</div>
 				</div>
 		</div>
+		<script src="../js/data.js"></script>
+		<script src="../bower_components/jquery/dist/jquery.js"></script>
+		<script src="../bower_components/highcharts/highcharts.js"></script>
+		<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="../js/preProcess.js"></script>
-		<script src="../js/unitTest.js"></script>
+		<script src="../js/codeStyle.js"></script>
 	</body>
 </html>

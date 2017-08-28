@@ -24,9 +24,6 @@
 				$("#highCycleNum").text(highscore);
 				//******************************** gotest ************************************
 
-				// $("#gotestList").append(resData.gotest.noTest.map(function(d){
-				// 	return $("<li>" + d + "</li>");
-				// }));
 				gotestResult();
 				$("#gotestChart").highcharts({
 					chart: {
@@ -116,86 +113,8 @@
 				        color: '#BB8FCE'
 				    }]
 				});
-				//******************************** gosimple ************************************
 				
-				// resData.gosimple_result = goSimpleResult(resData.gosimple, "path", resData.gosimpleLevel);
-				// $("#gosimpleChart").highcharts({
-			 //        chart: {
-			 //            type: 'column',
-			 //            backgroundColor: '#ecf2f6'
-			 //        },
-			 //        title: {
-			 //            text: '代码精简',
-			 //            style: {
-			 //                fontSize: "16px"
-			 //            },
-			 //            align: 'left'
-			 //        },
-			 //        xAxis: {
-			 //            type: 'category',
-			 //            labels: {
-			 //                rotation: -45,
-			 //                style: {
-			 //                    fontSize: '13px',
-			 //                    fontFamily: 'Verdana, sans-serif'
-			 //                }
-			 //            }
-			 //        },
-			 //        yAxis: {
-			 //            min: 0,
-			 //            title: {
-			 //                text: 'info数量'
-			 //            }
-			 //        },
-			 //        legend: {
-			 //            enabled: false
-			 //        },
-			 //        credits: {
-			 //            enabled: false
-			 //        },
-			 //        plotOptions: {
-			 //            series: {
-			 //                cursor: 'pointer',
-			 //                point: {
-			 //                    events: {
-			 //                        click: function () {
-			 //                            var $tbody = $("#gosimpleTable").find("tbody");
-			 //                            $tbody.empty();
-			 //                            var content =[];
-			 //                            resData.gosimple_result.data_dic[this.name].forEach(function(item){
-			 //                                content.push($("<tr><td>" + item.path + "</td><td>" + item.info + "</td></tr>"));
-			 //                            })
-			 //                           $tbody.append(content);
-			 //                        }
-			 //                    }
-			 //                }
-			 //            }
-			 //        },
-			 //        series: [{
-			 //            name: 'info数量',
-			 //            data: resData.gosimple_result.data_render,
-			 //            color: '#01b8aa',
-			 //            dataLabels: {
-			 //                enabled: true,
-			 //                color: '#666',
-			 //                align: 'center',
-			 //                style: {
-			 //                    fontSize: '12px',
-			 //                    fontFamily: 'Verdana, sans-serif'
-			 //                }
-			 //            }
-			 //        }]
-				// });
-
-				//******************************** deadcode ************************************
-
-				//$("#deadcodeTable").children("tbody").append(deadcodeResult());
-
-				//******************************** copycode ************************************
-				
-				//$("#copycodeList").append(copycodeResult());
-			   
-				//******************************** 圈复杂度 ************************************
+				//******************************** go cyclo ************************************
 
 				$("#gocycleChart").highcharts({
 					  chart: {
@@ -238,6 +157,7 @@
 					        ]
 					    }]
 				});
+				//******************************** go issue ************************************
 				$("#goIssue").highcharts({
 					  chart: {
 					        plotBackgroundColor: null,
@@ -275,6 +195,7 @@
 					        data: resData.goIssue
 					    }]
 				});
+				//******************************** go code percentage ************************************
 				$("#goPercentage").highcharts({
 					  chart: {
 					        plotBackgroundColor: null,
@@ -351,29 +272,6 @@
 						data_dic,
 						data_render
 					}
-				}
-
-				function deadcodeResult(){
-					return resData.deadcode.map(function(item){
-						return $("<tr><td>" + item.path + "</td><td>" + item.info + "</td></tr>")
-					})
-				}
-
-				function copycodeResult(){
-					return resData.copycode.map(function(item){
-						var container = $("<div></div>");
-						var title = $("<h3>" + item.files + "</h3>")
-						var content = item.infos.map(function(info){
-							if(info.indexOf(project) > -1){
-								info.substring(info.indexOf(project + pjLen));
-							}
-							return $("<li>" + info + "</li>");
-						});
-						container.append(title);
-						container.append($("<ul></ul>"));
-						container.children("ul").append(content);
-						return container;
-					});
 				}
 				//计算
 				function getCodePercentage(){

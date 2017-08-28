@@ -8,11 +8,11 @@
 //******************************* change to relative path **********************************
 	changeToRelativePath(resData.gotest.res, "path");
 	changeToRelativePath(resData.gotest.noTest);
-	changeToRelativePath(resData.gosimple, "path");
-	changeToRelativePath(resData.deadcode, "path");
-	for(var i=0 ;i<resData.copycode.length;i++){
-		changeToRelativePath(resData.copycode[i].infos);
-	}
+	//changeToRelativePath(resData.gosimple, "path");
+	//changeToRelativePath(resData.deadcode, "path");
+	// for(var i=0 ;i<resData.copycode.length;i++){
+	// 	changeToRelativePath(resData.copycode[i].infos);
+	// }
 	/**
 	 * get relative path
 	 * @param  {[Array]} array [array containing path infomation]
