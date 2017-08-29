@@ -158,6 +158,14 @@
 					    }]
 				});
 				//******************************** go issue ************************************
+				var issueKeys = Object.keys(resData.goIssue.content);
+				var issueData = [];
+				issueKeys.forEach(function(d){
+					var element = [];
+					element.push(d);
+					element.push(resData.goIssue.content[d].detail.length);
+					issueData.push(element);
+				})
 				$("#goIssue").highcharts({
 					  chart: {
 					        plotBackgroundColor: null,
@@ -169,7 +177,7 @@
 					        text: ''
 					    },
 					    tooltip: {
-					        pointFormat: '{series.name}: <b>{point.y}%</b>'
+					        pointFormat: '{series.name}: <b>{point.y}</b>'
 					    },
 					    credits: {
 				            enabled: false
@@ -192,7 +200,7 @@
 					        type: 'pie',
 					        name: '包Issue',
 					     //   innerSize: '80%',
-					        data: resData.goIssue
+					        data: issueData
 					    }]
 				});
 				//******************************** go code percentage ************************************

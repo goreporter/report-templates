@@ -5,6 +5,8 @@
 				"issueNum": 52,
 				"fileNum": 37,
 				"quality": 'A+',
+				"issueQuality": 'A+',
+				"smellQuality": 'A-',
 				"gotest":{
 					"codeCover": '75',     //unit: percentage
 					"pkgCover":  '80',      //unit: percentage
@@ -338,13 +340,6 @@
 						}]
 					}
 				],
-				//首页右侧，包issue   
-				goIssue: [
-					['deadCode', 40],
-					['copyCode', 35],
-					['simpleCode', 71],
-					['staticCode', 20]
-				],
 				//首页右侧，包代码量占比  
 				countCode: [
 					{
@@ -410,6 +405,71 @@
 												]
 									} 
 						]
+					}
+				},
+				//代码优化
+				goIssue: {
+					summary: {
+						issueNum: 85,
+						fileNum: 15,
+						quality: 'A+'
+					},
+					content:{
+						deadCode: {
+							label: 'deadCode description',
+							score: '85%',
+							detail: [
+										{
+											rep: 'Sia/compatibility/siag_1.0_test.go',
+											content: [ "/gocode/copycode/syntax/golang/golang.go:221,229",
+													 "/gocode/copycode/syntax/golang/golang.go:255,263"
+											]
+										},{
+											rep: 'Sia/types/target.go',
+											content: ["/gocode/copycode/copycode.go:77,94",
+													  "/gocode/dupl/copycode.go:77,94"]
+										}
+								]
+						},
+						copyCode: {
+							label: 'copy code description',
+							score: '85%',
+							detail: [["/gocode/copycode/copycode.go:77,94",'/gocode/copycode/copycode.go:77,94'],
+							         ['/gocode/copycode/copycode.go:77,94','/gocode/copycode/copycode.go:77,94']
+									]
+						},
+						simpleCode: {
+							label: 'simplecode description',
+							score: '85%',
+							detail: [
+										{
+											rep: 'Sia/compatibility/siag_1.0_test.go',
+											content: [ "/gocode/copycode/syntax/golang/golang.go:221,229",
+													 "/gocode/copycode/syntax/golang/golang.go:255,263"
+											]
+										},{
+											rep: 'Sia/types/target.go',
+											content: ["/gocode/copycode/copycode.go:77,94",
+													  "/gocode/dupl/copycode.go:77,94"]
+										}
+									]
+						},
+						staticCode: {
+							label: 'static code description',
+							score: '85%',
+							detail: [
+										{
+											rep: 'Sia/compatibility/siag_1.0_test.go',
+											content: [ "/gocode/copycode/syntax/golang/golang.go:221,229",
+													 "/gocode/copycode/syntax/golang/golang.go:255,263"
+											]
+										},{
+											rep: 'Sia/types/target.go',
+											content: ["/gocode/copycode/copycode.go:77,94",
+													  "/gocode/dupl/copycode.go:77,94"]
+										}
+									]
+						}
 					}
 				}    
 			}

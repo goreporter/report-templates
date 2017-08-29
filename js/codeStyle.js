@@ -18,7 +18,6 @@ $(document).ready(function(){
 		fileNum += data[k].detail.length;
 		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span>" + data[k].score + "</span></h4>" + "<div><p class='description'>" + data[k].label + "</p><div>" + content + "</div></div></section>"
 	});
-	console.log(issueNum);
 	//顶部summary
 	$("#issueNum").text(issueNum);
 	$("#fileNum").text(fileNum);
