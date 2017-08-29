@@ -361,51 +361,60 @@
 					}
 				],
 				//代码风格
-				codStyle: {
-					gofmt: {
-						label: 'Gofmt formats Go programs. We run gofmt -s on your code, where -s is for the "simplify" command',
-						score: '100%',
-						detail: []
+				codeStyle: {
+					summary: {
+						issueNum: 25,
+						fileNum: 18,
+						quality: 'A+'
 					},
-					go_vet: {
-						label: 'go vet examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string.',
-						score: '100%',
-						detail: []
-					},
-					golint: {
-						label: 'Golint is a linter for Go source code.',
-						score: '80%',
-						detail: [
-									{
-										rep: 'Sia/compatibility/siag_1.0_test.go',
-										content: [ "Line 18: warning: don't use underscores in Go names; type KeyPairSiag_1_0 should be KeyPairSiag1_0 (golint)",
-												 "Line 28: warning: don't use underscores in Go names; func verifyKeysSiag_1_0 should be verifyKeysSiag1_0 (golint)"
-										]
-									},{
-										rep: 'Sia/types/target.go',
-										content: ["Line 24: warning: exported var ErrNegativeTarget should have comment or be unexported (golint)","Line 46: warning: receiver name t should be consistent with previous receiver name x for Target (golint)"]
-									}
-						]
-					},
-					misspell: {
-						label: 'Misspell Finds commonly misspelled English words',
-						score: '96%',
-						detail: [
-									{
-										rep: 'Sia/siac/walletcmd.go',
-										content: [ 'Line 213: warning: "sucessfully" is a misspelling of "successfully" (misspell)'
-										]
-									},{
-										rep: 'Sia/modules/transactionpool/update.go',
-										content: ['Line 187: warning: "extermely" is a misspelling of "extremely" (misspell)'
-												]
-									},{
-										rep: 'Sia/api/ecosystem_helpers_test.go',
-										content: ['Line 47, warning: "inital" is a misspelling of "initial" (misspell)'
-												]
-									} 
-						]
+					content:{
+						gofmt: {
+							label: 'Gofmt formats Go programs. We run gofmt -s on your code, where -s is for the "simplify" command',
+							score: '100%',
+							detail: []
+						},
+						go_vet: {
+							label: 'go vet examines Go source code and reports suspicious constructs, such as Printf calls whose arguments do not align with the format string.',
+							score: '100%',
+							detail: []
+						},
+						golint: {
+							label: 'Golint is a linter for Go source code.',
+							score: '80%',
+							detail: [
+										{
+											rep: 'Sia/compatibility/siag_1.0_test.go',
+											content: [ "Line 18: warning: don't use underscores in Go names; type KeyPairSiag_1_0 should be KeyPairSiag1_0 (golint)",
+													 "Line 28: warning: don't use underscores in Go names; func verifyKeysSiag_1_0 should be verifyKeysSiag1_0 (golint)"
+											]
+										},{
+											rep: 'Sia/types/target.go',
+											content: ["Line 24: warning: exported var ErrNegativeTarget should have comment or be unexported (golint)","Line 46: warning: receiver name t should be consistent with previous receiver name x for Target (golint)"]
+										}
+							]
+						},
+						misspell: {
+							label: 'Misspell Finds commonly misspelled English words',
+							score: '96%',
+							detail: [
+										{
+											rep: 'Sia/siac/walletcmd.go',
+											content: [ 'Line 213: warning: "sucessfully" is a misspelling of "successfully" (misspell)'
+											]
+										},{
+											rep: 'Sia/modules/transactionpool/update.go',
+											content: ['Line 187: warning: "extermely" is a misspelling of "extremely" (misspell)'
+													]
+										},{
+											rep: 'Sia/api/ecosystem_helpers_test.go',
+											content: ['Line 47, warning: "inital" is a misspelling of "initial" (misspell)'
+													]
+										} 
+							]
+						}
+
 					}
+					
 				},
 				//代码优化
 				goIssue: {
