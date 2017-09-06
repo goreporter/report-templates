@@ -177,7 +177,7 @@
 					        text: ''
 					    },
 					    tooltip: {
-					        pointFormat: '{series.name}: <b>{point.y}</b>'
+					        pointFormat: '{series.name}: {point.y}个<br>占比：{point.percentage:.0f}%'
 					    },
 					    credits: {
 				            enabled: false
@@ -215,7 +215,7 @@
 					        text: ''
 					    },
 					    tooltip: {
-					        pointFormat: '{series.name}: {point.y}个，<br>占比：{point.percentage:.0f}%'
+					        pointFormat: '{series.name}: {point.y}个<br>占比：{point.percentage:.0f}%'
 					    },
 					    credits: {
 				            enabled: false
@@ -236,9 +236,9 @@
 					    },
 					    series: [{
 					        type: 'pie',
-					        name: '包代码量占比',
+					        name: '包代码行数',
 					    //    innerSize: '80%',
-					        data: getCodePercentage()
+					        data: resData.countCode.pkg_line_count 
 					    }]
 				});
 
@@ -280,16 +280,5 @@
 						data_dic,
 						data_render
 					}
-				}
-				//计算
-				function getCodePercentage(){
-					var result = [];
-				 	resData.countCode.forEach(function(d){
-						var element = [];
-						element.push(d.package);
-						element.push(d.codeNum);
-						result.push(element);
-					});
-					return result;
 				}
 			})

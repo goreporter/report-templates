@@ -480,5 +480,39 @@
 									]
 						}
 					}
+				},
+				//代码统计
+				countCode: {
+					summary: {
+						line_count: 23412,
+						comment_count: 5321,
+						function_count: 555,
+						file_count: 54
+					},
+					content: {
+						pkg: ['gocode','gotest','gosimple','copycode'],
+						pkg_line_count: [225,331,554,852],
+						pkg_comment_count: [225,331,554,852],
+						pkg_function_count: [225,331,554,852],
+						file: ['file1','file2','file3','file4','file5'],
+						file_line_count: [225,331,554,852],
+						file_comment_count: [225,331,554,852],
+						file_function_count: [225,331,554,852]
+
+					}
+				},
+				codeSmell: {
+					summary: {
+						cycly_avg: 20,
+						cyclo_high: 12,
+						cyclo_grave: 8
+					},
+					content: {
+						percentage: [['0-15', 20],['15-50', 25],['>50', 10]],
+						pkg: ['aa','bb','cc','dd','ee'],
+						cyclo: [15,23,12,34,41],
+						list: [{path: 'aa/bb/cc', cyclo: 88},{path: 'dd/ee/ff', cyclo: 75},{path: 'ab/cd/ef', cyclo: 60}]
+
+					}
 				}    
 			}

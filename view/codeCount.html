@@ -16,7 +16,7 @@
 	    <meta name="coverage" content="Worldwide">
 	    <meta name="distribution" content="Global">
 	    <meta name="apple-mobile-web-app-capable" content="yes"/>
-		<title>Go Reporter unit test| A Golang tool that does static analysis, unit testing, code review and generate code quality report</title>
+		<title>Go Reporter code count| A Golang tool that does static analysis, unit testing, code review and generate code quality report</title>
 		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../css/layout.css">
@@ -34,7 +34,7 @@
 							<i class="fa fa-home" aria-hidden="true"></i>
 							<a href='../index.html'>首页</a>
 						</li>
-						<li class="nav-item active">
+						<li class="nav-item">
 							<i class="fa fa-umbrella" aria-hidden="true"></i>
 							<a href='unitTest.html'>单元测试</a>
 						</li>
@@ -46,7 +46,7 @@
 							<i class="fa fa-envira" aria-hidden="true"></i>
 							<a href='codeOpt.html'>代码优化</a>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item active">
 							<i class="fa fa-code" aria-hidden="true"></i>
 							<a href='codeCount.html'>代码统计</a>
 						</li>
@@ -60,7 +60,7 @@
 						<nav class="navbar">
 							<div class="container-fluid">
 								<div class="navbar-header">
-									<a class="navbar-brand" href="index.html">单元测试</a>
+									<a class="navbar-brand" href="index.html">概览</a>
 								</div>
 								<div id="navbar" class="navbar-collapse collapse">
 						          <ul class="nav navbar-nav navbar-right">
@@ -74,33 +74,39 @@
 					<ul>
 						<li>
 							<div>
-								<span>平均代码覆盖率</span>
+								<span>代码行数</span>
 								<i class="fa fa-star-o fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 							<div class="summary-content">
-								<span class="emphasize-num" id="coverPct"></span>
-								<span>%</span>
+								<span class="emphasize-num" id="line_count"></span>
 							</div>
 							<div class="progress-bar"></div>
 						</li>
 						<li>
 							<div>
-								<span>包测试覆盖率</span>
+								<span>注释</span>
 								<i class="fa fa-check-square-o fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 							<div class="summary-content">
-								<span class="emphasize-num" id="pkgPct"></span>
-								<span>%</span>
+								<span class="emphasize-num" id="comment_count"></span>
 							</div>
 						</li>
 						<li>
 							<div>
-								<span>单元测试耗时</span>
+								<span>函数</span>
 								<i class="fa fa-info-circle fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 							<div class="summary-content">
-								<span class="emphasize-num" id="unitTestTime"></span>
-								<span>s</span>
+								<span class="emphasize-num" id="function_count"></span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<span>文件数</span>
+								<i class="fa fa-info-circle fa-lg pull-right" aria-hidden="true"></i>
+							</div>
+							<div class="summary-content">
+								<span class="emphasize-num" id="file_count"></span>
 							</div>
 						</li>
 					</ul>
@@ -108,9 +114,9 @@
 							<span class="chart-title">
 								<span class='chart-legend-block green'></span>
 								<span class='chart-legend-block purple'></span>
-								包覆盖率详情
+								代码行详情
 							</span>
-							<div id="unitCover">
+							<div id="lineCountChart">
 							</div>
 					</div>
 					<div class='divider'>
@@ -121,22 +127,48 @@
 						<span class='line'>
 						</span>
 					</div>
-					<div class='chart-container row'>
-						<div class="col-sm-6 col-md-6">
+					<div class='chart-container'>
 							<span class="chart-title">
+								<span class='chart-legend-block green'></span>
 								<span class='chart-legend-block purple'></span>
-								包耗时占比
+								注释行详情
 							</span>
-							<div id='pie-chart'></div>
-						</div>
-						<div class='col-sm-6 col-md-6'>
-							<h5 class='unit-title'>
-								<span class='chart-legend-block white'></span>
-										缺少单元测试的文件
-							</h5>
-							<ul id='unitAbsentFiles' class='unit-absent-files'>
-							</ul>
-						</div>
+							<div id='commentCountChart'>
+							</div>
+					</div>
+					<div class='divider'>
+						<span class='line'>
+						</span>
+						<span class='icon'>
+						</span>
+						<span class='line'>
+						</span>
+					</div>
+					<div class='chart-container'>
+							<span class="chart-title">
+								<span class='chart-legend-block green'></span>
+								<span class='chart-legend-block purple'></span>
+								函数行详情
+							</span>
+							<div id="funcCountChart">
+							</div>
+					</div>
+					<div class='divider'>
+						<span class='line'>
+						</span>
+						<span class='icon'>
+						</span>
+						<span class='line'>
+						</span>
+					</div>
+					<div class='chart-container'>
+							<span class="chart-title">
+								<span class='chart-legend-block green'></span>
+								<span class='chart-legend-block purple'></span>
+								文件详情
+							</span>
+							<div id="fileCountChart">
+							</div>
 					</div>
 				</div>
 		</div>
@@ -145,6 +177,6 @@
 		<script src="../bower_components/highcharts/highcharts.js"></script>
 		<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="../js/preProcess.js"></script>
-		<script src="../js/unitTest.js"></script>
+		<script src="../js/codeCount.js"></script>
 	</body>
 </html>
