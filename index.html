@@ -87,13 +87,13 @@
 						<li>
 							<div>
 								<span>
-									单元测试
+									覆盖率
 								</span>
 								<i class="fa fa-check-square-o fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 							<div class="summary-content">
 								<div>
-									<span>平均测试覆盖率：</span>
+									<span>代码覆盖率：</span>
 									<span class="emphasize-num" id="testCover"></span>
 									<span>%</span>
 								</div>
@@ -106,7 +106,7 @@
 						</li>
 						<li>
 							<div>
-								<span>代码Issue</span>
+								<span>Issues</span>
 								<i class="fa fa-info-circle fa-lg pull-right" aria-hidden="true"></i>
 							</div>
 
@@ -130,6 +130,17 @@
 								<div>
 									<span>50分以上文件数：</span>
 									<span class="emphasize-num" id="highCycleNum"></span>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div>
+								<span>代码量</span>
+								<i class="fa fa-life-ring fa-lg pull-right" aria-hidden="true"></i>
+							</div>
+							<div class="summary-content">
+								<div>
+									<span class="emphasize-num" id="codeLineNum"></span>
 								</div>
 							</div>
 						</li>
@@ -389,7 +400,6 @@
 		<script src="bower_components/jquery/dist/jquery.js"></script>
 		<script src="bower_components/highcharts/highcharts.js"></script>
 		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-		<script src="js/preProcess.js"></script>
 		<script src="js/summary.js"></script>
 	</body>
 </html>

@@ -1,30 +1,26 @@
 	$(document).ready(function(){
 				//******************************** summary ************************************
 				$("#score").text(resData.score);
-				$("#testCover").text(resData.gotest.summary);
-				$("#testPkgCover").text((resData.gotest.res.length / (+resData.gotest.res.length + +resData.gotest.noTest.length) * 100).toFixed(0));
+				$("#testCover").text(resData.gotest.summary.codeCover);
+				$("#testPkgCover").text(resData.gotest.summary.pkgCover);
 				$("#goIssueNum").text(resData.issueNum);
+				$("#codeLineNum").text(resData.countCode.summary.line_count);
 				
-				var mediumscore = resData.gocyclo.reduce(function(a,b){
-					return a + b.res.filter(function(d){
-						return d.comp < HIGH_GOCYCLO_SCORE && d.comp >= MEDIUM_GOCYCLO_SCORE;
-					}).length;
-				}, 0);
-				var highscore = resData.gocyclo.reduce(function(a,b){
-					return a + b.res.filter(function(d){
-						return d.comp >= HIGH_GOCYCLO_SCORE;
-					}).length;
-				}, 0);
-				var lowscore = resData.gocyclo.reduce(function(a, b){
-					return a + b.res.filter(function(d){
-						return d.comp > 0 && d.comp <=MEDIUM_GOCYCLO_SCORE;
-					}).length
-				}, 0);
+				var mediumscore = 0,
+					highscore = 0,
+					lowscore = 0,
+					codeSmell = resData.codeSmell.content;
+				if(!(codeSmell.percentage instanceof Array) || codeSmell.percentage.length != 3){
+					console.error("codeSmell中的percentage数据出错！");
+				}else{
+					lowscore = codeSmell.percentage[0][1];
+					mediumscore = codeSmell.percentage[1][1];
+					highscore = codeSmell.percentage[2][1];
+				}
 				$("#mediumCycleNum").text(mediumscore);
 				$("#highCycleNum").text(highscore);
 				//******************************** gotest ************************************
 
-				gotestResult();
 				$("#gotestChart").highcharts({
 					chart: {
 						type: 'bar',
@@ -35,7 +31,7 @@
 						text: ''
 					},
 					xAxis: {
-						categories: resData.gotest.gotest_result.xAxis,
+						categories: resData.gotest.content.pkg,
 						title:{
 							text: null
 						},
@@ -102,12 +98,12 @@
 				    },
 				    series: [{
 				        name: '覆盖率',
-				        data: resData.gotest.gotest_result.cover,
+				        data: resData.gotest.content.cover,
 				        color: '#47bac1'
 				    },
 				    {
 				        name: '时间',
-				        data: resData.gotest.gotest_result.time,
+				        data: resData.gotest.content.time,
 				        yAxis: 1,
 				        //color: '#7ccc5d'
 				        color: '#BB8FCE'
@@ -165,7 +161,7 @@
 					element.push(d);
 					element.push(resData.goIssue.content[d].detail.length);
 					issueData.push(element);
-				})
+				});
 				$("#goIssue").highcharts({
 					  chart: {
 					        plotBackgroundColor: null,
@@ -204,6 +200,17 @@
 					    }]
 				});
 				//******************************** go code percentage ************************************
+				var countCodeData = [];
+				if(resData.countCode.content.pkg.length !== resData.countCode.content.pkg_line_count.length){
+					console.error("数据中countCode部分出错，请检查数据");
+				}else{
+					resData.countCode.content.pkg.forEach(function(d, i){
+						var element = [];
+						element.push(d);
+						element.push(resData.countCode.content.pkg_line_count[i]);
+						countCodeData.push(element);
+					})
+				}
 				$("#goPercentage").highcharts({
 					  chart: {
 					        plotBackgroundColor: null,
@@ -238,24 +245,9 @@
 					        type: 'pie',
 					        name: '包代码行数',
 					    //    innerSize: '80%',
-					        data: resData.countCode.pkg_line_count 
+					        data: countCodeData
 					    }]
 				});
-
-
-				function gotestResult(){
-					var gotest_result = {};
-					gotest_result.xAxis = [];
-					gotest_result.cover = [];
-					gotest_result.time = [];
-					resData.gotest.res.forEach(function(item){
-						gotest_result.xAxis.push(item.path);
-						gotest_result.cover.push(item.cover);
-						gotest_result.time.push(item.time);
-					});
-					resData.gotest.gotest_result = gotest_result;
-					delete resData.gotest.res;
-				}
 
 				function goSimpleResult(array, key, level){
 					var data_dic = {}, data_render = []; 

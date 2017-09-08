@@ -1,12 +1,10 @@
 $(document).ready(function(){
-	var totalTime = getTotalTime();
-	$("#coverPct").text(resData.gotest.codeCover);
-	$("#pkgPct").text(resData.gotest.pkgCover);
-	$("#unitTestTime").text(totalTime);
+	$("#coverPct").text(resData.gotest.summary.codeCover);
+	$("#pkgPct").text(resData.gotest.summary.pkgCover);
+	$("#unitTestTime").text(resData.gotest.summary.totalTime);
 	/**
 	 * package coverage rate 
 	 */
-	gotestResult();
 	$("#unitCover").highcharts({
 					chart: {
 						type: 'bar',
@@ -17,7 +15,7 @@ $(document).ready(function(){
 						text: ''
 					},
 					xAxis: {
-						categories: resData.gotest.gotest_result.xAxis,
+						categories: resData.gotest.content.pkg,
 						title:{
 							text: null
 						},
@@ -84,12 +82,12 @@ $(document).ready(function(){
 				    },
 				    series: [{
 				        name: '覆盖率',
-				        data: resData.gotest.gotest_result.cover,
+				        data: resData.gotest.content.cover,
 				        color: '#47bac1'
 				    },
 				    {
 				        name: '时间',
-				        data: resData.gotest.gotest_result.time,
+				        data: resData.gotest.content.time,
 				        yAxis: 1,
 				        color: '#BB8FCE'
 				    }]
@@ -144,41 +142,23 @@ $(document).ready(function(){
 	/**
 	 * list for files no having test code
 	 */
-	resData.gotest.noTest.forEach(function(d){
+	resData.gotest.content.noTest.forEach(function(d){
 		var li = "<li>" + d + "</li>";
 		$("#unitAbsentFiles").append(li);
 	})
-	/**
-	 * calculate total time spent
-	 */
-	function getTotalTime(){
-		return resData.gotest.res.reduce(function(a, b){
-			return a + b.time
-		}, 0)
-	}
+	
 	function getTimeArr(){
+		if(resData.gotest.content.pkg.length !== resData.gotest.content.time.length){
+			console.error("包的数量和时间的数量不一致，请检查数据..");
+			return [];
+		}
 		var result = [];
-		resData.gotest.res.forEach(function(d){
+		resData.gotest.content.pkg.forEach(function(d,i){
 			var element = [];
-			element.push(d.path);
-			element.push(d.time);
+			element.push(d);
+			element.push(resData.gotest.content.time[i]);
 			result.push(element);
 		})
 		return result;
-	}
-	/**
-	 * get unit test data format for highcharts
-	 */
-	function gotestResult(){
-		var gotest_result = {};
-		gotest_result.xAxis = [];
-		gotest_result.cover = [];
-		gotest_result.time = [];
-		resData.gotest.res.forEach(function(item){
-			gotest_result.xAxis.push(item.path);
-			gotest_result.cover.push(item.cover);
-			gotest_result.time.push(item.time);
-		});
-		resData.gotest.gotest_result = gotest_result;
 	}
 })
