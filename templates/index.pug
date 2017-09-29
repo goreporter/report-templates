@@ -1,0 +1,60 @@
+doctype html
+html
+  include ./head.pug
+  body
+    .main-container
+      .sidebar
+        ul
+          li.logo-block
+            img(src='img/logo.png')
+            p Golang测试报告
+          li#navSummary.nav-item.active
+            i(class='fa fa-home' aria-hidden='true')
+            p 首页
+          li#navUnitTest.nav-item
+            i(class='fa fa-umbrella' aria-hidden='true')
+            p 单元测试
+          li#navCodeStyle.nav-item
+            i(class='fa fa-glass' aria-hidden='true')
+            p 代码风格
+          li#navCodeOpt.nav-item
+            i(class='fa fa-envira' aria-hidden='true')
+            p 代码优化
+          li#navCodeCount.nav-item
+            i(class='fa fa-code' aria-hidden='true')
+            p 代码统计
+          li#navCodeSmell.nav-item
+            i(class='fa fa-spinner' aria-hidden='true')
+            p 可维护性
+      .main
+        nav.navbar
+          .container-fluid
+            .navbar-header
+              a(class='navbar-brand' href='index.html') 首页
+            #navbar.navbar-collapse.collapse
+              ul.nav.navbar-nav.navbar-right
+                li
+                  a(href='#') Dashboard
+                li
+                  a(href='#') Settings
+                li
+                  a(href='https://github.com/360EntSecGroup-Skylar/goreporter' target='_blank')
+                    i(class='fa fa-github fa-lg' aria-hidden='true')
+        #content-container
+          include ./summary.pug
+          include ./unitTest.pug
+          include ./codeStyle.pug
+          include ./codeOpt.pug
+          include ./codeCount.pug
+          include ./codeSmell.pug
+    script(src="js/data.js")
+    script(src="bower_components/jquery/dist/jquery.min.js")
+    script(src="bower_components/highcharts/highcharts.js")
+    script(src='bundle.js')
+    script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+    
+
+
+
+
+

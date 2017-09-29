@@ -1,0 +1,25 @@
+{
+  "name": "report-templates",
+  "version": "1.0.0",
+  "description": "goreporter templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goreporter/report-templates.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/goreporter/report-templates/issues"
+  },
+  "homepage": "https://github.com/goreporter/report-templates#readme",
+  "devDependencies": {
+    "browserify": "^14.4.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "pug": "^2.0.0-rc.4"
+  }
+}

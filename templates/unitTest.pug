@@ -1,0 +1,48 @@
+#unitTest.none
+  ul.summary-list
+    li
+      div
+        span 平均代码覆盖率
+        i.fa.fa-star-o.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#coverPct.emphasize-num
+        span %
+      .progress-bar
+    li
+      div
+        span 包测试覆盖率
+        i.fa.fa-check-square-o.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#pkgPct.emphasize-num
+        span %
+    li
+      div
+        span 单元测试耗时
+        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#unitTestTime.emphasize-num
+        span s
+  .chart-container
+    span.chart-title
+      span.chart-legend-block.green
+      span.chart-legend-block.purple
+      .
+        包覆盖率详情
+    #unitCover
+  .divider
+    span.line
+    span.icon
+    span.line
+  .chart-container.row
+    .col-sm-6.col-md-6
+      span.chart-title
+        span.chart-legend-block.purple
+        .
+          包耗时占比
+      #pie-chart
+    .col-sm-6.col-md-6
+      h5.unit-title
+        span.chart-legend-block.white
+        .
+          缺少单元测试的文件
+      ul#unitAbsentFiles.unit-absent-files

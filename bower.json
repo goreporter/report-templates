@@ -1,20 +1,23 @@
 {
-  "name": "golang-test",
-  "description": "go test report",
+  "name": "report-templates",
+  "description": "goreporter templates",
   "main": "index.js",
   "authors": [
-    "liufeifei-liufeifei@b.360.cn"
+    "刘菲菲 <liufeifei@b.360.cn>"
   ],
   "license": "UNLICENSED",
-  "keywords": [
-    "gotest"
+  "homepage": "https://github.com/goreporter/report-templates",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
   ],
-  "homepage": "",
   "private": true,
   "dependencies": {
+    "font-awesome": "^4.7.0",
     "bootstrap": "^3.3.7",
-    "components-font-awesome": "^4.7.0",
-    "flat-ui": "^2.3.0",
-    "highcharts": "5.0.2"
+    "highcharts": "^5.0.14"
   }
 }

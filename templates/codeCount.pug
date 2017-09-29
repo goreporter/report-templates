@@ -1,0 +1,67 @@
+#codeCount.none  
+  ul.summary-list
+    li
+      div
+        span 代码行数
+        i.fa.fa-star-o.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#line_count.emphasize-num
+      .progress-bar
+    li
+      div
+        span 注释
+        i.fa.fa-check-square-o.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#comment_count.emphasize-num
+    li
+      div
+        span 函数
+        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#function_count.emphasize-num
+    li
+      div
+        span 文件数
+        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#file_count.emphasize-num
+  .chart-container
+    span.chart-title
+      span.chart-legend-block.green
+      span.chart-legend-block.purple
+      .
+        代码行详情
+    #lineCountChart
+  .divider
+    span.line
+    span.icon
+    span.line
+  .chart-container
+    span.chart-title
+      span.chart-legend-block.green
+      span.chart-legend-block.purple
+      .
+        注释行详情
+    #commentCountChart
+  .divider
+    span.line
+    span.icon
+    span.line
+  .chart-container
+    span.chart-title
+      span.chart-legend-block.green
+      span.chart-legend-block.purple
+      .
+        函数行详情
+    #funcCountChart
+  .divider
+    span.line
+    span.icon
+    span.line
+  .chart-container
+    span.chart-title
+      span.chart-legend-block.green
+      span.chart-legend-block.purple
+      .
+        文件详情
+    #fileCountChart

@@ -1,0 +1,49 @@
+#codeSmell.none
+  ul.summary-list
+    li
+      div
+        span 平均圈复杂度
+        i.fa.fa-star-o.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#cyclo_avg.emphasize-num
+      .progress-bar
+    li
+      div
+        span 圈复杂度高
+        i.fa.fa-check-square-o.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#cyclo_high.emphasize-num
+    li
+      div
+        span 圈复杂度严重
+        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      .summary-content
+        span#cyclo_grave.emphasize-num
+  .chart-container
+    span.chart-title
+      span.chart-legend-block.green
+      span.chart-legend-block.purple
+      .
+        圈复杂度占比
+    #cycloPertChart
+  .divider
+    span.line
+    span.icon
+    span.line
+  .chart-container
+    span.chart-title
+      span.chart-legend-block.green
+      span.chart-legend-block.purple
+      .
+        包圈复杂度排名
+    #cycloRankChart
+  .divider
+    span.line
+    span.icon
+    span.line
+  .chart-container
+    h5.unit-title
+      span.chart-legend-block.white
+      .
+        高圈复杂度列表
+    ul#cycloList.unit-absent-files

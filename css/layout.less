@@ -44,7 +44,7 @@ ul{
     		top: 22px;
     		left: 50px;
     	}
-    	a{
+    	p{
     		padding-left: 20px;
     		vertical-align: middle;
     		text-decoration: none;
@@ -72,50 +72,54 @@ ul{
 .main{
 	flex: 1 1 0;
 	padding: 0;
-	display: flex;
-	flex-direction: column;
 	overflow: auto;
-	>ul{
-		padding: 30px;
-		margin: 0;
-		border-bottom-width: 2px;
-		border-bottom-style: solid;
-		li{
-			float: left;
-			list-style: none;
-		    border-radius: 5px;
-		    height: 150px;
-		    width: 250px;
-		    margin: 10px;
-		    margin-right: 36px;
-		    vertical-align: top;
-		    font-weight: bold;
-		    display: flex;
-		    flex-direction: column;
-		    border-width: 1px;
-		    border-style: solid;
-		    >div:first-child{
-		    	height: 42px;
-			    border-radius: 2px;
-			    padding: 10px;
-			    font-size: 16px;
-			    i{
-			    	margin-top: 5px;
-			    }
-		    }
-		    .summary-content{
-		    	text-align: center;
-		    	flex: 1 1 0;
-		    	margin-top: 10px;
-		    }
-		    .emphasize-num{
-		    	font-size: 30px;
-		    	font-weight: lighter;
-		    }
-
+	#content-container{
+		>div{
+			display: flex;
+			flex-direction: column;
+			overflow: auto;
 		}
 	}
 }
+.summary-list{
+			padding: 30px;
+			margin: 0;
+			border-bottom-width: 2px;
+			border-bottom-style: solid;
+			li{
+				float: left;
+				list-style: none;
+			    border-radius: 5px;
+			    height: 150px;
+			    width: 250px;
+			    margin: 10px;
+			    margin-right: 36px;
+			    vertical-align: top;
+			    font-weight: bold;
+			    display: flex;
+			    flex-direction: column;
+			    border-width: 1px;
+			    border-style: solid;
+			    >div:first-child{
+			    	height: 42px;
+				    border-radius: 2px;
+				    padding: 10px;
+				    font-size: 16px;
+				    i{
+				    	margin-top: 5px;
+				    }
+			    }
+			    .summary-content{
+			    	text-align: center;
+			    	flex: 1 1 0;
+			    	margin-top: 10px;
+			    }
+			    .emphasize-num{
+			    	font-size: 30px;
+			    	font-weight: lighter;
+			    }
+			}
+		}
 .chart-container{
 	margin: 0;
 	width: 100%;
@@ -225,7 +229,7 @@ ul{
 		cursor: pointer;
 	}
 }
-#content{
+.sub-content{
 	margin-left: 250px;
 	margin-right: 24px;
 	h5{
@@ -245,6 +249,9 @@ ul{
 }
 .description{
 	margin-left: 24px;
+}
+.none{
+	display: none!important;
 }
 
 @media screen and (max-width: 1280px){
