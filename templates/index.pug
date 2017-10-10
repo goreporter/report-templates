@@ -34,10 +34,6 @@ html
             #navbar.navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
                 li
-                  a(href='#') Dashboard
-                li
-                  a(href='#') Settings
-                li
                   a(href='https://github.com/360EntSecGroup-Skylar/goreporter' target='_blank')
                     i(class='fa fa-github fa-lg' aria-hidden='true')
         #content-container
@@ -47,7 +43,7 @@ html
           include ./codeOpt.pug
           include ./codeCount.pug
           include ./codeSmell.pug
-    script(src="js/data.js")
+    script(src="js/data_mock.js")
     script(src="bower_components/jquery/dist/jquery.min.js")
     script(src="bower_components/highcharts/highcharts.js")
     script(src='bundle.js')

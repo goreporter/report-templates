@@ -123,23 +123,22 @@ ul{
 .chart-container{
 	margin: 0;
 	width: 100%;
-	padding: 24px 48px;
+	padding: 24px 12px;
 	>div{
 		box-sizing: border-box;
 	}
 }
-
 .chart-title{
-	display: inline-block;
-    padding: 10px 30px 10px 20px;
-    border: 2px solid #d2dae2;
-    border-radius: 30px;
+    padding: 5px 20px;
+    border-bottom: 1px solid #e5e7ea;
+    font-size: 24px;
 }
 .pie-chart{
 	display: flex;
 	flex-direction: row;
 	>div{
 		flex: 1 1 0;
+		margin-right: 10px;
 	}
 }
 #score{
@@ -185,6 +184,7 @@ ul{
 	display: inline-block;
 	width: 10px;
 	height: 10px;
+	margin-right: 5px;
 }
 .unit-title{
     padding: 20px 10px;
@@ -252,6 +252,33 @@ ul{
 }
 .none{
 	display: none!important;
+}
+#goTestChart{
+	background-color: #fff;
+	padding: 24px;
+    border-color: 1px solid #d2dae2;
+}
+.gotestSummary{
+	padding-left: 0;
+	li{
+		height: 40px;
+		line-height: 40px;
+		background-color: #fff;
+		margin-bottom: 5px;
+		>span:first-child{
+			width: 36px;
+		    height: 30px;
+		    border-radius: 2px;
+		    display: inline-block;
+		    text-align: center;
+		    background: #333;
+		    color: #fff;
+		    vertical-align: middle;
+		}
+		>span:last-child{
+			margin-left: 2em;
+		}
+	}
 }
 
 @media screen and (max-width: 1280px){

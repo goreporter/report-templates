@@ -4,21 +4,21 @@
 				"issueNum": 52,   //首页部分的“Issues"一栏：问题总数。
 				"gotest":{        //单元测试页面的数据
 					summary:{      //单元测试页面的上部分总结部分
-						"codeCover": '75',     //代码覆盖率
-						"pkgCover":  '80',     //包覆盖率
-						"totalTime":  '0.874'    //单元测试耗时
+						"code_cover": '75',     //代码覆盖率
+						"pkg_cover":  '80',     //包覆盖率
+						"total_time":  '0.874'    //单元测试耗时
 					},
 					content:{
 						pkg: ["/gocode", "/gocode/dupl/output", "/gotest", "/gocode/copycode/output", "/gocode/dupl/suffixtree", "/gosimple/gotool", "/gocode/dupl/syntax", "/gocyclo", "/godep", "/gosimple/lint", "/gocode/deadcode", "/gosimple/simple"],
 						time: [0.04, 0.009, 0.505, 0.008, 0.09, 0.09, 0.008, 0.01, 0.101, 0.013, 0, 0],   //每个包的耗时，位置跟pkg数组里的包相对应。
 						cover: [49.4, 23.4, 65.2, 22, 90.6, 45.7, 55.8, 66.7, 70.4, 6.2, 0, 0],    //每个包的覆盖率，位置跟pkg数组里的包对应。
-						noTest: ["/gocheck", "/gocheck/structcheck", "/gocheck/structcheck"]   //没有单元测试代码的包。
+						no_test: ["/gocheck", "/gocheck/structcheck", "/gocheck/structcheck"]   //没有单元测试代码的包。
 					}
 				},
 				//代码风格
 				codeStyle: {
 					summary: {
-						issueNum: 25,
+						issue_num: 25,
 						fileNum: 18,
 						quality: 'A+'
 					},
@@ -82,12 +82,12 @@
 				//代码优化
 				goIssue: {
 					summary: {
-						issueNum: 85,
-						fileNum: 15,
+						issue_num: 85,
+						file_num: 15,
 						quality: 'A+'
 					},
 					content:{
-						deadCode: {
+						dead_code: {
 							label: 'deadCode description',
 							score: '85%',
 							detail: [
@@ -103,14 +103,14 @@
 										}
 								]
 						},
-						copyCode: {
+						copy_code: {
 							label: 'copy code description',
 							score: '85%',
 							detail: [["/gocode/copycode/copycode.go:77,94",'/gocode/copycode/copycode.go:77,94'],
 							         ['/gocode/copycode/copycode.go:77,94','/gocode/copycode/copycode.go:77,94']
 									]
 						},
-						simpleCode: {
+						simple_code: {
 							label: 'simplecode description',
 							score: '85%',
 							detail: [
@@ -126,7 +126,7 @@
 										}
 									]
 						},
-						staticCode: {
+						static_code: {
 							label: 'static code description',
 							score: '85%',
 							detail: [

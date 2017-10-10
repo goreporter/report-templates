@@ -3,10 +3,11 @@
     li
       div
         span 分数
-        i(class='fa fa-star-o fa-lg pull-right', aria-hidden='true')
       .summary-content
-        span#score 
-        span /100
+        i(class='fa fa-star-o fa-lg pull-right', aria-hidden='true')
+        span
+          span#score 
+          span /100
     li
       div
         span 覆盖率
@@ -50,32 +51,40 @@
 
   .content
     .row.chart-container
-      .col-sm-7.col-md-7
-        span.chart-title
-          span.chart-legend-block.green
-          span.chart-legend-block.purple
-          .
-            单元测试
+      .chart-title 单元测试
+      .col-sm-9.col-md-9
         #gotestChart
-      .col-sm-5.col-md-5
-        .pie-chart
-          div
-            span.chart-title
-              span.chart-legend-block.grey
-              .
-                包圈复杂度
-            #gocycleChart
-          div
-            span.chart-title
-              span.chart-legend-block.orange
-              span 包Issue
-            #goIssue
-          div
-            span.chart-title
-              span.chart-legend-block.lavande
-              .
-                包代码量占比
-            #goPercentage
+      .col-sm-3.col-md-3
+        ul.gotestSummary
+          li 单元测试结果概览
+          li
+            span#noTestCount
+            span 个文件没有单元测试代码
+          li
+            span#coverLessCount
+            span 个文件单元测试覆盖率不足50%
+          li
+            span#timeGreaterCount
+            span 个文件耗时超过1秒
+    .divider
+      .line
+      .icon
+      .line
+    .row.chart-container
+      .pie-chart
+        div
+          div.chart-title 包圈复杂度 
+          #gocycleChart
+        div
+          div.chart-title 包Issue
+          #goIssue
+        div
+          div.chart-title 包代码量占比
+          #goPercentage
+    .divider
+      .line
+      .icon
+      .line
     .chart-container
 
 

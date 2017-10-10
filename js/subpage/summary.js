@@ -1,8 +1,8 @@
 //******************************** summary ************************************
 module.exports = function(resData){
 	$("#score").text(resData.score);
-	$("#testCover").text(resData.gotest.summary.codeCover);
-	$("#testPkgCover").text(resData.gotest.summary.pkgCover);
+	$("#testCover").text(resData.gotest.summary.code_over);
+	$("#testpkg_cover").text(resData.gotest.summary.pkg_cover);
 	$("#goIssueNum").text(resData.issueNum);
 	$("#codeLineNum").text(resData.countCode.summary.line_count);
 	
@@ -20,12 +20,13 @@ module.exports = function(resData){
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
-
-	$("#gotestChart").highcharts({
+	new Highcharts.Chart({
+	//$("#gotestChart").highcharts({
 		chart: {
+			renderTo: 'gotestChart',
 			type: 'bar',
 	        alignTicks: false,
-	        backgroundColor: '#ecf2f6'
+	        height: 550
 		},
 		title: {
 			text: ''
@@ -35,11 +36,12 @@ module.exports = function(resData){
 			title:{
 				text: null
 			},
-			tickLength: 3,
+			tickLength: 0,
+			lineWidth: 0,
 			labels: {
 				style: {
 					color: "#596679",
-					fontSize: '12px'
+					fontSize: '14px'
 				}
 			}
 		},
@@ -48,9 +50,6 @@ module.exports = function(resData){
 			ceiling: 100,
 	        title: {
 	            text: ''
-	        },
-	        labels: {
-	            overflow: 'justify'
 	        },
 	        gridLineColor: '',
 	        gridLineWidth: 0,
@@ -65,24 +64,25 @@ module.exports = function(resData){
 	        opposite: true,
 	        gridLineColor: '',
 	        gridLineWidth: 0,
+	        maxPadding: 0,
 	        labels: {
 	        	enabled: false
 	        }
 	    }],
+
 	    plotOptions: {
 	        bar: {
+	        	stacking: 'percentage',
 	            dataLabels: {
 	                enabled: true,
 	                color: "#596679",
-	                fontSize: "10px",
-	                pointPadding: 0.2,
-	                groupPadding: 0.1,
-
+	                fontSize: "18px",
+	                pointPadding: 0.2
 	            }
 	        },
 	        series: {
-	                pointWidth: 12,
-	                borderRadius: 3,
+	                pointWidth: 14,
+	                groupPadding: 0.15
 	              
 	        }
 	    },
@@ -90,25 +90,67 @@ module.exports = function(resData){
 	        enabled: false
 	    },
 	    legend: {
-	    	align: 'center',
 	    	itemDistance: 15,
+	    	margin: 30,
 	    	itemStyle: {
+	    		fontSize: '14px',
 	    		color: "#596679"
-	    	}
+	    	},
+	    	symbolRadius: 0,
+	    	verticalAlign: 'top',
+	    	align: 'left'
 	    },
 	    series: [{
+	        name: null,
+	        data: resData.gotest.content.cover.map(function(d){return 100-d}),
+	        color: '#d9e4eb',
+	        stack: 'coverage',
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'coverage',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'coverage',
 	        name: '覆盖率',
 	        data: resData.gotest.content.cover,
-	        color: '#47bac1'
+	        color: '#47bac1',
+	        stack: 'coverage',
+	        dataLabels: {
+	        	align: 'right',
+	            x: 40
+	        }
+	    },{
+	        name: null,
+	        data: resData.gotest.content.time.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
+	        yAxis: 1,
+	        //color: '#7ccc5d'
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'time',
+	        color: '#d9e4eb',
+	        stack: 'time',
+	        enableMouseTracking:false
 	    },
 	    {
+	    	id: 'time',
 	        name: '时间',
 	        data: resData.gotest.content.time,
 	        yAxis: 1,
 	        //color: '#7ccc5d'
-	        color: '#BB8FCE'
+	        color: '#BB8FCE',
+	        stack: 'time',
+	        dataLabels: {
+	        	align: 'right',
+	            x: 40
+	        }
 	    }]
 	});
+
+	$("#noTestCount").text(resData.gotest.content.no_test.length);
+	$("#coverLessCount").text(0);
+	$("#timeGreaterCount").text(0);
 	
 	//******************************** go cyclo ************************************
 
@@ -117,7 +159,8 @@ module.exports = function(resData){
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
-		        backgroundColor: '#ecf2f6'
+		        backgroundColor: '#fff',
+		        type: 'pie'
 		    },
 		    title: {
 		        text: ''
@@ -133,23 +176,30 @@ module.exports = function(resData){
 		            dataLabels: {
 		                enabled: false
 		            },
-		            startAngle: -180,
-		            endAngle: 180,
-		            colors: ['#debbdf', '#bf8ac0', '#ae69af']
+		            showInLegend: true,
+		            //colors: ['#debbdf', '#bf8ac0', '#ae69af']
+		            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.2)'],
+		            size: '60%'
 		        }
 		    },
 		    legend: {
-		    	enabled: true,
-		    	align: 'center'
+		    	layout:'vertical',
+		    	symbolRadius: 0,
+		    	itemStyle: {
+		    		color: "#596679",
+		    		fontSize: "14px"
+		    	},
+		    	verticalAlign: 'top',
+	    		align: 'left'
 		    },
 		    series: [{
 		        type: 'pie',
 		        name: '包圈复杂度',
-		      //  innerSize: '80%',
+		        innerSize: '85%',
 		        data: [
-		            ['1-15',   parseInt(lowscore,10)],
-		            ['15-50',  parseInt(mediumscore,10)],
-		            ['50以上',  parseInt(highscore, 10)]
+		        	['50以上',  parseInt(highscore, 10)],
+		        	['15-50',  parseInt(mediumscore,10)],
+		            ['1-15',   parseInt(lowscore,10)]
 		        ]
 		    }]
 	});
@@ -167,7 +217,7 @@ module.exports = function(resData){
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
-		        backgroundColor: '#ecf2f6'
+		        backgroundColor: '#fff'
 		    },
 		    title: {
 		        text: ''
@@ -183,19 +233,26 @@ module.exports = function(resData){
 		            dataLabels: {
 		                enabled: false
 		            },
-		            startAngle: -180,
-		            endAngle: 180,
-		            colors: ['#B03A2E', '#E74C3C', '#F1948A', '#F5B7B1']
+		            showInLegend: true,
+		            //colors: ['#B03A2E', '#E74C3C', '#F1948A', '#F5B7B1']
+		            colors: issueData.map(function(d,i){var opacity = 1 - 0.2*i; return 'rgba(76,114,195,' + opacity + ')'}),
+		            size: '60%'
 		        }
 		    },
 		    legend: {
-		    	enabled: false,
-		    	align: 'right'
+		    	layout:'vertical',
+		    	symbolRadius: 0,
+		    	itemStyle: {
+		    		color: "#596679",
+		    		fontSize: "14px"
+		    	},
+		    	verticalAlign: 'top',
+	    		align: 'left'
 		    },
 		    series: [{
 		        type: 'pie',
 		        name: '包Issue',
-		     //   innerSize: '80%',
+		        innerSize: '85%',
 		        data: issueData
 		    }]
 	});
@@ -216,7 +273,7 @@ module.exports = function(resData){
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
-		        backgroundColor: '#ecf2f6'
+		        backgroundColor: '#fff'
 		    },
 		    title: {
 		        text: ''
@@ -232,19 +289,25 @@ module.exports = function(resData){
 		            dataLabels: {
 		                enabled: false
 		            },
-		            startAngle: -180,
-		            endAngle: 180,
-		            //colors: ['#76448A', '#9B59B6', '#C39BG', '#D7BDE2', '#EBDEF0']
+		            showInLegend: true,
+		            colors: countCodeData.map(function(d, i){var opacity = 1 - (0.9 / countCodeData.length) * i; return "rgba(71,186,193," + opacity + ")"}),
+		            size: '60%'
 		        }
 		    },
 		    legend: {
-		    	enabled: false,
-		    	align: 'right'
+		    	layout:'vertical',
+		    	symbolRadius: 0,
+		    	itemStyle: {
+		    		color: "#596679",
+		    		fontSize: "14px"
+		    	},
+		    	verticalAlign: 'top',
+	    		align: 'left'
 		    },
 		    series: [{
 		        type: 'pie',
 		        name: '包代码行数',
-		    //    innerSize: '80%',
+		        innerSize: '85%',
 		        data: countCodeData
 		    }]
 	});

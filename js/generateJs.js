@@ -1,20 +1,54 @@
+//解析数据
+// resData.gotest = JSON.parse(resData.gotest);
+// resData.codeStyle = JSON.parse(resData.codeStyle);
+// resData.goIssue = JSON.parse(resData.goIssue);
+// resData.codeSmell = JSON.parse(resData.codeSmell);
+// resData.countCode = JSON.parse(resData.countCode);
+
+// console.log(resData.gotest);
+// console.log(resData.codeStyle);
+// console.log(resData.goIssue);
+// console.log(resData.codeSmell);
+
+
+
 var subPageMap = {
-	navSummary 	  : 'summary',
-	navUnitTest   : 'unitTest',
-	navCodeCount  : 'codeCount',
-	navCodeOpt 	  : 'codeOpt',
-	navCodeSmell  : 'codeSmell',
-	navCodeStyle  : 'codeStyle'
+	navSummary: 
+	{
+		id: 'summary',
+		label: ''
+	},
+	navUnitTest: {
+		id: 'unitTest',
+		label: '单元测试'
+	},
+	navCodeCount: {
+		id: 'codeCount',
+		label: '代码统计'
+	},
+	navCodeOpt: {
+		id: 'codeOpt',
+		label: '代码优化'
+	},
+	navCodeSmell: {
+		id: 'codeSmell',
+		label: '可维护性'
+	},
+	navCodeStyle: {
+		id: 'codeStyle',
+		label: '代码风格'
+	}
 }
 
 Object.keys(subPageMap).forEach(function(d, i){
 	(function(nav){
 		$("#"+nav).on("click", function(){
-			$("#"+ subPageMap[nav]).removeClass("none");
+			$("#"+ subPageMap[nav].id).removeClass("none");
 			$(this).addClass("active");
+			$(".navbar-brand").html(subPageMap[nav].label);
 			Object.keys(subPageMap).forEach(function(dd, k){
 				if(dd !== nav){
-					$("#" + subPageMap[dd]).removeClass("none").addClass("none");
+					$("#" + subPageMap[dd].id).removeClass("none").addClass("none");
 					$("#" + dd).removeClass("active");
 				}
 			})
@@ -22,6 +56,8 @@ Object.keys(subPageMap).forEach(function(d, i){
 		})
 	})(d)
 });
+
+
 
 
 require('./subpage/codeCount.js')(resData.countCode);

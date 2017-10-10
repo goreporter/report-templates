@@ -4,8 +4,8 @@ module.exports = function(codeStyle){
 		data 			= codeStyle.content;
 
 		//顶部summary
-	$("#styleIssueNum").text(summary.issueNum);
-	$("#styleFileNum").text(summary.fileNum);
+	$("#styleIssueNum").text(summary.issue_num);
+	$("#styleFileNum").text(summary.file_num);
 	$("#styleQualityRank").text(summary.quality);
 
 	//底部图表

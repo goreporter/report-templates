@@ -6,8 +6,8 @@ module.exports = function codeOpt(goIssue){
 		indexHtml 		= "",
 		contentHtml 	= "";
 	//顶部summary
-	$("#optIssueNum").text(goIssue.summary.issueNum);
-	$("#optFileNum").text(goIssue.summary.fileNum);
+	$("#optIssueNum").text(goIssue.summary.issue_num);
+	$("#optFileNum").text(goIssue.summary.file_num);
 	$("#optQualityRank").text(goIssue.summary.quality);
 
 	//底部图表
@@ -15,7 +15,7 @@ module.exports = function codeOpt(goIssue){
 		indexHtml += "<li><a href='#" + k + "'>" + k + "</a></li>";
 		var content = "";
 		data[k].detail.forEach(function(d){
-			if(k != 'copyCode'){
+			if(k != 'copy_code'){
 				content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
 			}else{
 				content += "<h5>" + d.length + "</h5>" + d.map(function(cc){return "<p>" + cc +"</p>"}).join("");
