@@ -1,48 +1,34 @@
 #unitTest.none
   ul.summary-list
     li
-      div
-        span 平均代码覆盖率
-        i.fa.fa-star-o.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-star-o(aria-hidden='true')
       .summary-content
-        span#coverPct.emphasize-num
-        span %
-      .progress-bar
-    li
-      div
-        span 包测试覆盖率
-        i.fa.fa-check-square-o.fa-lg.pull-right(aria-hidden='true')
-      .summary-content
-        span#pkgPct.emphasize-num
+        h4 平均代码覆盖率
+        span#coverPct.emphasize-big
         span %
     li
-      div
-        span 单元测试耗时
-        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-check(aria-hidden='true')
       .summary-content
-        span#unitTestTime.emphasize-num
+        h4 包测试覆盖率
+        span#pkgPct.emphasize-big
+        span %
+    li
+      i.fa.fa-clock-o(aria-hidden='true')
+      .summary-content
+        h4 单元测试耗时
+        span#unitTestTime.emphasize-big
         span s
-  .chart-container.sub-chart-container
+  .chart-container
+    div.chart-title 包覆盖率详情
     #unitCover
-    span.chart-title.bar
-      span.chart-legend-block.green
-      span.chart-legend-block.purple
-      .
-        包覆盖率详情
   .divider
     span.line
     span.icon
     span.line
-  .chart-container.row.sub-chart-container
+  .chart-container.row
     .col-sm-6.col-md-6
+      div.chart-title 包耗时占比
       #pie-chart
-      span.chart-title
-        span.chart-legend-block.purple
-        .
-          包耗时占比
     .col-sm-6.col-md-6
-      h5.unit-title
-        span.chart-legend-block.white
-        .
-          缺少单元测试的文件
+      div.unit-title.chart-title 缺少单元测试的文件
       ul#unitAbsentFiles.unit-absent-files

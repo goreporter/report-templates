@@ -1,8 +1,8 @@
 //******************************** summary ************************************
 module.exports = function(resData){
 	$("#score").text(resData.score);
-	$("#testCover").text(resData.gotest.summary.code_over);
-	$("#testpkg_cover").text(resData.gotest.summary.pkg_cover);
+	$("#testCover").text(resData.gotest.summary.code_cover);
+	$("#testPkgCover").text(resData.gotest.summary.pkg_cover);
 	$("#goIssueNum").text(resData.issueNum);
 	$("#codeLineNum").text(resData.countCode.summary.line_count);
 	
@@ -120,18 +120,6 @@ module.exports = function(resData){
 	        	align: 'right',
 	            x: 40
 	        }
-	    },{
-	        name: null,
-	        data: resData.gotest.content.time.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
-	        yAxis: 1,
-	        //color: '#7ccc5d'
-	        dataLabels: {
-	        	enabled: false
-	        },
-	        linkedTo: 'time',
-	        color: '#d9e4eb',
-	        stack: 'time',
-	        enableMouseTracking:false
 	    },
 	    {
 	    	id: 'time',
@@ -183,14 +171,16 @@ module.exports = function(resData){
 		        }
 		    },
 		    legend: {
-		    	layout:'vertical',
-		    	symbolRadius: 0,
+		    	itemDistance: 15,
+		    	margin: 30,
 		    	itemStyle: {
-		    		color: "#596679",
-		    		fontSize: "14px"
+		    		fontSize: '14px',
+		    		color: "#596679"
 		    	},
+		    	symbolRadius: 0,
 		    	verticalAlign: 'top',
-	    		align: 'left'
+		    	align: 'left',
+		    	layout: "vertical",
 		    },
 		    series: [{
 		        type: 'pie',
@@ -240,14 +230,16 @@ module.exports = function(resData){
 		        }
 		    },
 		    legend: {
-		    	layout:'vertical',
-		    	symbolRadius: 0,
+		    	itemDistance: 15,
+		    	margin: 30,
 		    	itemStyle: {
-		    		color: "#596679",
-		    		fontSize: "14px"
+		    		fontSize: '14px',
+		    		color: "#596679"
 		    	},
+		    	symbolRadius: 0,
 		    	verticalAlign: 'top',
-	    		align: 'left'
+		    	align: 'left',
+		    	layout: "vertical",
 		    },
 		    series: [{
 		        type: 'pie',
@@ -295,14 +287,16 @@ module.exports = function(resData){
 		        }
 		    },
 		    legend: {
-		    	layout:'vertical',
-		    	symbolRadius: 0,
+		    	itemDistance: 15,
+		    	margin: 30,
 		    	itemStyle: {
-		    		color: "#596679",
-		    		fontSize: "14px"
+		    		fontSize: '14px',
+		    		color: "#596679"
 		    	},
+		    	symbolRadius: 0,
 		    	verticalAlign: 'top',
-	    		align: 'left'
+		    	align: 'left',
+		    	layout: "vertical",
 		    },
 		    series: [{
 		        type: 'pie',

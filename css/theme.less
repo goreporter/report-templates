@@ -37,11 +37,38 @@
 
 	}
 }
+.sub-nav{
+	background-color: #fff;
+	li{
+		background: #47bac1;
+	    color: #fff;
+	    a{
+	    	color:#fff;
+	    }
+	}
+	li:first-child{
+		background-color: #37a8af;
+	}
+}
+.sub-content {
+	background-color: #fff;
+	h4 {
+		background-color: #d9e4eb;
+		.emp-num{
+			color: #bb8fce;
+			font-size: 24px;
+			font-weight: bold;
+		}
+	}
+}
 .summary-list{
 	border-bottom-color: #e5e7ea;
+	background-color: #ecf2f6;
 	li{
 	    background-color: #fff;
-	    border-color: #ccc;
+	    -webkit-box-shadow: 4px 7px 10px -2px rgba(102,102,102,0.66);
+		-moz-box-shadow: 4px 7px 10px -2px rgba(102,102,102,0.66);
+		box-shadow: 4px 7px 10px -2px rgba(102,102,102,0.66);
 	    >div:first-child{
 	    	background-color: #2aafff;
 	    	color: #fff;
@@ -49,6 +76,25 @@
 	    .summary-content{
 	    	color: #8a95a5;
 	    }
+	    i{
+	    	color: #fff;
+	    }
+	    .fa-star-o{
+	    	background-color: rgba(187,143,206,0.8);
+	    }
+	    .fa-check{
+	    	background-color: rgba(42,175,255,0.8);
+	    }
+	    .fa-info{
+	    	background-color: rgba(255,213,7,0.8);
+	    }
+	    .fa-circle-o, .fa-font, .fa-question{
+	    	background-color: rgba(233,26,97,0.8);
+	    }
+	    .fa-code,.fa-clock-o,.fa-file-o{
+	    	background-color: rgba(71,188,194,0.8);
+	    }
+
 	}
 
 	// li:first-child{
@@ -119,11 +165,11 @@
 		background-color: rgb(76,114,195);
 	}
 }
-#score{
-	color: #666;
+.emphasize-num, .emphasize-big{
+	color: #888;
 }
-.emphasize-num{
-	color: #666;
+.right-content{
+	background-color: #ecf2f6;
 }
 .unit-title{
 	background: #6f7d95;
@@ -137,4 +183,21 @@
 		color: #596679;
 		border-bottom-color: #d9e4eb;
 	}
+}
+#pie-chart{
+	background-color: #fff;
+}
+#codeSmell{
+	.fa-circle-o.avg{
+		background-color: rgba(71,188,194,0.8);
+	}
+	.fa-circle-o.high{
+		background-color: #bb8fce;
+	}
+	.fa-circle-o.series{
+		background-color: #e91a61;
+	}
+}
+.fa-github{
+	font-size: 24px;
 }

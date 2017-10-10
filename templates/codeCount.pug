@@ -1,67 +1,47 @@
 #codeCount.none  
   ul.summary-list
     li
-      div
-        span 代码行数
-        i.fa.fa-star-o.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-code(aria-hidden='true')
       .summary-content
-        span#line_count.emphasize-num
+        h4 代码行数
+        span#line_count.emphasize-big
       .progress-bar
     li
-      div
-        span 注释
-        i.fa.fa-check-square-o.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-question(aria-hidden='true')
       .summary-content
-        span#comment_count.emphasize-num
+        h4 注释
+        span#comment_count.emphasize-big
     li
-      div
-        span 函数
-        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-info(aria-hidden='true')
       .summary-content
-        span#function_count.emphasize-num
+        h4 函数
+        span#function_count.emphasize-big
     li
-      div
-        span 文件数
-        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-file-o(aria-hidden='true')
       .summary-content
-        span#file_count.emphasize-num
+        h4 文件数
+        span#file_count.emphasize-big
   .chart-container
-    span.chart-title
-      span.chart-legend-block.green
-      span.chart-legend-block.purple
-      .
-        代码行详情
+    div.chart-title 代码行详情
     #lineCountChart
   .divider
     span.line
     span.icon
     span.line
   .chart-container
-    span.chart-title
-      span.chart-legend-block.green
-      span.chart-legend-block.purple
-      .
-        注释行详情
+    div.chart-title 注释行详情
     #commentCountChart
   .divider
     span.line
     span.icon
     span.line
   .chart-container
-    span.chart-title
-      span.chart-legend-block.green
-      span.chart-legend-block.purple
-      .
-        函数行详情
+    div.chart-title 函数行详情
     #funcCountChart
   .divider
     span.line
     span.icon
     span.line
   .chart-container
-    span.chart-title
-      span.chart-legend-block.green
-      span.chart-legend-block.purple
-      .
-        文件详情
+    div.chart-title 文件详情
     #fileCountChart

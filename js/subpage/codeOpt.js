@@ -21,7 +21,7 @@ module.exports = function codeOpt(goIssue){
 				content += "<h5>" + d.length + "</h5>" + d.map(function(cc){return "<p>" + cc +"</p>"}).join("");
 			}
 		});
-		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span>" + data[k].score + "</span></h4>" + "<div><p class='description'>" + data[k].label + "</p><div>" + content + "</div></div></section>"
+		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + data[k].score + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
 	});
 
 	//底部内容

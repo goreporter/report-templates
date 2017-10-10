@@ -19,7 +19,7 @@
 				codeStyle: {
 					summary: {
 						issue_num: 25,
-						fileNum: 18,
+						file_num: 18,
 						quality: 'A+'
 					},
 					content:{
@@ -167,7 +167,7 @@
 				//圈复杂度
 				codeSmell: {
 					summary: {
-						cycly_avg: 20,
+						cyclo_avg: 20,
 						cyclo_high: 12,
 						cyclo_grave: 8
 					},

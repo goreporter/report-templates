@@ -79,293 +79,310 @@ module.exports = function codeCount(codeCount){
 	 * package coverage rate 
 	 */
 	$("#lineCountChart").highcharts({
-					chart: {
-						type: 'column',
-				        alignTicks: false,
-				        backgroundColor: '#ecf2f6'
-					},
-					title: {
-						text: ''
-					},
-					xAxis: {
-						categories: codeCount.content.pkg,
-						title:{
-							text: null
-						},
-						tickLength: 3,
-						labels: {
-							style: {
-								color: "#596679",
-								fontSize: '12px'
-							}
-						}
-					},
-					yAxis: {
-						min: 0,
-						ceiling: 100,
-				        title: {
-				            text: ''
-				        },
-				        labels: {
-				            overflow: 'justify'
-				        },
-				        gridLineColor: '',
-				        gridLineWidth: 0,
-				        labels: {
-				        	enabled: false
-				        }
-					},
-				    plotOptions: {
-				        column: {
-				            dataLabels: {
-				                enabled: true,
-				                color: "#596679",
-				                fontSize: "10px",
-				                pointPadding: 0.2,
-				                groupPadding: 0.1,
-
-				            }
-				        },
-				        series: {
-				                pointWidth: 12,
-				                borderRadius: 3,
-				              
-				        }
-				    },
-				    credits: {
-				        enabled: false
-				    },
-				    legend: {
-				    	align: 'center',
-				    	itemDistance: 15,
-				    	itemStyle: {
-				    		color: "#596679"
-				    	}
-				    },
-				    series: [{
-				        name: '包代码行详情',
-				        data: codeCount.content.pkg_line_count,
-				        color: '#47bac1'
-				    }]
-				});
-	$("#commentCountChart").highcharts({
-					chart: {
-						type: 'column',
-				        alignTicks: false,
-				        backgroundColor: '#ecf2f6'
-					},
-					title: {
-						text: ''
-					},
-					xAxis: {
-						categories: codeCount.content.pkg,
-						title:{
-							text: null
-						},
-						tickLength: 3,
-						labels: {
-							style: {
-								color: "#596679",
-								fontSize: '12px'
-							}
-						}
-					},
-					yAxis: {
-						min: 0,
-						ceiling: 100,
-				        title: {
-				            text: ''
-				        },
-				        labels: {
-				            overflow: 'justify'
-				        },
-				        gridLineColor: '',
-				        gridLineWidth: 0,
-				        labels: {
-				        	enabled: false
-				        }
-					},
-				    plotOptions: {
-				        column: {
-				            dataLabels: {
-				                enabled: true,
-				                color: "#596679",
-				                fontSize: "10px",
-				                pointPadding: 0.2,
-				                groupPadding: 0.1,
-
-				            }
-				        },
-				        series: {
-				                pointWidth: 12,
-				                borderRadius: 3,
-				              
-				        }
-				    },
-				    credits: {
-				        enabled: false
-				    },
-				    legend: {
-				    	align: 'center',
-				    	itemDistance: 15,
-				    	itemStyle: {
-				    		color: "#596679"
-				    	}
-				    },
-				    series: [{
-				        name: '注释行详情',
-				        data: codeCount.content.pkg_comment_count,
-				        color: '#47bac1'
-				    }]
-				});
-	$("#funcCountChart").highcharts({
-					chart: {
-						type: 'column',
-				        alignTicks: false,
-				        backgroundColor: '#ecf2f6'
-					},
-					title: {
-						text: ''
-					},
-					xAxis: {
-						categories: codeCount.content.pkg,
-						title:{
-							text: null
-						},
-						tickLength: 3,
-						labels: {
-							style: {
-								color: "#596679",
-								fontSize: '12px'
-							}
-						}
-					},
-					yAxis: {
-						min: 0,
-						ceiling: 100,
-				        title: {
-				            text: ''
-				        },
-				        labels: {
-				            overflow: 'justify'
-				        },
-				        gridLineColor: '',
-				        gridLineWidth: 0,
-				        labels: {
-				        	enabled: false
-				        }
-					},
-				    plotOptions: {
-				        column: {
-				            dataLabels: {
-				                enabled: true,
-				                color: "#596679",
-				                fontSize: "10px",
-				                pointPadding: 0.2,
-				                groupPadding: 0.1,
-
-				            }
-				        },
-				        series: {
-				                pointWidth: 12,
-				                borderRadius: 3,
-				              
-				        }
-				    },
-				    credits: {
-				        enabled: false
-				    },
-				    legend: {
-				    	align: 'center',
-				    	itemDistance: 15,
-				    	itemStyle: {
-				    		color: "#596679"
-				    	}
-				    },
-				    series: [{
-				        name: '函数行详情',
-				        data: codeCount.content.pkg_function_count,
-				        color: '#47bac1'
-				    }]
-				});
-	$("#fileCountChart").highcharts({
-			chart: {
-				type: 'column',
-		        alignTicks: false,
-		        backgroundColor: '#ecf2f6'
+		chart: {
+			type: 'bar'
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			categories: codeCount.content.pkg,
+			title:{
+				text: null
 			},
-			title: {
-				text: ''
-			},
-			xAxis: {
-				categories: codeCount.content.file,
-				title:{
-					text: null
-				},
-				tickLength: 3,
-				labels: {
-					style: {
-						color: "#596679",
-						fontSize: '12px'
-					}
+			tickLength: 0,
+			lineWidth: 0,
+			labels: {
+				style: {
+					color: "#596679",
+					fontSize: '14px'
 				}
+			}
+		},
+		yAxis: {
+	        title: {
+	            text: ''
+	        },
+	        gridLineColor: '',
+	        gridLineWidth: 0,
+	        labels: {
+	        	enabled: false
+	        }
+		},
+	    plotOptions: {
+	        bar: {
+	        	stacking: 'percentage',
+	            dataLabels: {
+	                enabled: true,
+	                color: "#596679",
+	                fontSize: "10px",
+	                align: 'right',
+	                x: 40
+	            }
+	        },
+	        series: {
+                pointWidth: 14,
+                pointPadding: 0,
+                groupPadding: 0
+	        }
+	    },
+	    credits: {
+	        enabled: false
+	    },
+	    legend: {
+	    	itemDistance: 15,
+	    	margin: 30,
+	    	itemStyle: {
+	    		fontSize: '14px',
+	    		color: "#596679"
+	    	},
+	    	symbolRadius: 0,
+	    	verticalAlign: 'top',
+	    	align: 'left'
+	    },
+	    series: [{
+	        name: null,
+	        color: '#d9e4eb',
+	        stack: 'code_count',
+	        data: codeCount.content.pkg_line_count.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'code_count',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'code_count',
+	        name: '包代码行数',
+	        data: codeCount.content.pkg_line_count,
+	        color: '#47bac1',
+	        stack: 'code_count'
+	    }]
+	});
+	$("#commentCountChart").highcharts({
+		chart: {
+			type: 'bar'
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			categories: codeCount.content.pkg,
+			title:{
+				text: null
 			},
-			yAxis: {
-				min: 0,
-				ceiling: 100,
-		        title: {
-		            text: ''
-		        },
-		        labels: {
-		            overflow: 'justify'
-		        },
-		        gridLineColor: '',
-		        gridLineWidth: 0,
-		        labels: {
-		        	enabled: false
-		        }
-			},
-		    plotOptions: {
-		        column: {
-		            dataLabels: {
-		                enabled: true,
-		                color: "#596679",
-		                fontSize: "10px",
-		                pointPadding: 0.2,
-		                groupPadding: 0.1,
+			tickLength: 0,
+			lineWidth: 0,
+			labels: {
+				style: {
+					color: "#596679",
+					fontSize: '12px'
+				}
+			}
+		},
+		yAxis: {
+	        title: {
+	            text: ''
+	        },
+	        gridLineColor: '',
+	        gridLineWidth: 0,
+	        labels: {
+	        	enabled: false
+	        }
+		},
+	    plotOptions: {
+	        bar: {
+	        	stacking: 'percentage',
+	            dataLabels: {
+	                enabled: true,
+	                color: "#596679",
+	                fontSize: "10px",
+	                pointPadding: 0,
+	                groupPadding: 0.1,
+	                align: 'right',
+	                x: 40
 
-		            }
-		        },
-		        series: {
-		                pointWidth: 12,
-		                borderRadius: 3,
-		              
-		        }
-		    },
-		    credits: {
-		        enabled: false
-		    },
-		    legend: {
-		    	align: 'center',
-		    	itemDistance: 15,
-		    	itemStyle: {
-		    		color: "#596679"
-		    	}
-		    },
-		    series: [{
-		        name: '代码行详情',
-		        data: codeCount.content.file_line_count,
-		        color: '#47bac1'
-		    },{
-		        name: '注释行详情',
-		        data: codeCount.content.file_comment_count,
-		        color: '#BB8FCE'
-		    },{
-		        name: '函数行详情',
-		        data: codeCount.content.file_function_count,
-		        color: '#2aafff'
-		    }]
-		});
+	            }
+	        },
+	        series: {
+	                pointWidth: 14
+	              
+	        }
+	    },
+	    credits: {
+	        enabled: false
+	    },
+	    legend: {
+	    	itemDistance: 15,
+	    	margin: 30,
+	    	itemStyle: {
+	    		fontSize: '14px',
+	    		color: "#596679"
+	    	},
+	    	symbolRadius: 0,
+	    	verticalAlign: 'top',
+	    	align: 'left'
+	    },
+	    series: [{
+	        name: null,
+	        color: '#d9e4eb',
+	        stack: 'comment_count',
+	        data: codeCount.content.pkg_comment_count.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'comment_count',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'comment_count',
+	        name: '包注释行数',
+	        data: codeCount.content.pkg_comment_count,
+	        color: '#4d73c4',
+	        stack: 'comment_count'
+	    }]
+	});
+	$("#funcCountChart").highcharts({
+		chart: {
+			type: 'bar'
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			categories: codeCount.content.pkg,
+			title:{
+				text: null
+			},
+			tickLength: 0,
+			lineWidth: 0,
+			labels: {
+				style: {
+					color: "#596679",
+					fontSize: '12px'
+				}
+			}
+		},
+		yAxis: {
+	        title: {
+	            text: ''
+	        },
+	        labels: {
+	            overflow: 'justify'
+	        },
+	        gridLineColor: '',
+	        gridLineWidth: 0,
+	        labels: {
+	        	enabled: false
+	        }
+		},
+	    plotOptions: {
+	        column: {
+	            dataLabels: {
+	                enabled: true,
+	                color: "#596679",
+	                fontSize: "10px",
+	                align: 'right',
+	                x: 40
+	            }
+	        },
+	        series: {
+	                pointWidth: 14
+	              
+	        }
+	    },
+	    credits: {
+	        enabled: false
+	    },
+	    legend: {
+	    	itemDistance: 15,
+	    	margin: 30,
+	    	itemStyle: {
+	    		fontSize: '14px',
+	    		color: "#596679"
+	    	},
+	    	symbolRadius: 0,
+	    	verticalAlign: 'top',
+	    	align: 'left'
+	    },
+	    series: [{
+	        name: '包函数行数',
+	        data: codeCount.content.pkg_function_count,
+	        color: '#0382be'
+	    }]
+	});
+	$("#fileCountChart").highcharts({
+		chart: {
+			type: 'bar'
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			categories: codeCount.content.file,
+			title:{
+				text: null
+			},
+			tickLength: 0,
+			lineWidth: 0,
+			labels: {
+				style: {
+					color: "#596679",
+					fontSize: '12px'
+				}
+			}
+		},
+		yAxis: {
+	        title: {
+	            text: ''
+	        },
+	        gridLineColor: '',
+	        gridLineWidth: 0,
+	        labels: {
+	        	enabled: false
+	        }
+		},
+	    plotOptions: {
+	        bar: {
+	            dataLabels: {
+	                enabled: true,
+	                color: "#596679",
+	                fontSize: "10px",
+	                pointPadding: 0.2,
+	                groupPadding: 0.1,
+
+	            }
+	        },
+	        series: {
+	                pointWidth: 12
+	        }
+	    },
+	    credits: {
+	        enabled: false
+	    },
+	    legend: {
+	    	itemDistance: 15,
+	    	margin: 30,
+	    	itemStyle: {
+	    		fontSize: '14px',
+	    		color: "#596679"
+	    	},
+	    	symbolRadius: 0,
+	    	verticalAlign: 'top',
+	    	align: 'left'
+	    },
+	    series: [{
+	        name: '代码行详情',
+	        data: codeCount.content.file_line_count,
+	        color: '#47bac1'
+	    },{
+	        name: '注释行详情',
+	        data: codeCount.content.file_comment_count,
+	        color: '#BB8FCE'
+	    },{
+	        name: '函数行详情',
+	        data: codeCount.content.file_function_count,
+	        color: '#2aafff'
+	    }]
+	});
 }
 },{}],3:[function(require,module,exports){
 /********************************code opt*****************************************/
@@ -391,7 +408,7 @@ module.exports = function codeOpt(goIssue){
 				content += "<h5>" + d.length + "</h5>" + d.map(function(cc){return "<p>" + cc +"</p>"}).join("");
 			}
 		});
-		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span>" + data[k].score + "</span></h4>" + "<div><p class='description'>" + data[k].label + "</p><div>" + content + "</div></div></section>"
+		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + data[k].score + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
 	});
 
 	//底部内容
@@ -412,7 +429,8 @@ module.exports = function(codeSmell){
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
 	        plotShadow: false,
-	        backgroundColor: '#ecf2f6'
+	        backgroundColor: '#fff',
+	        type: 'pie'
 	    },
 	    title: {
 	        text: ''
@@ -428,26 +446,25 @@ module.exports = function(codeSmell){
 	            dataLabels: {
 	                enabled: false
 	            },
-	            startAngle: -180,
-	            endAngle: 180,
 	            showInLegend: true,
-	            size: '70%'
-	            //colors: ['#76448A', '#9B59B6', '#C39BG', '#D7BDE2', '#EBDEF0']
+	            size: '60%',
+	            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.2)']
 	        }
 	    },
 	    legend: {
-	    	enabled: true,
-	    	align: 'left',
-	    	layout: "vertical",
+	    	layout:'vertical',
+	    	symbolRadius: 0,
+	    	itemStyle: {
+	    		color: "#596679",
+	    		fontSize: "14px"
+	    	},
 	    	verticalAlign: 'top',
-	    	padding: 16,
-	    	itemMarginBottom: 5,
-	    	itemMarginTop: 5
+    		align: 'left'
 	    },
 	    series: [{
 	        type: 'pie',
 	        name: '耗时',
-	        //innerSize: '50%',
+	        innerSize: '85%',
 	        data: codeSmell.content.percentage
 	    }]
 	});
@@ -456,9 +473,7 @@ module.exports = function(codeSmell){
 	 */
 	$("#cycloRankChart").highcharts({
 			chart: {
-				type: 'column',
-		        alignTicks: false,
-		        backgroundColor: '#ecf2f6'
+				type: 'bar'
 			},
 			title: {
 				text: ''
@@ -468,7 +483,8 @@ module.exports = function(codeSmell){
 				title:{
 					text: null
 				},
-				tickLength: 3,
+				tickLength: 0,
+				lineWidth: 0,
 				labels: {
 					style: {
 						color: "#596679",
@@ -476,21 +492,16 @@ module.exports = function(codeSmell){
 					}
 				}
 			},
-			yAxis: [{
-				min: 0,
-				ceiling: 100,
+			yAxis: {
 		        title: {
 		            text: ''
-		        },
-		        labels: {
-		            overflow: 'justify'
 		        },
 		        gridLineColor: '',
 		        gridLineWidth: 0,
 		        labels: {
 		        	enabled: false
 		        }
-			}],
+			},
 		    plotOptions: {
 		        bar: {
 		            dataLabels: {
@@ -503,20 +514,21 @@ module.exports = function(codeSmell){
 		            }
 		        },
 		        series: {
-		                pointWidth: 12,
-		                borderRadius: 3,
-		              
+		                pointWidth: 14
 		        }
 		    },
 		    credits: {
 		        enabled: false
 		    },
 		    legend: {
-		    	align: 'center',
-		    	itemDistance: 15,
+		    	layout:'vertical',
+		    	symbolRadius: 0,
 		    	itemStyle: {
-		    		color: "#596679"
-		    	}
+		    		color: "#596679",
+		    		fontSize: "14px"
+		    	},
+		    	verticalAlign: 'top',
+	    		align: 'left'
 		    },
 		    series: [{
 		        name: '圈复杂度',
@@ -554,7 +566,7 @@ module.exports = function(codeStyle){
 		data[k].detail.forEach(function(d){
 			content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
 		});
-		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span>" + data[k].score + "</span></h4>" + "<div><p class='description'>" + data[k].label + "</p><div>" + content + "</div></div></section>"
+		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + data[k].score + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
 	});
 
 	//底部内容
@@ -565,8 +577,8 @@ module.exports = function(codeStyle){
 //******************************** summary ************************************
 module.exports = function(resData){
 	$("#score").text(resData.score);
-	$("#testCover").text(resData.gotest.summary.code_over);
-	$("#testpkg_cover").text(resData.gotest.summary.pkg_cover);
+	$("#testCover").text(resData.gotest.summary.code_cover);
+	$("#testPkgCover").text(resData.gotest.summary.pkg_cover);
 	$("#goIssueNum").text(resData.issueNum);
 	$("#codeLineNum").text(resData.countCode.summary.line_count);
 	
@@ -684,18 +696,6 @@ module.exports = function(resData){
 	        	align: 'right',
 	            x: 40
 	        }
-	    },{
-	        name: null,
-	        data: resData.gotest.content.time.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
-	        yAxis: 1,
-	        //color: '#7ccc5d'
-	        dataLabels: {
-	        	enabled: false
-	        },
-	        linkedTo: 'time',
-	        color: '#d9e4eb',
-	        stack: 'time',
-	        enableMouseTracking:false
 	    },
 	    {
 	    	id: 'time',
@@ -747,14 +747,16 @@ module.exports = function(resData){
 		        }
 		    },
 		    legend: {
-		    	layout:'vertical',
-		    	symbolRadius: 0,
+		    	itemDistance: 15,
+		    	margin: 30,
 		    	itemStyle: {
-		    		color: "#596679",
-		    		fontSize: "14px"
+		    		fontSize: '14px',
+		    		color: "#596679"
 		    	},
+		    	symbolRadius: 0,
 		    	verticalAlign: 'top',
-	    		align: 'left'
+		    	align: 'left',
+		    	layout: "vertical",
 		    },
 		    series: [{
 		        type: 'pie',
@@ -804,14 +806,16 @@ module.exports = function(resData){
 		        }
 		    },
 		    legend: {
-		    	layout:'vertical',
-		    	symbolRadius: 0,
+		    	itemDistance: 15,
+		    	margin: 30,
 		    	itemStyle: {
-		    		color: "#596679",
-		    		fontSize: "14px"
+		    		fontSize: '14px',
+		    		color: "#596679"
 		    	},
+		    	symbolRadius: 0,
 		    	verticalAlign: 'top',
-	    		align: 'left'
+		    	align: 'left',
+		    	layout: "vertical",
 		    },
 		    series: [{
 		        type: 'pie',
@@ -859,14 +863,16 @@ module.exports = function(resData){
 		        }
 		    },
 		    legend: {
-		    	layout:'vertical',
-		    	symbolRadius: 0,
+		    	itemDistance: 15,
+		    	margin: 30,
 		    	itemStyle: {
-		    		color: "#596679",
-		    		fontSize: "14px"
+		    		fontSize: '14px',
+		    		color: "#596679"
 		    	},
+		    	symbolRadius: 0,
 		    	verticalAlign: 'top',
-	    		align: 'left'
+		    	align: 'left',
+		    	layout: "vertical",
 		    },
 		    series: [{
 		        type: 'pie',
@@ -879,18 +885,17 @@ module.exports = function(resData){
 },{}],7:[function(require,module,exports){
 /***************************unitTest****************************/
 module.exports = function(gotest){
-	$("#coverPct").text(gotest.summary.code_over);
+	$("#coverPct").text(gotest.summary.code_cover);
 	$("#pkgPct").text(gotest.summary.pkg_cover);
 	$("#unitTestTime").text(gotest.summary.total_time);
 	/**
 	 * package coverage rate 
 	 */
 	$("#unitCover").highcharts({
-					chart: {
+		chart: {
 			type: 'bar',
 	        alignTicks: false,
-	        height: 550,
-	        backgroundColor: '#ecf2f6'
+	        height: 550
 		},
 		title: {
 			text: ''
@@ -962,7 +967,8 @@ module.exports = function(gotest){
 	    legend: {
 	    	itemDistance: 15,
 	    	itemStyle: {
-	    		color: "#596679"
+	    		color: "#596679",
+	    		fontSize: '14px'
 	    	},
 	    	verticalAlign: 'top',
 	    	align: 'left',
@@ -989,18 +995,6 @@ module.exports = function(gotest){
 	        data: gotest.content.cover,
 	        color: '#47bac1',
 	        stack: 'coverage'
-	    },{
-	        name: null,
-	        data: gotest.content.time.map(function(d,i,arr){return Math.max.apply(Math, arr) - d}),
-	        yAxis: 1,
-	        //color: '#7ccc5d'
-	        dataLabels: {
-	        	enabled: false
-	        },
-	        linkedTo: 'time',
-	        color: '#d9e4eb',
-	        stack: 'time',
-	        enableMouseTracking:false
 	    },
 	    {
 	    	id: 'time',
@@ -1019,8 +1013,7 @@ module.exports = function(gotest){
 		chart: {
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
-	        plotShadow: false,
-	        backgroundColor: '#ecf2f6'
+	        plotShadow: false
 	    },
 	    title: {
 	        text: ''

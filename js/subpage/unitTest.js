@@ -1,17 +1,16 @@
 /***************************unitTest****************************/
 module.exports = function(gotest){
-	$("#coverPct").text(gotest.summary.code_over);
+	$("#coverPct").text(gotest.summary.code_cover);
 	$("#pkgPct").text(gotest.summary.pkg_cover);
 	$("#unitTestTime").text(gotest.summary.total_time);
 	/**
 	 * package coverage rate 
 	 */
 	$("#unitCover").highcharts({
-					chart: {
+		chart: {
 			type: 'bar',
 	        alignTicks: false,
-	        height: 550,
-	        backgroundColor: '#ecf2f6'
+	        height: 550
 		},
 		title: {
 			text: ''
@@ -83,7 +82,8 @@ module.exports = function(gotest){
 	    legend: {
 	    	itemDistance: 15,
 	    	itemStyle: {
-	    		color: "#596679"
+	    		color: "#596679",
+	    		fontSize: '14px'
 	    	},
 	    	verticalAlign: 'top',
 	    	align: 'left',
@@ -110,18 +110,6 @@ module.exports = function(gotest){
 	        data: gotest.content.cover,
 	        color: '#47bac1',
 	        stack: 'coverage'
-	    },{
-	        name: null,
-	        data: gotest.content.time.map(function(d,i,arr){return Math.max.apply(Math, arr) - d}),
-	        yAxis: 1,
-	        //color: '#7ccc5d'
-	        dataLabels: {
-	        	enabled: false
-	        },
-	        linkedTo: 'time',
-	        color: '#d9e4eb',
-	        stack: 'time',
-	        enableMouseTracking:false
 	    },
 	    {
 	    	id: 'time',
@@ -140,8 +128,7 @@ module.exports = function(gotest){
 		chart: {
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
-	        plotShadow: false,
-	        backgroundColor: '#ecf2f6'
+	        plotShadow: false
 	    },
 	    title: {
 	        text: ''

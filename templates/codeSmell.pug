@@ -1,49 +1,36 @@
 #codeSmell.none
   ul.summary-list
     li
-      div
-        span 平均圈复杂度
-        i.fa.fa-star-o.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-circle-o.avg(aria-hidden='true')
       .summary-content
-        span#cyclo_avg.emphasize-num
+        h4 平均圈复杂度
+        span#cyclo_avg.emphasize-big
       .progress-bar
     li
-      div
-        span 圈复杂度高
-        i.fa.fa-check-square-o.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-circle-o.high(aria-hidden='true')
       .summary-content
-        span#cyclo_high.emphasize-num
+        h4 圈复杂度高
+        span#cyclo_high.emphasize-big
     li
-      div
-        span 圈复杂度严重
-        i.fa.fa-info-circle.fa-lg.pull-right(aria-hidden='true')
+      i.fa.fa-circle-o.series(aria-hidden='true')
       .summary-content
-        span#cyclo_grave.emphasize-num
+        h4 圈复杂度严重
+        span#cyclo_grave.emphasize-big
   .chart-container
-    span.chart-title
-      span.chart-legend-block.green
-      span.chart-legend-block.purple
-      .
-        圈复杂度占比
-    #cycloPertChart
+    .col-sm-6.col-md-6
+      .chart-title 圈复杂度占比
+      #cycloPertChart
+    .col-sm-6.col-md-6
+      .unit-title.chart-title 高圈复杂度列表
+      ul#cycloList.unit-absent-files
   .divider
     span.line
     span.icon
     span.line
   .chart-container
-    span.chart-title
-      span.chart-legend-block.green
-      span.chart-legend-block.purple
-      .
-        包圈复杂度排名
+    .chart-title 包圈复杂度排名
     #cycloRankChart
   .divider
     span.line
     span.icon
     span.line
-  .chart-container
-    h5.unit-title
-      span.chart-legend-block.white
-      .
-        高圈复杂度列表
-    ul#cycloList.unit-absent-files

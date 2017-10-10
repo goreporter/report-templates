@@ -77,29 +77,34 @@ ul{
 		>div{
 			display: flex;
 			flex-direction: column;
-			overflow: auto;
 		}
 	}
 }
 .summary-list{
-			padding: 30px;
+			padding: 20px;
 			margin: 0;
 			border-bottom-width: 2px;
 			border-bottom-style: solid;
 			li{
 				float: left;
 				list-style: none;
-			    border-radius: 5px;
-			    height: 150px;
-			    width: 250px;
+			    height: 120px;
+			    width: 280px;
 			    margin: 10px;
-			    margin-right: 36px;
+			    margin-right: 12px;
 			    vertical-align: top;
 			    font-weight: bold;
 			    display: flex;
-			    flex-direction: column;
-			    border-width: 1px;
-			    border-style: solid;
+			    flex-direction: row;
+			    align-items: center;
+			    i{
+		    	    width: 80px;
+				    font-size: 60px;
+				    height: 80px;
+				    line-height: 80px;
+				    text-align: center;
+				    margin-left: 12px;
+			    }
 			    >div:first-child{
 			    	height: 42px;
 				    border-radius: 2px;
@@ -110,28 +115,36 @@ ul{
 				    }
 			    }
 			    .summary-content{
-			    	text-align: center;
+			    	text-align: left;
+			    	padding-left: 12px;
 			    	flex: 1 1 0;
-			    	margin-top: 10px;
+			    	margin-top: 20px;
+			    	margin-bottom: 20px;
+			    	h4 {
+			    		font-size: 16px;
+			    	}
 			    }
 			    .emphasize-num{
-			    	font-size: 30px;
+			    	font-size: 20px;
 			    	font-weight: lighter;
+			    }
+			    .emphasize-big{
+			    	font-size: 42px;
+			    	font-weight: lighter;
+			    }
+			    .descp{
+			    	font-size: 12px;
 			    }
 			}
 		}
 .chart-container{
 	margin: 0;
-	width: 100%;
-	padding: 24px 12px;
-	>div{
-		box-sizing: border-box;
-	}
+	padding: 10px;
 }
 .chart-title{
     padding: 5px 20px;
     border-bottom: 1px solid #e5e7ea;
-    font-size: 24px;
+    font-size: 20px;
 }
 .pie-chart{
 	display: flex;
@@ -186,11 +199,6 @@ ul{
 	height: 10px;
 	margin-right: 5px;
 }
-.unit-title{
-    padding: 20px 10px;
-    border-radius: 3px;
-    margin:0;
-}
 .unit-absent-files{
 	list-style: none;
     padding: 0 20px;
@@ -220,18 +228,31 @@ ul{
 }
 .sub-nav{
 	position: absolute;
-	top: 20px;
-	left: 20px;
-	width: 150px;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	bottom: 10px;
+	width: 230px;
 	font-size: 16px;
+	height: 100%;
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
 	li{
 		height: 40px;
+		line-height: 40px;
 		cursor: pointer;
+		padding-left: 1em;
+	    margin-bottom: 2px;
 	}
 }
 .sub-content{
 	margin-left: 250px;
-	margin-right: 24px;
+	margin-right: 10px;
+	margin-top: 10px;
+	padding-top: 1em;
+	padding-left: 1em;
+	height: 100%;
 	h5{
 		margin-left: 24px;
 	}
@@ -240,15 +261,25 @@ ul{
 		margin-left: 48px;
 		margin-top:24px;
 	}
-	h4>span:last-child{
+	h4{
+		padding: 10px;
+		margin-top: 0;
+		position: relative;
+	}
+	.emp-num{
 		margin-left: 24px;
 	}
-	section{
-		margin-bottom: 48px;
+	section >div{
+		margin-top: 24px;
+		margin-bottom: 24px;
 	}
 }
 .description{
-	margin-left: 24px;
+	position: absolute;
+	right: 10px;
+	top: 16px;
+	font-size: 12px;
+	font-style: italic;
 }
 .none{
 	display: none!important;
@@ -268,6 +299,7 @@ ul{
 		>span:first-child{
 			width: 36px;
 		    height: 30px;
+		    line-height: 30px;
 		    border-radius: 2px;
 		    display: inline-block;
 		    text-align: center;
@@ -279,6 +311,16 @@ ul{
 			margin-left: 2em;
 		}
 	}
+}
+.col-sm-9{
+	padding-left:0;
+}
+.col-sm-3{
+	padding-right: 0;
+	padding-left: 10px;
+}
+.col-sm-6{
+	padding-left:0;
 }
 
 @media screen and (max-width: 1280px){

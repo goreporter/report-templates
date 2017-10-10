@@ -11,7 +11,8 @@ module.exports = function(codeSmell){
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
 	        plotShadow: false,
-	        backgroundColor: '#ecf2f6'
+	        backgroundColor: '#fff',
+	        type: 'pie'
 	    },
 	    title: {
 	        text: ''
@@ -27,26 +28,25 @@ module.exports = function(codeSmell){
 	            dataLabels: {
 	                enabled: false
 	            },
-	            startAngle: -180,
-	            endAngle: 180,
 	            showInLegend: true,
-	            size: '70%'
-	            //colors: ['#76448A', '#9B59B6', '#C39BG', '#D7BDE2', '#EBDEF0']
+	            size: '60%',
+	            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.2)']
 	        }
 	    },
 	    legend: {
-	    	enabled: true,
-	    	align: 'left',
-	    	layout: "vertical",
+	    	layout:'vertical',
+	    	symbolRadius: 0,
+	    	itemStyle: {
+	    		color: "#596679",
+	    		fontSize: "14px"
+	    	},
 	    	verticalAlign: 'top',
-	    	padding: 16,
-	    	itemMarginBottom: 5,
-	    	itemMarginTop: 5
+    		align: 'left'
 	    },
 	    series: [{
 	        type: 'pie',
 	        name: '耗时',
-	        //innerSize: '50%',
+	        innerSize: '85%',
 	        data: codeSmell.content.percentage
 	    }]
 	});
@@ -55,9 +55,7 @@ module.exports = function(codeSmell){
 	 */
 	$("#cycloRankChart").highcharts({
 			chart: {
-				type: 'column',
-		        alignTicks: false,
-		        backgroundColor: '#ecf2f6'
+				type: 'bar'
 			},
 			title: {
 				text: ''
@@ -67,7 +65,8 @@ module.exports = function(codeSmell){
 				title:{
 					text: null
 				},
-				tickLength: 3,
+				tickLength: 0,
+				lineWidth: 0,
 				labels: {
 					style: {
 						color: "#596679",
@@ -75,21 +74,16 @@ module.exports = function(codeSmell){
 					}
 				}
 			},
-			yAxis: [{
-				min: 0,
-				ceiling: 100,
+			yAxis: {
 		        title: {
 		            text: ''
-		        },
-		        labels: {
-		            overflow: 'justify'
 		        },
 		        gridLineColor: '',
 		        gridLineWidth: 0,
 		        labels: {
 		        	enabled: false
 		        }
-			}],
+			},
 		    plotOptions: {
 		        bar: {
 		            dataLabels: {
@@ -102,20 +96,21 @@ module.exports = function(codeSmell){
 		            }
 		        },
 		        series: {
-		                pointWidth: 12,
-		                borderRadius: 3,
-		              
+		                pointWidth: 14
 		        }
 		    },
 		    credits: {
 		        enabled: false
 		    },
 		    legend: {
-		    	align: 'center',
-		    	itemDistance: 15,
+		    	layout:'vertical',
+		    	symbolRadius: 0,
 		    	itemStyle: {
-		    		color: "#596679"
-		    	}
+		    		color: "#596679",
+		    		fontSize: "14px"
+		    	},
+		    	verticalAlign: 'top',
+	    		align: 'left'
 		    },
 		    series: [{
 		        name: '圈复杂度',
