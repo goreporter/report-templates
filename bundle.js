@@ -707,8 +707,8 @@ module.exports = function(resData){
 	});
 
 	$("#noTestCount").text(resData.gotest.content.no_test.length);
-	$("#coverLessCount").text(0);
-	$("#timeGreaterCount").text(0);
+	$("#coverLessCount").text(resData.gotest.content.cover.filter(function(d){return d<50}).length);
+	$("#timeGreaterCount").text(resData.gotest.content.time.filter(function(d){return d>=1}).length);
 	
 	//******************************** go cyclo ************************************
 
