@@ -16,7 +16,6 @@
   ],
   "private": true,
   "dependencies": {
-    "font-awesome": "^4.7.0",
     "bootstrap": "^3.3.7",
     "highcharts": "^5.0.14"
   }

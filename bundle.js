@@ -6,6 +6,17 @@ resData.goIssue = JSON.parse(resData.goIssue);
 resData.codeSmell = JSON.parse(resData.codeSmell);
 resData.countCode = JSON.parse(resData.countCode);
 
+initData(resData.gotest);
+initData(resData.codeStyle, 'detail');
+initData(resData.goIssue, 'detail');
+initData(resData.codeSmell);
+initData(resData.countCode);
+
+function initData(data, value){
+	Object.keys(data.content).forEach(function(d){
+		typeof value === 'undefined' ? d = d || [] : d[value] = d[value] || [];
+	})
+}
 
 var subPageMap = {
 	navSummary: 

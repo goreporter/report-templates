@@ -19,7 +19,11 @@
   "devDependencies": {
     "browserify": "^14.4.0",
     "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.6.1",
     "pug": "^2.0.0-rc.4"
+  },
+  "dependencies": {
+    "font-awesome-base64": "^1.0.4"
   }
 }
