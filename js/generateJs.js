@@ -1,9 +1,9 @@
 //解析数据
-// resData.gotest = JSON.parse(resData.gotest);
-// resData.codeStyle = JSON.parse(resData.codeStyle);
-// resData.goIssue = JSON.parse(resData.goIssue);
-// resData.codeSmell = JSON.parse(resData.codeSmell);
-// resData.countCode = JSON.parse(resData.countCode);
+resData.gotest = JSON.parse(resData.gotest);
+resData.codeStyle = JSON.parse(resData.codeStyle);
+resData.goIssue = JSON.parse(resData.goIssue);
+resData.codeSmell = JSON.parse(resData.codeSmell);
+resData.countCode = JSON.parse(resData.countCode);
 
 
 var subPageMap = {
