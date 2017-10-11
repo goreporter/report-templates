@@ -13,7 +13,7 @@ initData(resData.countCode);
 
 function initData(data, value){
 	Object.keys(data.content).forEach(function(d){
-		typeof value === 'undefined' ? d = d || [] : d[value] = d[value] || [];
+		typeof value === 'undefined' ? data.content[d] = data.content[d] || [] : data.content[d][value] = data.content[d][value] || [];
 	})
 }
 

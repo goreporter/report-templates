@@ -81,7 +81,7 @@ module.exports = function(resData){
 	            }
 	        },
 	        series: {
-	                pointWidth: 14,
+	                pointWidth: 12,
 	                groupPadding: 0.15
 	              
 	        }
