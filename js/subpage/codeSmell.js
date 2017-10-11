@@ -30,7 +30,7 @@ module.exports = function(codeSmell){
 	            },
 	            showInLegend: true,
 	            size: '60%',
-	            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.2)']
+	            colors: ['rgba(0,169,239,0.2)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.1)']
 	        }
 	    },
 	    legend: {
@@ -47,7 +47,7 @@ module.exports = function(codeSmell){
 	        type: 'pie',
 	        name: '耗时',
 	        innerSize: '85%',
-	        data: codeSmell.content.percentage
+	        data: Object.keys(codeSmell.content.percentage).map(function(d){return [d, codeSmell.content.percentage[d]]})
 	    }]
 	});
 	/**
@@ -55,7 +55,8 @@ module.exports = function(codeSmell){
 	 */
 	$("#cycloRankChart").highcharts({
 			chart: {
-				type: 'bar'
+				type: 'bar',
+				height: codeSmell.content.pkg.length * 20 + 120
 			},
 			title: {
 				text: ''
@@ -86,17 +87,20 @@ module.exports = function(codeSmell){
 			},
 		    plotOptions: {
 		        bar: {
+		        	stacking: 'percentage',
 		            dataLabels: {
 		                enabled: true,
 		                color: "#596679",
 		                fontSize: "10px",
 		                pointPadding: 0.2,
 		                groupPadding: 0.1,
+		                align: 'right',
+		                x: 20
 
 		            }
 		        },
 		        series: {
-		                pointWidth: 14
+		                pointWidth: 12
 		        }
 		    },
 		    credits: {
@@ -113,9 +117,21 @@ module.exports = function(codeSmell){
 	    		align: 'left'
 		    },
 		    series: [{
+		        name: null,
+	        	color: '#d9e4eb',
+	        	stack: 'code_smell',
+	        	data: codeSmell.content.cyclo.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
+		        dataLabels: {
+		        	enabled: false
+		        },
+	        	linkedTo: 'code_smell',
+	        	enableMouseTracking:false
+		    },{
+		    	id: 'code-smell',
 		        name: '圈复杂度',
 		        data: codeSmell.content.cyclo,
-		        color: '#47bac1'
+		        color: '#47bac1',
+		        stack: 'code_smell'
 		    }]
 		});
 	

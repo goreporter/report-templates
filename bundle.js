@@ -85,7 +85,8 @@ module.exports = function codeCount(codeCount){
 	 */
 	$("#lineCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 20 + 120
 		},
 		title: {
 			text: ''
@@ -126,7 +127,7 @@ module.exports = function codeCount(codeCount){
 	            }
 	        },
 	        series: {
-                pointWidth: 14,
+                pointWidth: 12,
                 pointPadding: 0,
                 groupPadding: 0
 	        }
@@ -165,7 +166,8 @@ module.exports = function codeCount(codeCount){
 	});
 	$("#commentCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 20 + 120
 		},
 		title: {
 			text: ''
@@ -209,7 +211,7 @@ module.exports = function codeCount(codeCount){
 	            }
 	        },
 	        series: {
-	                pointWidth: 14
+	                pointWidth: 12
 	              
 	        }
 	    },
@@ -247,7 +249,8 @@ module.exports = function codeCount(codeCount){
 	});
 	$("#funcCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 20 + 120
 		},
 		title: {
 			text: ''
@@ -290,7 +293,7 @@ module.exports = function codeCount(codeCount){
 	            }
 	        },
 	        series: {
-	                pointWidth: 14
+	                pointWidth: 12
 	              
 	        }
 	    },
@@ -316,7 +319,8 @@ module.exports = function codeCount(codeCount){
 	});
 	$("#fileCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 60 + 120
 		},
 		title: {
 			text: ''
@@ -453,7 +457,7 @@ module.exports = function(codeSmell){
 	            },
 	            showInLegend: true,
 	            size: '60%',
-	            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.2)']
+	            colors: ['rgba(0,169,239,0.2)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.1)']
 	        }
 	    },
 	    legend: {
@@ -470,7 +474,7 @@ module.exports = function(codeSmell){
 	        type: 'pie',
 	        name: '耗时',
 	        innerSize: '85%',
-	        data: codeSmell.content.percentage
+	        data: Object.keys(codeSmell.content.percentage).map(function(d){return [d, codeSmell.content.percentage[d]]})
 	    }]
 	});
 	/**
@@ -478,7 +482,8 @@ module.exports = function(codeSmell){
 	 */
 	$("#cycloRankChart").highcharts({
 			chart: {
-				type: 'bar'
+				type: 'bar',
+				height: codeSmell.content.pkg.length * 20 + 120
 			},
 			title: {
 				text: ''
@@ -509,17 +514,20 @@ module.exports = function(codeSmell){
 			},
 		    plotOptions: {
 		        bar: {
+		        	stacking: 'percentage',
 		            dataLabels: {
 		                enabled: true,
 		                color: "#596679",
 		                fontSize: "10px",
 		                pointPadding: 0.2,
 		                groupPadding: 0.1,
+		                align: 'right',
+		                x: 10
 
 		            }
 		        },
 		        series: {
-		                pointWidth: 14
+		                pointWidth: 12
 		        }
 		    },
 		    credits: {
@@ -536,9 +544,21 @@ module.exports = function(codeSmell){
 	    		align: 'left'
 		    },
 		    series: [{
+		        name: null,
+	        	color: '#d9e4eb',
+	        	stack: 'code_smell',
+	        	data: codeSmell.content.cyclo.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
+		        dataLabels: {
+		        	enabled: false
+		        },
+	        	linkedTo: 'code_smell',
+	        	enableMouseTracking:false
+		    },{
+		    	id: 'code-smell',
 		        name: '圈复杂度',
 		        data: codeSmell.content.cyclo,
-		        color: '#47bac1'
+		        color: '#47bac1',
+		        stack: 'code_smell'
 		    }]
 		});
 	
@@ -591,13 +611,11 @@ module.exports = function(resData){
 		highscore = 0,
 		lowscore = 0,
 		codeSmell = resData.codeSmell.content;
-	if(!(codeSmell.percentage instanceof Array) || codeSmell.percentage.length != 3){
-		console.error("codeSmell中的percentage数据出错！");
-	}else{
-		lowscore = codeSmell.percentage[0][1];
-		mediumscore = codeSmell.percentage[1][1];
-		highscore = codeSmell.percentage[2][1];
-	}
+	
+		lowscore = codeSmell.percentage['1-15'];
+		mediumscore = codeSmell.percentage['15-50'];
+		highscore = codeSmell.percentage['50-'];
+
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
@@ -607,7 +625,7 @@ module.exports = function(resData){
 			renderTo: 'gotestChart',
 			type: 'bar',
 	        alignTicks: false,
-	        height: 550
+	        height: resData.gotest.content.pkg.length * 40 + 120
 		},
 		title: {
 			text: ''
@@ -735,7 +753,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: <b>{point.y}%</b>'
+		        pointFormat: '{series.name}: <br/><b>{point.y}个;</b>占比{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false
@@ -900,7 +918,7 @@ module.exports = function(gotest){
 		chart: {
 			type: 'bar',
 	        alignTicks: false,
-	        height: 550
+	        height: gotest.content.pkg.length * 40 + 120
 		},
 		title: {
 			text: ''
@@ -961,7 +979,7 @@ module.exports = function(gotest){
 	            }
 	        },
 	        series: {
-	                pointWidth: 14,
+	                pointWidth: 12,
 	                groupPadding: 0.15
 	              
 	        }

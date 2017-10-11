@@ -10,7 +10,7 @@ module.exports = function(gotest){
 		chart: {
 			type: 'bar',
 	        alignTicks: false,
-	        height: 550
+	        height: gotest.content.pkg.length * 40 + 120
 		},
 		title: {
 			text: ''
@@ -71,7 +71,7 @@ module.exports = function(gotest){
 	            }
 	        },
 	        series: {
-	                pointWidth: 14,
+	                pointWidth: 12,
 	                groupPadding: 0.15
 	              
 	        }

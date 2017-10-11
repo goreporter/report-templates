@@ -208,16 +208,19 @@ ul{
 	    font-size: 16px;
 	    border-bottom-width: 2px;
 	    border-bottom-style: solid;
+	    display: flex;
 	    span{
 	    	display: inline-block;
+	    	text-align: center;
 	    	&:first-child{
-	    		width: 25%;
+	    		width: 40px;
 	    	};
 	    	&:nth-child(2){
-	    		width: 50%;
+	    		flex: 1 0 0;
 	    	}
 	    	&:last-child{
-	    		width: 25%
+	    		width: 80px;
+	    		float: right;
 	    	}
 	    }
     }
@@ -322,6 +325,14 @@ ul{
 .col-sm-6{
 	padding-left:0;
 }
+.col-sm-4{
+	padding-left:0;
+}
+.col-sm-8{
+	padding-right: 0;
+	padding-left: 10px;
+}
+
 
 @media screen and (max-width: 1280px){
 	.sidebar{

@@ -10,13 +10,11 @@ module.exports = function(resData){
 		highscore = 0,
 		lowscore = 0,
 		codeSmell = resData.codeSmell.content;
-	if(!(codeSmell.percentage instanceof Array) || codeSmell.percentage.length != 3){
-		console.error("codeSmell中的percentage数据出错！");
-	}else{
-		lowscore = codeSmell.percentage[0][1];
-		mediumscore = codeSmell.percentage[1][1];
-		highscore = codeSmell.percentage[2][1];
-	}
+	
+		lowscore = codeSmell.percentage['1-15'];
+		mediumscore = codeSmell.percentage['15-50'];
+		highscore = codeSmell.percentage['50-'];
+
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
@@ -26,7 +24,7 @@ module.exports = function(resData){
 			renderTo: 'gotestChart',
 			type: 'bar',
 	        alignTicks: false,
-	        height: 550
+	        height: resData.gotest.content.pkg.length * 40 + 120
 		},
 		title: {
 			text: ''
@@ -154,7 +152,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: <b>{point.y}%</b>'
+		        pointFormat: '{series.name}: <br/><b>{point.y}个;</b>占比{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false

@@ -172,7 +172,7 @@
 						cyclo_grave: 8
 					},
 					content: {
-						percentage: [['0-15', 20],['15-50', 25],['>50', 10]],
+						percentage: {'1-15': 20,'15-50', 25,'50+', 10},
 						pkg: ['aa','bb','cc','dd','ee'],
 						cyclo: [15,23,12,34,41],
 						list: [{path: 'aa/bb/cc', cyclo: 88},{path: 'dd/ee/ff', cyclo: 75},{path: 'ab/cd/ef', cyclo: 60}]

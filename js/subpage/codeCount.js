@@ -9,7 +9,8 @@ module.exports = function codeCount(codeCount){
 	 */
 	$("#lineCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 20 + 120
 		},
 		title: {
 			text: ''
@@ -50,7 +51,7 @@ module.exports = function codeCount(codeCount){
 	            }
 	        },
 	        series: {
-                pointWidth: 14,
+                pointWidth: 12,
                 pointPadding: 0,
                 groupPadding: 0
 	        }
@@ -89,7 +90,8 @@ module.exports = function codeCount(codeCount){
 	});
 	$("#commentCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 20 + 120
 		},
 		title: {
 			text: ''
@@ -133,7 +135,7 @@ module.exports = function codeCount(codeCount){
 	            }
 	        },
 	        series: {
-	                pointWidth: 14
+	                pointWidth: 12
 	              
 	        }
 	    },
@@ -171,7 +173,8 @@ module.exports = function codeCount(codeCount){
 	});
 	$("#funcCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 20 + 120
 		},
 		title: {
 			text: ''
@@ -214,7 +217,7 @@ module.exports = function codeCount(codeCount){
 	            }
 	        },
 	        series: {
-	                pointWidth: 14
+	                pointWidth: 12
 	              
 	        }
 	    },
@@ -240,7 +243,8 @@ module.exports = function codeCount(codeCount){
 	});
 	$("#fileCountChart").highcharts({
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			height: codeCount.content.pkg.length * 60 + 120
 		},
 		title: {
 			text: ''
