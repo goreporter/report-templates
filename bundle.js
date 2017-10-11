@@ -12,6 +12,8 @@ initData(resData.goIssue, 'detail');
 initData(resData.codeSmell);
 initData(resData.countCode);
 
+console.log(resData.countCode);
+
 function initData(data, value){
 	Object.keys(data.content).forEach(function(d){
 		typeof value === 'undefined' ? data.content[d] = data.content[d] || [] : data.content[d][value] = data.content[d][value] || [];
@@ -445,7 +447,7 @@ module.exports = function(codeSmell){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '{series.name}: {point.y}s <br>占比：{point.percentage:.0f}%'
+	        pointFormat: '个数：{point.y} <br>占比：{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -457,7 +459,7 @@ module.exports = function(codeSmell){
 	            },
 	            showInLegend: true,
 	            size: '60%',
-	            colors: ['rgba(0,169,239,0.2)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.1)']
+	            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.2)','rgba(0,169,239,0.6)']
 	        }
 	    },
 	    legend: {
@@ -472,7 +474,6 @@ module.exports = function(codeSmell){
 	    },
 	    series: [{
 	        type: 'pie',
-	        name: '耗时',
 	        innerSize: '85%',
 	        data: Object.keys(codeSmell.content.percentage).map(function(d){return [d, codeSmell.content.percentage[d]]})
 	    }]
@@ -522,7 +523,7 @@ module.exports = function(codeSmell){
 		                pointPadding: 0.2,
 		                groupPadding: 0.1,
 		                align: 'right',
-		                x: 10
+		                x: 20
 
 		            }
 		        },
@@ -566,7 +567,7 @@ module.exports = function(codeSmell){
 	 * list for files no having test code
 	 */
 	codeSmell.content.list.forEach(function(d,index){
-		var li = "<li><span>" + (index+1) + "</span><span>" + d.path + "</span><span>" + d.cyclo + "</span></li>";
+		var li = "<li><span>" + (index+1) + "</span><span title=" + d.path+ ">" + d.path + "</span><span>" + d.cyclo + "</span></li>";
 		$("#cycloList").append(li);
 	})
 }
@@ -614,15 +615,14 @@ module.exports = function(resData){
 	
 		lowscore = codeSmell.percentage['1-15'];
 		mediumscore = codeSmell.percentage['15-50'];
-		highscore = codeSmell.percentage['50-'];
+		highscore = codeSmell.percentage['50+'];
 
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
-	new Highcharts.Chart({
-	//$("#gotestChart").highcharts({
+
+	$("#gotestChart").highcharts({
 		chart: {
-			renderTo: 'gotestChart',
 			type: 'bar',
 	        alignTicks: false,
 	        height: resData.gotest.content.pkg.length * 40 + 120
@@ -668,7 +668,6 @@ module.exports = function(resData){
 	        	enabled: false
 	        }
 	    }],
-
 	    plotOptions: {
 	        bar: {
 	        	stacking: 'percentage',
@@ -718,6 +717,9 @@ module.exports = function(resData){
 	        dataLabels: {
 	        	align: 'right',
 	            x: 40
+	        },
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}%'
 	        }
 	    },
 	    {
@@ -725,12 +727,14 @@ module.exports = function(resData){
 	        name: '时间',
 	        data: resData.gotest.content.time,
 	        yAxis: 1,
-	        //color: '#7ccc5d'
 	        color: '#BB8FCE',
 	        stack: 'time',
 	        dataLabels: {
 	        	align: 'right',
 	            x: 40
+	        },
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}s'
 	        }
 	    }]
 	});
@@ -995,11 +999,6 @@ module.exports = function(gotest){
 	    	},
 	    	verticalAlign: 'top',
 	    	align: 'left',
-	    	// backgroundColor: '#fff',
-	    	// borderColor: '#d2dae2',
-	    	// borderRadius: 24,
-	    	// borderWidth: 2,
-	    	// padding: 15,
 	    	symbolRadius: 0
 	    },
 	    series: [{
@@ -1017,16 +1016,21 @@ module.exports = function(gotest){
 	        name: '覆盖率',
 	        data: gotest.content.cover,
 	        color: '#47bac1',
-	        stack: 'coverage'
+	        stack: 'coverage',
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}%'
+	        }
 	    },
 	    {
 	    	id: 'time',
 	        name: '时间',
 	        data: gotest.content.time,
 	        yAxis: 1,
-	        //color: '#7ccc5d'
 	        color: '#BB8FCE',
-	        stack: 'time'
+	        stack: 'time',
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}s'
+	        }
 	    }]
 				});
 	/**

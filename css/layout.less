@@ -11,7 +11,7 @@ ul{
 	height: 100%;
 }
 .sidebar{
-	flex: 0 0 250px;
+	flex: 0 0 150px;
 	overflow: auto;
 	ul{
     	list-style: none;
@@ -42,14 +42,13 @@ ul{
     		vertical-align: middle;
     		position: absolute;
     		top: 22px;
-    		left: 50px;
+    		left: 20px;
     	}
     	p{
-    		padding-left: 20px;
+    		padding-left: 50px;
     		vertical-align: middle;
     		text-decoration: none;
     		display: inline-block;
-    		padding-left: 100px;
     		width: 100%;
     		height: 64px;
     		line-height: 64px;
@@ -73,11 +72,14 @@ ul{
 	flex: 1 1 0;
 	padding: 0;
 	overflow: auto;
-	#content-container{
-		>div{
-			display: flex;
-			flex-direction: column;
-		}
+	display: flex;
+	flex-direction: column;
+}
+#content-container{
+	flex: 1 0 0;
+	>div{
+		display: flex;
+		flex-direction: column;
 	}
 }
 .summary-list{
@@ -212,6 +214,10 @@ ul{
 	    span{
 	    	display: inline-block;
 	    	text-align: center;
+	    	overflow: hidden; 
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		    font-size: 14px;
 	    	&:first-child{
 	    		width: 40px;
 	    	};
@@ -336,7 +342,7 @@ ul{
 
 @media screen and (max-width: 1280px){
 	.sidebar{
-		flex: 0 0 200px;
+		flex: 0 0 150px;
 		.nav-item{
 			padding-left: 30px;
 		}

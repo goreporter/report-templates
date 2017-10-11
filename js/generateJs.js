@@ -11,6 +11,8 @@ initData(resData.goIssue, 'detail');
 initData(resData.codeSmell);
 initData(resData.countCode);
 
+console.log(resData.countCode);
+
 function initData(data, value){
 	Object.keys(data.content).forEach(function(d){
 		typeof value === 'undefined' ? data.content[d] = data.content[d] || [] : data.content[d][value] = data.content[d][value] || [];

@@ -18,7 +18,7 @@ module.exports = function(codeSmell){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '{series.name}: {point.y}s <br>占比：{point.percentage:.0f}%'
+	        pointFormat: '个数：{point.y} <br>占比：{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -30,7 +30,7 @@ module.exports = function(codeSmell){
 	            },
 	            showInLegend: true,
 	            size: '60%',
-	            colors: ['rgba(0,169,239,0.2)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.1)']
+	            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.2)','rgba(0,169,239,0.6)']
 	        }
 	    },
 	    legend: {
@@ -45,7 +45,6 @@ module.exports = function(codeSmell){
 	    },
 	    series: [{
 	        type: 'pie',
-	        name: '耗时',
 	        innerSize: '85%',
 	        data: Object.keys(codeSmell.content.percentage).map(function(d){return [d, codeSmell.content.percentage[d]]})
 	    }]
@@ -139,7 +138,7 @@ module.exports = function(codeSmell){
 	 * list for files no having test code
 	 */
 	codeSmell.content.list.forEach(function(d,index){
-		var li = "<li><span>" + (index+1) + "</span><span>" + d.path + "</span><span>" + d.cyclo + "</span></li>";
+		var li = "<li><span>" + (index+1) + "</span><span title=" + d.path+ ">" + d.path + "</span><span>" + d.cyclo + "</span></li>";
 		$("#cycloList").append(li);
 	})
 }

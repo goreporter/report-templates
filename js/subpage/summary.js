@@ -13,15 +13,14 @@ module.exports = function(resData){
 	
 		lowscore = codeSmell.percentage['1-15'];
 		mediumscore = codeSmell.percentage['15-50'];
-		highscore = codeSmell.percentage['50-'];
+		highscore = codeSmell.percentage['50+'];
 
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
-	new Highcharts.Chart({
-	//$("#gotestChart").highcharts({
+
+	$("#gotestChart").highcharts({
 		chart: {
-			renderTo: 'gotestChart',
 			type: 'bar',
 	        alignTicks: false,
 	        height: resData.gotest.content.pkg.length * 40 + 120
@@ -67,7 +66,6 @@ module.exports = function(resData){
 	        	enabled: false
 	        }
 	    }],
-
 	    plotOptions: {
 	        bar: {
 	        	stacking: 'percentage',
@@ -117,6 +115,9 @@ module.exports = function(resData){
 	        dataLabels: {
 	        	align: 'right',
 	            x: 40
+	        },
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}%'
 	        }
 	    },
 	    {
@@ -124,12 +125,14 @@ module.exports = function(resData){
 	        name: '时间',
 	        data: resData.gotest.content.time,
 	        yAxis: 1,
-	        //color: '#7ccc5d'
 	        color: '#BB8FCE',
 	        stack: 'time',
 	        dataLabels: {
 	        	align: 'right',
 	            x: 40
+	        },
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}s'
 	        }
 	    }]
 	});

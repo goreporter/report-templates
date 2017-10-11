@@ -87,11 +87,6 @@ module.exports = function(gotest){
 	    	},
 	    	verticalAlign: 'top',
 	    	align: 'left',
-	    	// backgroundColor: '#fff',
-	    	// borderColor: '#d2dae2',
-	    	// borderRadius: 24,
-	    	// borderWidth: 2,
-	    	// padding: 15,
 	    	symbolRadius: 0
 	    },
 	    series: [{
@@ -109,16 +104,21 @@ module.exports = function(gotest){
 	        name: '覆盖率',
 	        data: gotest.content.cover,
 	        color: '#47bac1',
-	        stack: 'coverage'
+	        stack: 'coverage',
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}%'
+	        }
 	    },
 	    {
 	    	id: 'time',
 	        name: '时间',
 	        data: gotest.content.time,
 	        yAxis: 1,
-	        //color: '#7ccc5d'
 	        color: '#BB8FCE',
-	        stack: 'time'
+	        stack: 'time',
+	        tooltip: {
+	        	pointFormat: '{series.name}: {point.y}s'
+	        }
 	    }]
 				});
 	/**
