@@ -5,7 +5,18 @@ var fs = require('fs');
 
 gulp.task('getHtml', function(cb){
 	exec('node ./js/generateHtml.js', function(err,stdout, stderr){
-		cb(err);
+		if(err)
+			return cb(err);
+		gulp.src(['./templates/index.html'])
+		       .pipe(replace(/<link rel="stylesheet" href="([\S]*\.css)"[^>]*>/g, function(s, filename){
+		       		 var style = fs.readFileSync(filename, 'utf8');
+		  			 return '<style>\n' + style + '\n</style>';
+		       }))
+		       .pipe(replace(/<script src="([\S]*\.js)"[^>]*>/g, function(s, fn){
+		       		var scriptCode = fs.readFileSync(fn, 'utf8');
+		       		return '<script>\n' + scriptCode + '\n';
+		       }))
+		       .pipe(gulp.dest('./'))
 	})
 
 });
@@ -15,15 +26,6 @@ gulp.task('getJs', function(cb){
 	} )
 })
 
-gulp.task('merge', function(){
-	gulp.src(['./index.html'])
-       .pipe(replace(/^<link rel="stylesheet"/g, function(s, filename){
-       	    console.log(filename);
-       		 var style = fs.readFileSync(filename, 'utf8');
-  			 return '<style>\n' + style + '\n</style>';
-       }))
-       .pipe(gulp.dest('./test'))
-})
 
 gulp.task('watch', function(){
 	gulp.watch('js/subpage/*.js', ['getJs'])

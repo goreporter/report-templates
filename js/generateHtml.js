@@ -6,7 +6,7 @@ var fs = require("fs");
 var summaryTmp = pug.compileFile(path.join(__dirname, '..','templates','index.pug'))("");
 
 
-fs.open(path.join(__dirname, '..','index.html'),"w",function(err,fd){
+fs.open(path.join(__dirname, '../templates','index.html'),"w",function(err,fd){
     var buf = new Buffer(summaryTmp);
     fs.write(fd,buf,0,buf.length,0,function(err,written,buffer){});
 })

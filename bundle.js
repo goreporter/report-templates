@@ -6,12 +6,6 @@
 // resData.codeSmell = JSON.parse(resData.codeSmell);
 // resData.countCode = JSON.parse(resData.countCode);
 
-// console.log(resData.gotest);
-// console.log(resData.codeStyle);
-// console.log(resData.goIssue);
-// console.log(resData.codeSmell);
-
-
 
 var subPageMap = {
 	navSummary: 
