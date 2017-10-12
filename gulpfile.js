@@ -19,18 +19,18 @@ gulp.task('getHtml', function(cb){
 		gulp.src(['./templates/index.html'])
 		       .pipe(replace(/<link rel="stylesheet" href="([\S]*\.css)"[^>]*>/g, function(s, filename){
 		       		 var style = fs.readFileSync(filename, 'utf8');
-		  			 return '<style>\n' + style + '\n</style>';
+		  			 return "<style>\n" + style + "\n</style>";
 		       }))
 		       .pipe(replace(/url\('\.\.\/fonts\/([\S]*)/g, function(s, filename){
 		       		return "url('bower_components/components-font-awesome/fonts/" + filename;
 		       }))
 		       .pipe(replace(/<script src="([\S]*\.js)"[^>]*>/g, function(s, fn){
 		       		var scriptCode = fs.readFileSync(fn, 'utf8');
-		       		return '<script>\n' + scriptCode + '\n';
+		       		return "<script>\n" + scriptCode + "\n";
 		       }))
 		       .pipe(replace(/<img src="([\S]*)">/g, function(s, src){
 					var dataUrl = base64_encode("./img/logo.png");
-					return "<img src=data:image/gif;base64," + dataUrl + ">";
+					return '<img src="data:image/gif;base64,' + dataUrl + '">';
 		       }))
 		       .pipe(gulp.dest('./'))
 	})
