@@ -9,32 +9,35 @@
     li
       i.fa.fa-circle-o.high(aria-hidden='true')
       .summary-content
-        h4 圈复杂度高
+        h4 圈复杂度高的文件数
         span#cyclo_high.emphasize-big
+        span 个
     li
       i.fa.fa-circle-o.series(aria-hidden='true')
       .summary-content
-        h4 圈复杂度严重
+        h4 圈复杂度严重的文件数
         span#cyclo_grave.emphasize-big
-  .chart-container
-    .col-sm-4.col-md-4
-      .chart-title 圈复杂度占比
-      #cycloPertChart
-    .col-sm-8.col-md-8
-      .unit-title.chart-title 高圈复杂度列表
-      ul#cycloList.unit-absent-files
-        li
-          span 排名
-          span 文件路径
-          span 圈复杂度
-  .divider
-    span.line
-    span.icon
-    span.line
-  .chart-container
-    .chart-title 包圈复杂度排名
-    #cycloRankChart
-  .divider
-    span.line
-    span.icon
-    span.line
+        span 个
+  .right-content
+    .chart-container
+      .col-sm-4.col-md-4
+        .chart-title 圈复杂度占比
+        #cycloPertChart
+      .col-sm-8.col-md-8
+        .unit-title.chart-title 高圈复杂度列表
+        ul#cycloList.unit-absent-files
+          li
+            span 排名
+            span 文件路径
+            span 圈复杂度
+    .divider
+      span.line
+      span.icon
+      span.line
+    .chart-container
+      .chart-title 包圈复杂度排名
+      #cycloRankChart
+    .divider
+      span.line
+      span.icon
+      span.line

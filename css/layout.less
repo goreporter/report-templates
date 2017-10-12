@@ -71,7 +71,6 @@ ul{
 .main{
 	flex: 1 1 0;
 	padding: 0;
-	overflow: auto;
 	display: flex;
 	flex-direction: column;
 }
@@ -80,6 +79,7 @@ ul{
 	>div{
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 	}
 }
 .summary-list{
@@ -233,30 +233,40 @@ ul{
 }
 //代码风格
 .right-content{
-	position: relative;
+	flex: 1 1 0;
+	width: 100%;
+	overflow: auto;
+	// display: flex;
+	// flex-direction: row;
+}
+.flex-container{
+	display: flex;
 }
 .sub-nav{
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	right: 10px;
-	bottom: 10px;
-	width: 230px;
-	font-size: 16px;
-	height: 100%;
-	padding-top: 1em;
-	padding-left: 1em;
-	padding-right: 1em;
-	li{
-		height: 40px;
+	width: 250px;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    ul {
+    	position: absolute;
+		left: 10px;
+		right: 10px;
+		font-size: 16px;
+		padding-top: 1em;
+		padding-left: 1em;
+		padding-right: 1em;
+    }
+    li{
+    	height: 40px;
 		line-height: 40px;
 		cursor: pointer;
 		padding-left: 1em;
 	    margin-bottom: 2px;
-	}
+    }
 }
 .sub-content{
-	margin-left: 250px;
+	flex: 1 1 0;
+	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 10px;
 	padding-top: 1em;
@@ -323,6 +333,7 @@ ul{
 }
 .col-sm-9{
 	padding-left:0;
+	padding-right:0;
 }
 .col-sm-3{
 	padding-right: 0;
@@ -333,6 +344,7 @@ ul{
 }
 .col-sm-4{
 	padding-left:0;
+	padding-right:0;
 }
 .col-sm-8{
 	padding-right: 0;

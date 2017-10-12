@@ -18,7 +18,6 @@ module.exports = function(resData){
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
-
 	$("#gotestChart").highcharts({
 		chart: {
 			type: 'bar',

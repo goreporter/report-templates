@@ -32,10 +32,10 @@
         h4 圈复杂度
         div
           div
-            span.descp 15~50分文件数：
+            span.descp 15-50文件数：
             span#mediumCycleNum.emphasize-num
           div
-            span.descp 50分以上文件数：
+            span.descp 50以上文件数：
             span#highCycleNum.emphasize-num
     li
       i(class='fa fa-code', aria-hidden="true")
@@ -43,42 +43,43 @@
         h4 代码量
         div
         span#codeLineNum.emphasize-big
-  .row.chart-container
-    .chart-title 单元测试
-    .col-sm-9.col-md-9
-      #gotestChart
-    .col-sm-3.col-md-3
-      ul.gotestSummary
-        li 单元测试结果概览
-        li
-          span#noTestCount
-          span 个文件没有单元测试代码
-        li
-          span#coverLessCount
-          span 个文件单元测试覆盖率不足50%
-        li
-          span#timeGreaterCount
-          span 个文件耗时超过1秒
-  .divider
-    .line
-    .icon
-    .line
-  .row.chart-container
-    .pie-chart
-      div
-        div.chart-title 包圈复杂度 
-        #gocycleChart
-      div
-        div.chart-title 包Issue
-        #goIssue
-      div
-        div.chart-title 包代码量占比
-        #goPercentage
-  .divider
-    .line
-    .icon
-    .line
-  .chart-container DependGraph
+  .right-content
+    .row.chart-container
+      .chart-title 单元测试
+      .col-sm-9.col-md-9
+        #gotestChart
+      .col-sm-3.col-md-3
+        ul.gotestSummary
+          li 单元测试结果概览
+          li
+            span#noTestCount
+            span 个文件没有单元测试代码
+          li
+            span#coverLessCount
+            span 个文件单元测试覆盖率不足50%
+          li
+            span#timeGreaterCount
+            span 个文件耗时超过1秒
+    .divider
+      .line
+      .icon
+      .line
+    .row.chart-container
+      .pie-chart
+        div
+          div.chart-title 包圈复杂度 
+          #gocycleChart
+        div
+          div.chart-title 包Issue
+          #goIssue
+        div
+          div.chart-title 包代码量占比
+          #goPercentage
+    .divider
+      .line
+      .icon
+      .line
+    .chart-container DependGraph
 
 
 

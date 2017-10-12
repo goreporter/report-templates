@@ -12,8 +12,6 @@ initData(resData.goIssue, 'detail');
 initData(resData.codeSmell);
 initData(resData.countCode);
 
-console.log(resData.countCode);
-
 function initData(data, value){
 	Object.keys(data.content).forEach(function(d){
 		typeof value === 'undefined' ? data.content[d] = data.content[d] || [] : data.content[d][value] = data.content[d][value] || [];
@@ -598,6 +596,15 @@ module.exports = function(codeStyle){
 	//底部内容
 	$("#styleSubNav").append(indexHtml);
 	$("#styleContent").append(contentHtml);
+	//点击滚动
+	$("#styleSubNav a").on('click', function(event){
+		// var id = event.target.getAttribute("href");
+		// var main = document.querySelector("#optSubNav a[href='" + id+ "']");
+		// var scrollTop = document.querySelector(".flex-container").scrollTop;
+		// console.log(scrollTop);
+		// document.querySelector("#styleSubNav").style.top = scrollTop + 'px';
+
+	})
 }
 },{}],6:[function(require,module,exports){
 //******************************** summary ************************************
@@ -620,7 +627,6 @@ module.exports = function(resData){
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
-
 	$("#gotestChart").highcharts({
 		chart: {
 			type: 'bar',
