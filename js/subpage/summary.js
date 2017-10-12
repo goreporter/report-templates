@@ -1,5 +1,32 @@
 //******************************** summary ************************************
 module.exports = function(resData){
+	var LEGEND_STYLE = {
+		itemDistance: 15,
+    	margin: 30,
+    	itemStyle: {
+    		fontSize: '14px',
+    		color: "#596679",
+    		fontWeight: 'normal'
+    	},
+    	symbolRadius: 0,
+    	verticalAlign: 'top',
+    	align: 'left'
+	};
+	var LEGEND_VERTICAL_STYLE={
+		itemDistance: 15,
+    	margin: 30,
+    	itemStyle: {
+    		fontSize: '14px',
+    		color: "#596679",
+    		fontWeight:'normal'
+    	},
+    	symbolRadius: 0,
+    	verticalAlign: 'top',
+    	align: 'left',
+    	layout: "vertical"
+
+	}
+
 	$("#score").text(resData.score);
 	$("#testCover").text(resData.gotest.summary.code_cover);
 	$("#testPkgCover").text(resData.gotest.summary.pkg_cover);
@@ -84,17 +111,7 @@ module.exports = function(resData){
 	    credits: {
 	        enabled: false
 	    },
-	    legend: {
-	    	itemDistance: 15,
-	    	margin: 30,
-	    	itemStyle: {
-	    		fontSize: '14px',
-	    		color: "#596679"
-	    	},
-	    	symbolRadius: 0,
-	    	verticalAlign: 'top',
-	    	align: 'left'
-	    },
+	    legend: LEGEND_STYLE,
 	    series: [{
 	        name: null,
 	        data: resData.gotest.content.cover.map(function(d){return 100-d}),
@@ -165,23 +182,11 @@ module.exports = function(resData){
 		                enabled: false
 		            },
 		            showInLegend: true,
-		            //colors: ['#debbdf', '#bf8ac0', '#ae69af']
 		            colors: ['rgba(0,169,239,1)', 'rgba(0,169,239,0.6)','rgba(0,169,239,0.2)'],
 		            size: '60%'
 		        }
 		    },
-		    legend: {
-		    	itemDistance: 15,
-		    	margin: 30,
-		    	itemStyle: {
-		    		fontSize: '14px',
-		    		color: "#596679"
-		    	},
-		    	symbolRadius: 0,
-		    	verticalAlign: 'top',
-		    	align: 'left',
-		    	layout: "vertical",
-		    },
+		    legend: LEGEND_VERTICAL_STYLE,
 		    series: [{
 		        type: 'pie',
 		        name: '包圈复杂度',
@@ -229,18 +234,7 @@ module.exports = function(resData){
 		            size: '60%'
 		        }
 		    },
-		    legend: {
-		    	itemDistance: 15,
-		    	margin: 30,
-		    	itemStyle: {
-		    		fontSize: '14px',
-		    		color: "#596679"
-		    	},
-		    	symbolRadius: 0,
-		    	verticalAlign: 'top',
-		    	align: 'left',
-		    	layout: "vertical",
-		    },
+		    legend: LEGEND_VERTICAL_STYLE,
 		    series: [{
 		        type: 'pie',
 		        name: '包Issue',
@@ -286,18 +280,7 @@ module.exports = function(resData){
 		            size: '60%'
 		        }
 		    },
-		    legend: {
-		    	itemDistance: 15,
-		    	margin: 30,
-		    	itemStyle: {
-		    		fontSize: '14px',
-		    		color: "#596679"
-		    	},
-		    	symbolRadius: 0,
-		    	verticalAlign: 'top',
-		    	align: 'left',
-		    	layout: "vertical",
-		    },
+			legend: LEGEND_VERTICAL_STYLE,
 		    series: [{
 		        type: 'pie',
 		        name: '包代码行数',

@@ -83,7 +83,8 @@ module.exports = function(gotest){
 	    	itemDistance: 15,
 	    	itemStyle: {
 	    		color: "#596679",
-	    		fontSize: '14px'
+	    		fontSize: '14px',
+	    		fontWeight: 'normal'
 	    	},
 	    	verticalAlign: 'top',
 	    	align: 'left',
@@ -142,7 +143,9 @@ module.exports = function(gotest){
 	    plotOptions: {
 	        pie: {
 	            dataLabels: {
-	                enabled: false
+	                enabled: false,
+	                color: "#596679"
+
 	            },
 	            startAngle: -180,
 	            endAngle: 180,
@@ -159,7 +162,10 @@ module.exports = function(gotest){
 	    	padding: 16,
 	    	itemMarginBottom: 5,
 	    	itemMarginTop: 5,
-	    	symbolRadius: 0
+	    	symbolRadius: 0,
+	    	itemStyle:{
+	    		color: "#596679"
+	    	}
 	    },
 	    series: [{
 	        type: 'pie',
