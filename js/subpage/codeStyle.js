@@ -24,13 +24,4 @@ module.exports = function(codeStyle){
 	//底部内容
 	$("#styleSubNav").append(indexHtml);
 	$("#styleContent").append(contentHtml);
-	//点击滚动
-	$("#styleSubNav a").on('click', function(event){
-		// var id = event.target.getAttribute("href");
-		// var main = document.querySelector("#optSubNav a[href='" + id+ "']");
-		// var scrollTop = document.querySelector(".flex-container").scrollTop;
-		// console.log(scrollTop);
-		// document.querySelector("#styleSubNav").style.top = scrollTop + 'px';
-
-	})
 }

@@ -236,17 +236,22 @@ ul{
 	flex: 1 1 0;
 	width: 100%;
 	overflow: auto;
-	// display: flex;
-	// flex-direction: row;
 }
-.flex-container{
-	display: flex;
+#codeStyle .right-content{
+	position: relative;
+    overflow: hidden;
+}
+#codeOpt .right-content{
+	position: relative;
+    overflow: hidden;
 }
 .sub-nav{
-	width: 250px;
-    position: relative;
-    margin-top: 10px;
-    margin-left: 10px;
+	width: 230px;
+    position: absolute;
+    top: 10px;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
     ul {
     	position: absolute;
 		left: 10px;
@@ -265,13 +270,13 @@ ul{
     }
 }
 .sub-content{
-	flex: 1 1 0;
-	margin-left: 10px;
+	margin-left: 250px;
 	margin-right: 10px;
 	margin-top: 10px;
 	padding-top: 1em;
 	padding-left: 1em;
 	height: 100%;
+	overflow: auto;
 	h5{
 		margin-left: 24px;
 	}
