@@ -1,5 +1,6 @@
 html, body{
 	height: 100%;
+	overflow: hidden;
 }
 ul{
 	list-style: none;
@@ -14,50 +15,45 @@ ul{
 	flex: 0 0 150px;
 	overflow: auto;
 	ul{
-    	list-style: none;
     	margin: 0;
     	padding: 0;
     }
-	.logo-block{
-		height: 200px;
-		border-bottom-width: 3px;
-		border-bottom-style: solid;
-		img{
-    		display: block;
-    		margin: 30px auto 0 auto;
-    		height: 120px;
-    		width: 120px;
-	    	}
-	    p{
-	    		text-align: center;
-	    		font-size: 20px;
-	    }
-	}
-	.nav-item{
-    	height: 64px;
-    	font-size: 16px;
-    	position: relative;
-    	i{
-    		font-size: 20px;
-    		vertical-align: middle;
-    		position: absolute;
-    		top: 22px;
-    		left: 20px;
+}
+.logo-block{
+	height: 200px;
+	border-bottom-width: 3px;
+	border-bottom-style: solid;
+	img{
+		display: block;
+		margin: 30px auto 0 auto;
     	}
-    	p{
-    		padding-left: 50px;
-    		vertical-align: middle;
-    		text-decoration: none;
-    		display: inline-block;
-    		width: 100%;
-    		height: 64px;
-    		line-height: 64px;
-    	}
-    	&:hover{
-    		cursor: pointer;
-    	}
+    p{
+		text-align: center;
+		font-size: 20px;
+		margin-top: 10px;
     }
-	
+}
+.nav-item{
+	height: 64px;
+	font-size: 16px;
+	position: relative;
+	i{
+		font-size: 20px;
+		position: absolute;
+		top: 22px;
+		left: 20px;
+	}
+	p{
+		padding-left: 50px;
+		text-decoration: none;
+		display: inline-block;
+		width: 100%;
+		height: 64px;
+		line-height: 64px;
+	}
+	&:hover{
+		cursor: pointer;
+	}
 }
 .navbar{
 	img{
@@ -70,77 +66,73 @@ ul{
 }
 .main{
 	flex: 1 1 0;
-	padding: 0;
 	display: flex;
 	flex-direction: column;
 }
-#content-container{
+.content-container{
 	flex: 1 0 0;
-	>div{
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-	}
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 .summary-list{
-			padding: 20px;
-			margin: 0;
-			border-bottom-width: 2px;
-			border-bottom-style: solid;
-			li{
-				float: left;
-				list-style: none;
-			    height: 120px;
-			    width: 280px;
-			    margin: 10px;
-			    margin-right: 12px;
-			    vertical-align: top;
-			    font-weight: bold;
-			    display: flex;
-			    flex-direction: row;
-			    align-items: center;
-			    i{
-		    	    width: 80px;
-				    font-size: 60px;
-				    height: 80px;
-				    line-height: 80px;
-				    text-align: center;
-				    margin-left: 12px;
-			    }
-			    >div:first-child{
-			    	height: 42px;
-				    border-radius: 2px;
-				    padding: 10px;
-				    font-size: 16px;
-				    i{
-				    	margin-top: 5px;
-				    }
-			    }
-			    .summary-content{
-			    	text-align: left;
-			    	padding-left: 12px;
-			    	flex: 1 1 0;
-			    	margin-top: 20px;
-			    	margin-bottom: 20px;
-			    	h4 {
-			    		font-size: 16px;
-			    	}
-			    }
-			    .emphasize-num{
-			    	font-size: 20px;
-			    	font-weight: lighter;
-			    }
-			    .emphasize-big{
-			    	font-size: 42px;
-			    	font-weight: lighter;
-			    }
-			    .descp{
-			    	font-size: 12px;
-			    }
-			}
-		}
-.chart-container{
+	padding: 20px;
 	margin: 0;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	li{
+		float: left;
+	    height: 120px;
+	    width: 280px;
+	    margin: 10px;
+	    margin-right: 12px;
+	    font-weight: bold;
+	    display: flex;
+	    align-items: center;
+	    i{
+    	    width: 80px;
+		    font-size: 60px;
+		    height: 80px;
+		    line-height: 80px;
+		    text-align: center;
+		    margin-left: 12px;
+	    }
+	    >div:first-child{
+	    	height: 42px;
+		    border-radius: 2px;
+		    padding: 10px;
+		    font-size: 16px;
+		    i{
+		    	margin-top: 5px;
+		    }
+	    }
+	    .summary-content{
+	    	text-align: left;
+	    	padding-left: 12px;
+	    	flex: 1 1 0;
+	    	margin-top: 20px;
+	    	margin-bottom: 20px;
+	    	h4 {
+	    		font-size: 16px;
+	    	}
+	    }
+	    .emphasize-num{
+	    	font-size: 20px;
+	    	font-weight: lighter;
+	    }
+	    .emphasize-big{
+	    	font-size: 42px;
+	    	font-weight: lighter;
+	    }
+	    .descp{
+	    	font-size: 12px;
+	    }
+	}
+}
+.row{
+	margin: 0;
+}
+.chart-container{
 	padding: 10px;
 }
 .chart-title{
@@ -148,21 +140,18 @@ ul{
     border-bottom: 1px solid #e5e7ea;
     font-size: 20px;
 }
+//首页的三个圈圈
 .pie-chart{
 	display: flex;
-	flex-direction: row;
 	>div{
 		flex: 1 1 0;
 		margin-right: 10px;
 	}
 }
-#score{
-	font-size: 42px;
-}
+
 .divider{
 	height: 20px;
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	padding: 0 24px;
 	.line{
@@ -195,14 +184,7 @@ ul{
 		}
 	}
 }
-.chart-legend-block{
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	margin-right: 5px;
-}
-.unit-absent-files{
-	list-style: none;
+.list{
     padding: 0 20px;
     li{
     	height: 48px;
@@ -231,7 +213,6 @@ ul{
 	    }
     }
 }
-//代码风格
 .right-content{
 	flex: 1 1 0;
 	width: 100%;
@@ -307,11 +288,6 @@ ul{
 }
 .none{
 	display: none!important;
-}
-#goTestChart{
-	background-color: #fff;
-	padding: 24px;
-    border-color: 1px solid #d2dae2;
 }
 .gotestSummary{
 	padding-left: 0;

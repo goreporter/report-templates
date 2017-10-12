@@ -1,4 +1,4 @@
-#summary
+#summary.content-container
   ul.summary-list
     li
       i(class='fa fa-star-o', aria-hidden='true')
@@ -44,22 +44,22 @@
         div
         span#codeLineNum.emphasize-big
   .right-content
-    .row.chart-container
+    .chart-container
       .chart-title 单元测试
-      .col-sm-9.col-md-9
-        #gotestChart
-      .col-sm-3.col-md-3
-        ul.gotestSummary
-          li 单元测试结果概览
-          li
-            span#noTestCount
-            span 个文件没有单元测试代码
-          li
-            span#coverLessCount
-            span 个文件单元测试覆盖率不足50%
-          li
-            span#timeGreaterCount
-            span 个文件耗时超过1秒
+      .row
+        .col-sm-9.col-md-9#gotestChart
+        .col-sm-3.col-md-3
+          ul.gotestSummary
+            li 单元测试结果概览
+            li
+              span#noTestCount
+              span 个文件没有单元测试代码
+            li
+              span#coverLessCount
+              span 个文件单元测试覆盖率不足50%
+            li
+              span#timeGreaterCount
+              span 个文件耗时超过1秒
     .divider
       .line
       .icon
