@@ -10,32 +10,32 @@ html
             p GoReporter
           li#navSummary.nav-item.active
             i(class='fa fa-home' aria-hidden='true')
-            p 首页
+            p#homepage(data-i18n='homepage')
           li#navUnitTest.nav-item
             i(class='fa fa-umbrella' aria-hidden='true')
-            p 单元测试
+            p#unit_test(data-i18n='unit_test')
           li#navCodeStyle.nav-item
             i(class='fa fa-glass' aria-hidden='true')
-            p 代码风格
+            p#code_style(data-i18n='code_style')
           li#navCodeOpt.nav-item
             i(class='fa fa-envira' aria-hidden='true')
-            p 代码优化
+            p#code_opt(data-i18n='code_opt')
           li#navCodeCount.nav-item
             i(class='fa fa-code' aria-hidden='true')
-            p 代码统计
+            p#code_count(data-i18n='code_count')
           li#navCodeSmell.nav-item
             i(class='fa fa-spinner' aria-hidden='true')
-            p 可维护性
+            p#code_main(data-i18n='code_main')
       .main
         nav.navbar
           .container-fluid
-            .navbar-header
-              a(class='navbar-brand' href='index.html') 首页
             #navbar.navbar-collapse.collapse
               ul.nav.navbar-nav.navbar-right
                 li
                   a(href='https://github.com/360EntSecGroup-Skylar/goreporter' target='_blank')
                     i(class='fa fa-github fa-lg' aria-hidden='true')
+                li
+                  a#changeLang 中文
         include ./summary.pug
         include ./unitTest.pug
         include ./codeStyle.pug
@@ -43,7 +43,11 @@ html
         include ./codeCount.pug
         include ./codeSmell.pug
     script(src="js/data_real.js")
+    script(src="js/i18n/ch.js")
+    script(src="js/i18n/en.js")
     script(src="bower_components/jquery/dist/jquery.min.js")
+    script(src="bower_components/jquery.i18n/src/jquery.i18n.js")
+    script(src="bower_components/jquery.i18n/src/jquery.i18n.messagestore.js")
     script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
     script(src="bower_components/highcharts/highcharts.js")
     script(src='bundle.js')

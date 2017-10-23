@@ -3,46 +3,46 @@
     li
       i.fa.fa-code(aria-hidden='true')
       .summary-content
-        h4 代码行数
+        h4#cc_code_lines(data-i18n='cc_code_lines')
         span#line_count.emphasize-big
       .progress-bar
     li
       i.fa.fa-question(aria-hidden='true')
       .summary-content
-        h4 注释
+        h4#cc_comment_lines(data-i18n='cc_comment_lines')
         span#comment_count.emphasize-big
     li
       i.fa.fa-info(aria-hidden='true')
       .summary-content
-        h4 函数
+        h4#cc_function_lines(data-i18n='cc_function_lines')
         span#function_count.emphasize-big
     li
       i.fa.fa-file-o(aria-hidden='true')
       .summary-content
-        h4 文件数
+        h4#cc_file_lines(data-i18n='cc_file_lines')
         span#file_count.emphasize-big
   .right-content
     .chart-container
-      div.chart-title 代码行详情
+      .chart-title#cc_code_title(data-i18n='cc_code_title')
       #lineCountChart
     .divider
       span.line
       span.icon
       span.line
     .chart-container
-      div.chart-title 注释行详情
+      .chart-title#cc_comment_title(data-i18n='cc_comment_title')
       #commentCountChart
     .divider
       span.line
       span.icon
       span.line
     .chart-container
-      div.chart-title 函数行详情
+      .chart-title#cc_func_lines(data-i18n='cc_func_lines')
       #funcCountChart
     .divider
       span.line
       span.icon
       span.line
     .chart-container
-      div.chart-title 文件详情
+      .chart-title#cc_file_title(data-i18n='cc_file_title')
       #fileCountChart

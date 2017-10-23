@@ -20,37 +20,33 @@ function initData(data, value){
 var subPageMap = {
 	navSummary: 
 	{
-		id: 'summary',
-		label: ''
+		id: 'summary'
 	},
 	navUnitTest: {
-		id: 'unitTest',
-		label: '单元测试'
+		id: 'unitTest'
 	},
 	navCodeCount: {
-		id: 'codeCount',
-		label: '代码统计'
+		id: 'codeCount'
 	},
 	navCodeOpt: {
-		id: 'codeOpt',
-		label: '代码优化'
+		id: 'codeOpt'
 	},
 	navCodeSmell: {
-		id: 'codeSmell',
-		label: '可维护性'
+		id: 'codeSmell'
 	},
 	navCodeStyle: {
-		id: 'codeStyle',
-		label: '代码风格'
+		id: 'codeStyle'
 	}
 }
 
+/**
+ * 切换菜单
+ */
 Object.keys(subPageMap).forEach(function(d, i){
 	(function(nav){
 		$("#"+nav).on("click", function(){
 			$("#"+ subPageMap[nav].id).removeClass("none");
 			$(this).addClass("active");
-			$(".navbar-brand").html(subPageMap[nav].label);
 			Object.keys(subPageMap).forEach(function(dd, k){
 				if(dd !== nav){
 					$("#" + subPageMap[dd].id).removeClass("none").addClass("none");
@@ -62,12 +58,54 @@ Object.keys(subPageMap).forEach(function(d, i){
 	})(d)
 });
 
+/**
+ * 语言切换
+ */
+$.i18n({
+	locale: 'en'
+})
+$.i18n().load({
+	en: en_text,
+	zh: ch_text
+})
 
+function changeLang(){
+	var allTexts = Object.keys(en_text);
+	allTexts.forEach(function(dom){
+		if($("#"+dom).length > 0){
+			$("#"+dom).i18n();
+		}
+	});
+	//页面内的i18n如何修改
+	$.i18n('hp_cover_pct');
+}
 
+changeLang();
 
+/**
+ * 引入子页面的js文件
+ */
 require('./subpage/codeCount.js')(resData.countCode);
 require('./subpage/codeOpt.js')(resData.goIssue);
 require('./subpage/codeSmell.js')(resData.codeSmell);
 require('./subpage/codeStyle.js')(resData.codeStyle);
 require('./subpage/summary.js')(resData);
 require('./subpage/unitTest.js')(resData.gotest);
+
+/**
+ * 监听语言切换按钮
+ */
+$("#changeLang").on("click", function(){
+	var lang = $.i18n().locale;
+	if(lang == "zh"){
+		$(this).text("中文");
+		$.i18n().locale = "en";
+	}else if(lang == "en"){
+		$(this).text("ENGLISH");
+		$.i18n().locale = "zh";
+	}
+	changeLang();
+})
+
+
+

@@ -17,6 +17,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "highcharts": "^5.0.14"
+    "highcharts": "^5.0.14",
+    "jquery.i18n": "^1.0.4"
   }
 }

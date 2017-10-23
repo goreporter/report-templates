@@ -102,7 +102,7 @@ module.exports = function(gotest){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'coverage',
-	        name: '覆盖率',
+	        name: $.i18n('ut_coverage_legend'),
 	        data: gotest.content.cover,
 	        color: '#47bac1',
 	        stack: 'coverage',
@@ -112,7 +112,7 @@ module.exports = function(gotest){
 	    },
 	    {
 	    	id: 'time',
-	        name: '时间',
+	        name: $.i18n('ut_time_legend'),
 	        data: gotest.content.time,
 	        yAxis: 1,
 	        color: '#BB8FCE',
@@ -135,7 +135,7 @@ module.exports = function(gotest){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '{series.name}: {point.y}s <br>占比：{point.percentage:.0f}%'
+	        pointFormat: '{series.name}: {point.y}s <br>{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -179,7 +179,6 @@ module.exports = function(gotest){
 	    },
 	    series: [{
 	        type: 'pie',
-	        name: '耗时',
 	        innerSize: '85%',
 	        data: getTimeArr()
 	    }]

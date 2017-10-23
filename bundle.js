@@ -21,37 +21,33 @@ function initData(data, value){
 var subPageMap = {
 	navSummary: 
 	{
-		id: 'summary',
-		label: ''
+		id: 'summary'
 	},
 	navUnitTest: {
-		id: 'unitTest',
-		label: '单元测试'
+		id: 'unitTest'
 	},
 	navCodeCount: {
-		id: 'codeCount',
-		label: '代码统计'
+		id: 'codeCount'
 	},
 	navCodeOpt: {
-		id: 'codeOpt',
-		label: '代码优化'
+		id: 'codeOpt'
 	},
 	navCodeSmell: {
-		id: 'codeSmell',
-		label: '可维护性'
+		id: 'codeSmell'
 	},
 	navCodeStyle: {
-		id: 'codeStyle',
-		label: '代码风格'
+		id: 'codeStyle'
 	}
 }
 
+/**
+ * 切换菜单
+ */
 Object.keys(subPageMap).forEach(function(d, i){
 	(function(nav){
 		$("#"+nav).on("click", function(){
 			$("#"+ subPageMap[nav].id).removeClass("none");
 			$(this).addClass("active");
-			$(".navbar-brand").html(subPageMap[nav].label);
 			Object.keys(subPageMap).forEach(function(dd, k){
 				if(dd !== nav){
 					$("#" + subPageMap[dd].id).removeClass("none").addClass("none");
@@ -63,15 +59,57 @@ Object.keys(subPageMap).forEach(function(d, i){
 	})(d)
 });
 
+/**
+ * 语言切换
+ */
+$.i18n({
+	locale: 'en'
+})
+$.i18n().load({
+	en: en_text,
+	zh: ch_text
+})
 
+function changeLang(){
+	var allTexts = Object.keys(en_text);
+	allTexts.forEach(function(dom){
+		if($("#"+dom).length > 0){
+			$("#"+dom).i18n();
+		}
+	});
+	//页面内的i18n如何修改
+	$.i18n('hp_cover_pct');
+}
 
+changeLang();
 
+/**
+ * 引入子页面的js文件
+ */
 require('./subpage/codeCount.js')(resData.countCode);
 require('./subpage/codeOpt.js')(resData.goIssue);
 require('./subpage/codeSmell.js')(resData.codeSmell);
 require('./subpage/codeStyle.js')(resData.codeStyle);
 require('./subpage/summary.js')(resData);
 require('./subpage/unitTest.js')(resData.gotest);
+
+/**
+ * 监听语言切换按钮
+ */
+$("#changeLang").on("click", function(){
+	var lang = $.i18n().locale;
+	if(lang == "zh"){
+		$(this).text("中文");
+		$.i18n().locale = "en";
+	}else if(lang == "en"){
+		$(this).text("ENGLISH");
+		$.i18n().locale = "zh";
+	}
+	changeLang();
+})
+
+
+
 
 },{"./subpage/codeCount.js":2,"./subpage/codeOpt.js":3,"./subpage/codeSmell.js":4,"./subpage/codeStyle.js":5,"./subpage/summary.js":6,"./subpage/unitTest.js":7}],2:[function(require,module,exports){
 /*************************************code count************************************************/
@@ -158,7 +196,7 @@ module.exports = function codeCount(codeCount){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'code_count',
-	        name: '包代码行数',
+	        name: $.i18n('cc_pkg_code_legend'),
 	        data: codeCount.content.pkg_line_count,
 	        color: '#47bac1',
 	        stack: 'code_count'
@@ -241,7 +279,7 @@ module.exports = function codeCount(codeCount){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'comment_count',
-	        name: '包注释行数',
+	        name: $.i18n('cc_pkg_comment_legend'),
 	        data: codeCount.content.pkg_comment_count,
 	        color: '#4d73c4',
 	        stack: 'comment_count'
@@ -312,7 +350,7 @@ module.exports = function codeCount(codeCount){
 	    	align: 'left'
 	    },
 	    series: [{
-	        name: '包函数行数',
+	        name: $.i18n('cc_pkg_func_legend'),
 	        data: codeCount.content.pkg_function_count,
 	        color: '#0382be'
 	    }]
@@ -379,15 +417,15 @@ module.exports = function codeCount(codeCount){
 	    	align: 'left'
 	    },
 	    series: [{
-	        name: '代码行详情',
+	        name: $.i18n('cc_code_legend'),
 	        data: codeCount.content.file_line_count,
 	        color: '#47bac1'
 	    },{
-	        name: '注释行详情',
+	        name: $.i18n('cc_comment_legend'),
 	        data: codeCount.content.file_comment_count,
 	        color: '#BB8FCE'
 	    },{
-	        name: '函数行详情',
+	        name: $.i18n('cc_function_legend'),
 	        data: codeCount.content.file_function_count,
 	        color: '#2aafff'
 	    }]
@@ -557,7 +595,7 @@ module.exports = function(codeSmell){
 	        	enableMouseTracking:false
 		    },{
 		    	id: 'code-smell',
-		        name: '圈复杂度',
+		        name: $.i18n('cm_circle_comp_legend'),
 		        data: codeSmell.content.cyclo,
 		        color: '#47bac1',
 		        stack: 'code_smell'
@@ -730,7 +768,7 @@ module.exports = function(resData){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'coverage',
-	        name: '覆盖率',
+	        name: $.i18n('hp_coverage_legend'),
 	        data: resData.gotest.content.cover,
 	        color: '#47bac1',
 	        stack: 'coverage',
@@ -744,7 +782,7 @@ module.exports = function(resData){
 	    },
 	    {
 	    	id: 'time',
-	        name: '时间',
+	        name: $.i18n('hp_coverage_legend'),
 	        data: resData.gotest.content.time,
 	        yAxis: 1,
 	        color: '#BB8FCE',
@@ -795,10 +833,10 @@ module.exports = function(resData){
 		    legend: LEGEND_VERTICAL_STYLE,
 		    series: [{
 		        type: 'pie',
-		        name: '包圈复杂度',
+		        name: $.i18n('hp_pkg_circle_comp'),
 		        innerSize: '85%',
 		        data: [
-		        	['50以上',  parseInt(highscore, 10)],
+		        	['50+',  parseInt(highscore, 10)],
 		        	['15-50',  parseInt(mediumscore,10)],
 		            ['1-15',   parseInt(lowscore,10)]
 		        ]
@@ -843,7 +881,7 @@ module.exports = function(resData){
 		    legend: LEGEND_VERTICAL_STYLE,
 		    series: [{
 		        type: 'pie',
-		        name: '包Issue',
+		        name: $.i18n('hp_pkg_issues_count'),
 		        innerSize: '85%',
 		        data: issueData
 		    }]
@@ -860,7 +898,7 @@ module.exports = function(resData){
 			countCodeData.push(element);
 		})
 	}
-	$("#goPercentage").highcharts({
+	var chartTest = $("#goPercentage").highcharts({
 		  chart: {
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
@@ -911,7 +949,7 @@ module.exports = function(resData){
 			},
 		    series: [{
 		        type: 'pie',
-		        name: '包代码行数',
+		        name: $.i18n("hp_pkg_code_amount"),
 		        innerSize: '85%',
 		        data: countCodeData
 		    }]
@@ -1022,7 +1060,7 @@ module.exports = function(gotest){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'coverage',
-	        name: '覆盖率',
+	        name: $.i18n('ut_coverage_legend'),
 	        data: gotest.content.cover,
 	        color: '#47bac1',
 	        stack: 'coverage',
@@ -1032,7 +1070,7 @@ module.exports = function(gotest){
 	    },
 	    {
 	    	id: 'time',
-	        name: '时间',
+	        name: $.i18n('ut_time_legend'),
 	        data: gotest.content.time,
 	        yAxis: 1,
 	        color: '#BB8FCE',
@@ -1055,7 +1093,7 @@ module.exports = function(gotest){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '{series.name}: {point.y}s <br>占比：{point.percentage:.0f}%'
+	        pointFormat: '{series.name}: {point.y}s <br>{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -1099,7 +1137,6 @@ module.exports = function(gotest){
 	    },
 	    series: [{
 	        type: 'pie',
-	        name: '耗时',
 	        innerSize: '85%',
 	        data: getTimeArr()
 	    }]

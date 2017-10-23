@@ -124,7 +124,7 @@ module.exports = function(resData){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'coverage',
-	        name: '覆盖率',
+	        name: $.i18n('hp_coverage_legend'),
 	        data: resData.gotest.content.cover,
 	        color: '#47bac1',
 	        stack: 'coverage',
@@ -138,7 +138,7 @@ module.exports = function(resData){
 	    },
 	    {
 	    	id: 'time',
-	        name: '时间',
+	        name: $.i18n('hp_coverage_legend'),
 	        data: resData.gotest.content.time,
 	        yAxis: 1,
 	        color: '#BB8FCE',
@@ -189,10 +189,10 @@ module.exports = function(resData){
 		    legend: LEGEND_VERTICAL_STYLE,
 		    series: [{
 		        type: 'pie',
-		        name: '包圈复杂度',
+		        name: $.i18n('hp_pkg_circle_comp'),
 		        innerSize: '85%',
 		        data: [
-		        	['50以上',  parseInt(highscore, 10)],
+		        	['50+',  parseInt(highscore, 10)],
 		        	['15-50',  parseInt(mediumscore,10)],
 		            ['1-15',   parseInt(lowscore,10)]
 		        ]
@@ -237,7 +237,7 @@ module.exports = function(resData){
 		    legend: LEGEND_VERTICAL_STYLE,
 		    series: [{
 		        type: 'pie',
-		        name: '包Issue',
+		        name: $.i18n('hp_pkg_issues_count'),
 		        innerSize: '85%',
 		        data: issueData
 		    }]
@@ -254,7 +254,7 @@ module.exports = function(resData){
 			countCodeData.push(element);
 		})
 	}
-	$("#goPercentage").highcharts({
+	var chartTest = $("#goPercentage").highcharts({
 		  chart: {
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
@@ -305,7 +305,7 @@ module.exports = function(resData){
 			},
 		    series: [{
 		        type: 'pie',
-		        name: '包代码行数',
+		        name: $.i18n("hp_pkg_code_amount"),
 		        innerSize: '85%',
 		        data: countCodeData
 		    }]

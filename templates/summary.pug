@@ -3,63 +3,63 @@
     li
       i(class='fa fa-star-o', aria-hidden='true')
       .summary-content
-        h4 分数
+        h4#hp_score(data-i18n='hp_score')
         span
           span#score.emphasize-big 
           span /100
     li
       i(class='fa fa-check', aria-hidden="true")
       .summary-content
-        h4 覆盖率
+        h4#hp_cover_pct(data-i18n='hp_cover_pct')
         div
-          span.descp 代码覆盖率：
+          span.descp#hp_code_cover_pct(data-i18n='hp_code_cover_pct')
           span#testCover.emphasize-num
           span %
         div
-          span.descp 包覆盖率：
+          span.descp#hp_pkg_cover_pct(data-i18n='hp_pkg_cover_pct')
           span#testPkgCover.emphasize-num
           span %
     li
       i(class='fa fa-info', aria-hidden="true")
       .summary-content
-        h4 Issues
+        h4#hp_issues Issues
         div
-          span.descp 问题总数：
+          span.descp#hp_issues_subtitle(data-i18n='hp_issues_subtitle')
           span#goIssueNum.emphasize-big
     li
       i(class='fa fa-circle-o', aria-hidden="true")
       .summary-content
-        h4 圈复杂度
+        h4#hp_circle_complexity(data-i18n='hp_circle_complexity')
         div
           div
-            span.descp 15-50文件数：
+            span.descp#hp_circle_comp_middle(data-i18n='hp_circle_comp_middle')
             span#mediumCycleNum.emphasize-num
           div
-            span.descp 50以上文件数：
+            span.descp#hp_circle_comp_high(data-i18n='hp_circle_comp_high')
             span#highCycleNum.emphasize-num
     li
       i(class='fa fa-code', aria-hidden="true")
       .summary-content
-        h4 代码量
+        h4#hp_code_amount(data-i18n='hp_code_amount')
         div
         span#codeLineNum.emphasize-big
   .right-content
     .chart-container
-      .chart-title 单元测试
+      .chart-title#hp_unit_test_title(data-i18n='hp_unit_test_title')
       .row
         .col-sm-9.col-md-9#gotestChart
         .col-sm-3.col-md-3
           ul.gotestSummary
-            li 单元测试结果概览
+            li#hp_unit_test_result_summary(data-i18n='hp_unit_test_result_summary')
             li
               span#noTestCount
-              span 个文件没有单元测试代码
+              span#hp_files_no_test(data-i18n='hp_files_no_test')
             li
               span#coverLessCount
-              span 个文件单元测试覆盖率不足50%
+              span#hp_files_less_coverage(data-i18n='hp_files_less_coverage')
             li
               span#timeGreaterCount
-              span 个文件耗时超过1秒
+              span#hp_files_more_time(data-i18n='hp_files_more_time')
     .divider
       .line
       .icon
@@ -67,13 +67,13 @@
     .row.chart-container
       .pie-chart
         div
-          div.chart-title 包圈复杂度 
+          .chart-title#hp_pkg_circle_comp(data-i18n='hp_pkg_circle_comp') 包圈复杂度 
           #gocycleChart
         div
-          div.chart-title 包Issue
+          .chart-title#hp_pkg_issues_count(data-i18n='hp_pkg_issues_count') 包Issue
           #goIssue
         div
-          div.chart-title 包代码量占比
+          .chart-title#hp_pkg_code_amount(data-i18n='hp_pkg_code_amount') 包代码量占比
           #goPercentage
     .divider
       .line

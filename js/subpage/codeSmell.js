@@ -127,7 +127,7 @@ module.exports = function(codeSmell){
 	        	enableMouseTracking:false
 		    },{
 		    	id: 'code-smell',
-		        name: '圈复杂度',
+		        name: $.i18n('cm_circle_comp_legend'),
 		        data: codeSmell.content.cyclo,
 		        color: '#47bac1',
 		        stack: 'code_smell'

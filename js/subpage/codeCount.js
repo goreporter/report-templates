@@ -82,7 +82,7 @@ module.exports = function codeCount(codeCount){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'code_count',
-	        name: '包代码行数',
+	        name: $.i18n('cc_pkg_code_legend'),
 	        data: codeCount.content.pkg_line_count,
 	        color: '#47bac1',
 	        stack: 'code_count'
@@ -165,7 +165,7 @@ module.exports = function codeCount(codeCount){
 	        enableMouseTracking:false
 	    },{
 	    	id: 'comment_count',
-	        name: '包注释行数',
+	        name: $.i18n('cc_pkg_comment_legend'),
 	        data: codeCount.content.pkg_comment_count,
 	        color: '#4d73c4',
 	        stack: 'comment_count'
@@ -236,7 +236,7 @@ module.exports = function codeCount(codeCount){
 	    	align: 'left'
 	    },
 	    series: [{
-	        name: '包函数行数',
+	        name: $.i18n('cc_pkg_func_legend'),
 	        data: codeCount.content.pkg_function_count,
 	        color: '#0382be'
 	    }]
@@ -303,15 +303,15 @@ module.exports = function codeCount(codeCount){
 	    	align: 'left'
 	    },
 	    series: [{
-	        name: '代码行详情',
+	        name: $.i18n('cc_code_legend'),
 	        data: codeCount.content.file_line_count,
 	        color: '#47bac1'
 	    },{
-	        name: '注释行详情',
+	        name: $.i18n('cc_comment_legend'),
 	        data: codeCount.content.file_comment_count,
 	        color: '#BB8FCE'
 	    },{
-	        name: '函数行详情',
+	        name: $.i18n('cc_function_legend'),
 	        data: codeCount.content.file_function_count,
 	        color: '#2aafff'
 	    }]

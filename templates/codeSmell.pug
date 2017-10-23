@@ -3,39 +3,37 @@
     li
       i.fa.fa-circle-o.avg(aria-hidden='true')
       .summary-content
-        h4 平均圈复杂度
+        h4#cm_avg_circle_comp(data-i18n='cm_avg_circle_comp')
         span#cyclo_avg.emphasize-big
       .progress-bar
     li
       i.fa.fa-circle-o.high(aria-hidden='true')
       .summary-content
-        h4 圈复杂度高的文件数
+        h4#cm_circle_comp_high(data-i18n='cm_circle_comp_high')
         span#cyclo_high.emphasize-big
-        span 个
     li
       i.fa.fa-circle-o.series(aria-hidden='true')
       .summary-content
-        h4 圈复杂度严重的文件数
+        h4#cm_circle_comp_serious(data-i18n='cm_circle_comp_serious')
         span#cyclo_grave.emphasize-big
-        span 个
   .right-content
     .chart-container
       .col-sm-4.col-md-4
-        .chart-title 圈复杂度占比
+        .chart-title#cm_circle_comp_pct_title(data-i18n='cm_circle_comp_pct_title')
         #cycloPertChart
       .col-sm-8.col-md-8
-        .list-title.chart-title 高圈复杂度列表
+        .list-title.chart-title#cm_circle_comp_list_title(data-i18n='cm_circle_comp_list_title')
         ul#cycloList.list
           li
-            span 排名
-            span 文件路径
-            span 圈复杂度
+            span#cm_circle_comp_list_col1(data-i18n='cm_circle_comp_list_col1')
+            span#cm_circle_comp_list_col2(data-i18n='cm_circle_comp_list_col2')
+            span#cm_circle_comp_list_col3(data-i18n='cm_circle_comp_list_col3')
     .divider
       span.line
       span.icon
       span.line
     .chart-container
-      .chart-title 包圈复杂度排名
+      .chart-title#cm_circle_comp_rank_title(data-i18n='cm_circle_comp_rank_title')
       #cycloRankChart
     .divider
       span.line

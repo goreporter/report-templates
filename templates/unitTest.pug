@@ -3,24 +3,24 @@
     li
       i.fa.fa-star-o(aria-hidden='true')
       .summary-content
-        h4 平均代码覆盖率
+        h4#ut_avg_cover_pct(data-i18n='ut_avg_cover_pct')
         span#coverPct.emphasize-big
         span %
     li
       i.fa.fa-check(aria-hidden='true')
       .summary-content
-        h4 包测试覆盖率
+        h4#ut_pkg_cover_pct(data-i18n='ut_pkg_cover_pct')
         span#pkgPct.emphasize-big
         span %
     li
       i.fa.fa-clock-o(aria-hidden='true')
       .summary-content
-        h4 单元测试耗时
+        h4#ut_unit_test_time(data-i18n='ut_unit_test_time')
         span#unitTestTime.emphasize-big
         span s
   .right-content
     .chart-container
-      div.chart-title 包覆盖率详情
+      div.chart-title#ut_cover_title(data-i18n='ut_cover_title')
       #unitCover
     .divider
       span.line
@@ -28,8 +28,8 @@
       span.line
     .chart-container.row
       .col-sm-6.col-md-6
-        div.chart-title 包耗时占比
+        div.chart-title#ut_time_pct_title(data-i18n='ut_time_pct_title')
         #pie-chart
       .col-sm-6.col-md-6
-        .list-title.chart-title 缺少单元测试的文件
+        .list-title.chart-title#ut_lack_test_list(data-i18n='ut_lack_test_list')
         ul#unitAbsentFiles.list
