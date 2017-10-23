@@ -25,7 +25,7 @@
 					content:{
 						gofmt: {
 							label: 'Gofmt formats Go programs. We run gofmt -s on your code, where -s is for the "simplify" command',
-							score: '100%',
+							score: '100%',   //这个值暂时没有用。这一版统计的是数值，不是百分比
 							detail: [{
 											rep: 'Sia/compatibility/siag_1.0_test.go',   //存在问题的路径
 											content: [ "Line 18: warning: don't use underscores in Go names; type KeyPairSiag_1_0 should be KeyPairSiag1_0 (golint)",

@@ -280,7 +280,29 @@ module.exports = function(resData){
 		            size: '60%'
 		        }
 		    },
-			legend: LEGEND_VERTICAL_STYLE,
+			legend: {
+				itemDistance: 15,
+		    	margin: 30,
+		    	itemStyle: {
+		    		fontSize: '14px',
+		    		color: "#596679",
+		    		fontWeight:'normal'
+		    	},
+		    	symbolRadius: 0,
+		    	verticalAlign: 'top',
+		    	align: 'left',
+		    	layout: "vertical",
+		    	labelFormatter: function(){
+		    		var length = this.name.length;
+		    		var unitLength = 15;
+		    		var breakIndex = Math.ceil(length / unitLength);
+		    		var label = ""
+		    		for(var i=1; i<=breakIndex; i++){
+		    			label += this.name.slice((i-1)*unitLength, i*unitLength) + (i == breakIndex ? "" : "<br/>");
+		    		}
+		    		return label;
+		    	}
+			},
 		    series: [{
 		        type: 'pie',
 		        name: '包代码行数',

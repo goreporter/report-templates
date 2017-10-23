@@ -165,6 +165,16 @@ module.exports = function(gotest){
 	    	symbolRadius: 0,
 	    	itemStyle:{
 	    		color: "#596679"
+	    	},
+	    	labelFormatter: function(){
+	    		var length = this.name.length;
+	    		var unitLength = 40;
+	    		var breakIndex = Math.ceil(length / unitLength);
+	    		var label = ""
+	    		for(var i=1; i<=breakIndex; i++){
+	    			label += this.name.slice((i-1)*unitLength, i*unitLength) + (i == breakIndex ? "" : "<br/>");
+	    		}
+	    		return label;
 	    	}
 	    },
 	    series: [{

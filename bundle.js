@@ -417,7 +417,10 @@ module.exports = function codeOpt(goIssue){
 				content += "<h5>" + d.length + "</h5>" + d.map(function(cc){return "<p>" + cc +"</p>"}).join("");
 			}
 		});
-		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + data[k].score + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
+		var issueNum = data[k].detail.reduce(function(sum, d){
+										return sum + d.content.length;
+									},0);
+		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + issueNum + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
 	});
 
 	//底部内容
@@ -590,7 +593,10 @@ module.exports = function(codeStyle){
 		data[k].detail.forEach(function(d){
 			content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
 		});
-		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + data[k].score + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
+		var issueNum = data[k].detail.reduce(function(sum, d){
+												return sum + d.content.length;
+											},0);
+		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + issueNum + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
 	});
 
 	//底部内容
@@ -880,7 +886,29 @@ module.exports = function(resData){
 		            size: '60%'
 		        }
 		    },
-			legend: LEGEND_VERTICAL_STYLE,
+			legend: {
+				itemDistance: 15,
+		    	margin: 30,
+		    	itemStyle: {
+		    		fontSize: '14px',
+		    		color: "#596679",
+		    		fontWeight:'normal'
+		    	},
+		    	symbolRadius: 0,
+		    	verticalAlign: 'top',
+		    	align: 'left',
+		    	layout: "vertical",
+		    	labelFormatter: function(){
+		    		var length = this.name.length;
+		    		var unitLength = 15;
+		    		var breakIndex = Math.ceil(length / unitLength);
+		    		var label = ""
+		    		for(var i=1; i<=breakIndex; i++){
+		    			label += this.name.slice((i-1)*unitLength, i*unitLength) + (i == breakIndex ? "" : "<br/>");
+		    		}
+		    		return label;
+		    	}
+			},
 		    series: [{
 		        type: 'pie',
 		        name: '包代码行数',
@@ -1057,6 +1085,16 @@ module.exports = function(gotest){
 	    	symbolRadius: 0,
 	    	itemStyle:{
 	    		color: "#596679"
+	    	},
+	    	labelFormatter: function(){
+	    		var length = this.name.length;
+	    		var unitLength = 40;
+	    		var breakIndex = Math.ceil(length / unitLength);
+	    		var label = ""
+	    		for(var i=1; i<=breakIndex; i++){
+	    			label += this.name.slice((i-1)*unitLength, i*unitLength) + (i == breakIndex ? "" : "<br/>");
+	    		}
+	    		return label;
 	    	}
 	    },
 	    series: [{

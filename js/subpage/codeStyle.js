@@ -18,7 +18,10 @@ module.exports = function(codeStyle){
 		data[k].detail.forEach(function(d){
 			content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
 		});
-		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + data[k].score + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
+		var issueNum = data[k].detail.reduce(function(sum, d){
+												return sum + d.content.length;
+											},0);
+		contentHtml += "<section id=" + k + "><h4><span>" + k  + "</span><span class='emp-num'>" + issueNum + "</span><span class='description'>" + data[k].label + "</span></h4><div>" + content + "</div></div></div></section>"
 	});
 
 	//底部内容
