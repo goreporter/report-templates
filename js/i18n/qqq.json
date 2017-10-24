@@ -32,6 +32,7 @@
 	"ut_time_legend": "单元测试-内容-图例-时间",
 	"ut_coverage_legend": "单元测试-内容-图例-覆盖率",
 	"ut_time_pct_title": "单元测试-内容-标题-包耗时占比",
+	"ut_time_pct_tooltip": "单元测试-内容-tooltip-耗时",
 	"ut_lack_test_list": "单元测试-内容-标题-缺少单元测试的文件",
 	"co_file_nums": "代码优化-概览-文件个数",
 	"co_quality_class": "代码优化-概览-质量等级",	
@@ -41,11 +42,9 @@
 	"cc_comment_lines": "代码统计-概览-注释行数",
 	"cc_function_lines": "代码统计-概览-函数个数",
 	"cc_file_lines": "代码统计-概览-文件个数",
-	"cc_code_title": "代码统计-内容-标题-代码行详情",
+	"cc_pkg_title": "代码统计-内容-标题-代码行详情",
 	"cc_pkg_code_legend": "代码统计-内容-图例-包代码行数",
-	"cc_comment_title": "代码统计-内容-标题-注释行详情",
 	"cc_pkg_comment_legend": "代码统计-内容-图例-包注释行数",
-	"cc_func_lines": "代码统计-内容-标题-函数个数详情",
 	"cc_pkg_func_legend": "代码统计-内容-图例-包函数个数详情",
 	"cc_file_title": "代码统计-内容-标题-文件详情",
 	"cc_code_legend": "代码统计-内容-图例-代码行详情",
@@ -60,6 +59,8 @@
 	"cm_circle_comp_list_col2": "可维护性-内容-表格列名-文件路径",
 	"cm_circle_comp_list_col3": "可维护性-内容-表格列名-圈复杂度",
 	"cm_circle_comp_rank_title": "可维护性-内容-标题-包圈复杂度排名",
-	"cm_circle_comp_legend": "可维护性-内容-图例-圈复杂度"
+	"cm_circle_comp_legend": "可维护性-内容-图例-圈复杂度",
+	"unit_piece": "highcharts 图表tooltip单位-个",
+	"unit_pct": "highcharts图表tooltip单位-占比"
 
 }

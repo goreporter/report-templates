@@ -78,7 +78,6 @@ function changeLang(){
 		}
 	});
 	//页面内的i18n如何修改
-	$.i18n('hp_cover_pct');
 }
 
 changeLang();
@@ -86,12 +85,12 @@ changeLang();
 /**
  * 引入子页面的js文件
  */
-require('./subpage/codeCount.js')(resData.countCode);
+var codeCountPage = require('./subpage/codeCount.js')(resData.countCode);
 require('./subpage/codeOpt.js')(resData.goIssue);
-require('./subpage/codeSmell.js')(resData.codeSmell);
+var codeSmellPage = require('./subpage/codeSmell.js')(resData.codeSmell);
 require('./subpage/codeStyle.js')(resData.codeStyle);
-require('./subpage/summary.js')(resData);
-require('./subpage/unitTest.js')(resData.gotest);
+var summaryPage = require('./subpage/summary.js')(resData);
+var unitTestPage = require('./subpage/unitTest.js')(resData.gotest);
 
 /**
  * 监听语言切换按钮
@@ -106,7 +105,20 @@ $("#changeLang").on("click", function(){
 		$.i18n().locale = "zh";
 	}
 	changeLang();
+	redrawAllCharts();
 })
+
+/**
+ * redraw all highcharts after changing language
+ */
+
+function redrawAllCharts(){
+	summaryPage.updateHighcharts();
+	unitTestPage.updateHighcharts();
+	codeCountPage.updateHighcharts();
+	codeSmellPage.updateHighcharts();
+}
+
 
 
 
@@ -121,10 +133,12 @@ module.exports = function codeCount(codeCount){
 	/**
 	 * package coverage rate 
 	 */
-	$("#lineCountChart").highcharts({
+	console.log(codeCount.content);
+	var chart1 = new Highcharts.Chart({
 		chart: {
+			renderTo: 'lineCountChart',
 			type: 'bar',
-			height: codeCount.content.pkg.length * 20 + 120
+			height: codeCount.content.pkg.length * 60 + 120
 		},
 		title: {
 			text: ''
@@ -155,7 +169,6 @@ module.exports = function codeCount(codeCount){
 		},
 	    plotOptions: {
 	        bar: {
-	        	stacking: 'percentage',
 	            dataLabels: {
 	                enabled: true,
 	                color: "#596679",
@@ -166,8 +179,7 @@ module.exports = function codeCount(codeCount){
 	        },
 	        series: {
                 pointWidth: 12,
-                pointPadding: 0,
-                groupPadding: 0
+	            groupPadding: 0.15
 	        }
 	    },
 	    credits: {
@@ -185,178 +197,22 @@ module.exports = function codeCount(codeCount){
 	    	align: 'left'
 	    },
 	    series: [{
-	        name: null,
-	        color: '#d9e4eb',
-	        stack: 'code_count',
-	        data: codeCount.content.pkg_line_count.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
-	        dataLabels: {
-	        	enabled: false
-	        },
-	        linkedTo: 'code_count',
-	        enableMouseTracking:false
-	    },{
-	    	id: 'code_count',
 	        name: $.i18n('cc_pkg_code_legend'),
 	        data: codeCount.content.pkg_line_count,
-	        color: '#47bac1',
-	        stack: 'code_count'
-	    }]
-	});
-	$("#commentCountChart").highcharts({
-		chart: {
-			type: 'bar',
-			height: codeCount.content.pkg.length * 20 + 120
-		},
-		title: {
-			text: ''
-		},
-		xAxis: {
-			categories: codeCount.content.pkg,
-			title:{
-				text: null
-			},
-			tickLength: 0,
-			lineWidth: 0,
-			labels: {
-				style: {
-					color: "#596679",
-					fontSize: '12px'
-				}
-			}
-		},
-		yAxis: {
-	        title: {
-	            text: ''
-	        },
-	        gridLineColor: '',
-	        gridLineWidth: 0,
-	        labels: {
-	        	enabled: false
-	        }
-		},
-	    plotOptions: {
-	        bar: {
-	        	stacking: 'percentage',
-	            dataLabels: {
-	                enabled: true,
-	                color: "#596679",
-	                fontSize: "10px",
-	                pointPadding: 0,
-	                groupPadding: 0.1,
-	                align: 'right',
-	                x: 40
-
-	            }
-	        },
-	        series: {
-	                pointWidth: 12
-	              
-	        }
-	    },
-	    credits: {
-	        enabled: false
-	    },
-	    legend: {
-	    	itemDistance: 15,
-	    	margin: 30,
-	    	itemStyle: {
-	    		fontSize: '14px',
-	    		color: "#596679"
-	    	},
-	    	symbolRadius: 0,
-	    	verticalAlign: 'top',
-	    	align: 'left'
-	    },
-	    series: [{
-	        name: null,
-	        color: '#d9e4eb',
-	        stack: 'comment_count',
-	        data: codeCount.content.pkg_comment_count.map(function(d, i, arr){return Math.max.apply(Math, arr) - d}),
-	        dataLabels: {
-	        	enabled: false
-	        },
-	        linkedTo: 'comment_count',
-	        enableMouseTracking:false
+	        color: '#47bac1'
 	    },{
-	    	id: 'comment_count',
 	        name: $.i18n('cc_pkg_comment_legend'),
 	        data: codeCount.content.pkg_comment_count,
-	        color: '#4d73c4',
-	        stack: 'comment_count'
-	    }]
-	});
-	$("#funcCountChart").highcharts({
-		chart: {
-			type: 'bar',
-			height: codeCount.content.pkg.length * 20 + 120
-		},
-		title: {
-			text: ''
-		},
-		xAxis: {
-			categories: codeCount.content.pkg,
-			title:{
-				text: null
-			},
-			tickLength: 0,
-			lineWidth: 0,
-			labels: {
-				style: {
-					color: "#596679",
-					fontSize: '12px'
-				}
-			}
-		},
-		yAxis: {
-	        title: {
-	            text: ''
-	        },
-	        labels: {
-	            overflow: 'justify'
-	        },
-	        gridLineColor: '',
-	        gridLineWidth: 0,
-	        labels: {
-	        	enabled: false
-	        }
-		},
-	    plotOptions: {
-	        column: {
-	            dataLabels: {
-	                enabled: true,
-	                color: "#596679",
-	                fontSize: "10px",
-	                align: 'right',
-	                x: 40
-	            }
-	        },
-	        series: {
-	                pointWidth: 12
-	              
-	        }
-	    },
-	    credits: {
-	        enabled: false
-	    },
-	    legend: {
-	    	itemDistance: 15,
-	    	margin: 30,
-	    	itemStyle: {
-	    		fontSize: '14px',
-	    		color: "#596679"
-	    	},
-	    	symbolRadius: 0,
-	    	verticalAlign: 'top',
-	    	align: 'left'
-	    },
-	    series: [{
+	        color: '#4d73c4'
+	    },{
 	        name: $.i18n('cc_pkg_func_legend'),
 	        data: codeCount.content.pkg_function_count,
 	        color: '#0382be'
 	    }]
 	});
-	$("#fileCountChart").highcharts({
+	var chart2 = new Highcharts.Chart({
 		chart: {
+			renderTo: 'fileCountChart',
 			type: 'bar',
 			height: codeCount.content.pkg.length * 60 + 120
 		},
@@ -399,7 +255,8 @@ module.exports = function codeCount(codeCount){
 	            }
 	        },
 	        series: {
-	                pointWidth: 12
+	                pointWidth: 12,
+	                groupPadding: 0.15
 	        }
 	    },
 	    credits: {
@@ -430,6 +287,32 @@ module.exports = function codeCount(codeCount){
 	        color: '#2aafff'
 	    }]
 	});
+	/**
+	 * update Highcharts after changing language
+	 */
+	function updateHighcharts(){
+		chart1.update({
+						series:[{
+					        name: $.i18n('cc_pkg_code_legend')
+					    },{
+					        name: $.i18n('cc_pkg_comment_legend')
+					    },{
+					        name: $.i18n('cc_pkg_func_legend')
+					    }]
+					});
+		chart2.update({
+			 series: [{
+		        name: $.i18n('cc_code_legend')
+		    },{
+		        name: $.i18n('cc_comment_legend')
+		    },{
+		        name: $.i18n('cc_function_legend')
+		    }]
+		})
+	}
+	return {
+		updateHighcharts: updateHighcharts
+	}
 }
 },{}],3:[function(require,module,exports){
 /********************************code opt*****************************************/
@@ -449,11 +332,7 @@ module.exports = function codeOpt(goIssue){
 		indexHtml += "<li><a href='#" + k + "'>" + k + "</a></li>";
 		var content = "";
 		data[k].detail.forEach(function(d){
-			if(k != 'copy_code'){
-				content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
-			}else{
-				content += "<h5>" + d.length + "</h5>" + d.map(function(cc){return "<p>" + cc +"</p>"}).join("");
-			}
+			content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
 		});
 		var issueNum = data[k].detail.reduce(function(sum, d){
 										return sum + d.content.length;
@@ -474,8 +353,9 @@ module.exports = function(codeSmell){
 	/**
 	 * time cost of package unit test distribution 
 	 */
-	$("#cycloPertChart").highcharts({
+	var pieChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'cycloPertChart',
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
 	        plotShadow: false,
@@ -486,7 +366,7 @@ module.exports = function(codeSmell){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '个数：{point.y} <br>占比：{point.percentage:.0f}%'
+	        pointFormat: $.i18n('unit_piece') + '：{point.y} <br>' + $.i18n('unit_pct') + '{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -520,8 +400,9 @@ module.exports = function(codeSmell){
 	/**
 	 * package coverage rate 
 	 */
-	$("#cycloRankChart").highcharts({
+	var barChart = new Highcharts.Chart({
 			chart: {
+				renderTo: 'cycloRankChart',
 				type: 'bar',
 				height: codeSmell.content.pkg.length * 20 + 120
 			},
@@ -609,6 +490,25 @@ module.exports = function(codeSmell){
 		var li = "<li><span>" + (index+1) + "</span><span title=" + d.path+ ">" + d.path + "</span><span>" + d.cyclo + "</span></li>";
 		$("#cycloList").append(li);
 	})
+	/**
+	 * update Highcharts after changing language
+	 */
+	function updateHighcharts(){
+		pieChart.update({
+			 tooltip: {
+			    pointFormat: $.i18n('unit_piece') + '：{point.y} <br>' + $.i18n('unit_pct') + '{point.percentage:.0f}%'
+			}
+		});
+		barChart.update({
+						series:[{
+					    	id: 'code-smell',
+					        name: $.i18n('cm_circle_comp_legend')
+					    }]
+					});
+	}
+	return {
+		updateHighcharts: updateHighcharts
+	}
 }
 },{}],5:[function(require,module,exports){
 /***************************codeStyle****************************/
@@ -689,8 +589,9 @@ module.exports = function(resData){
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
-	$("#gotestChart").highcharts({
+	var barChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'gotestChart',
 			type: 'bar',
 	        alignTicks: false,
 	        height: resData.gotest.content.pkg.length * 40 + 120
@@ -782,7 +683,7 @@ module.exports = function(resData){
 	    },
 	    {
 	    	id: 'time',
-	        name: $.i18n('hp_coverage_legend'),
+	        name: $.i18n('hp_time_legend'),
 	        data: resData.gotest.content.time,
 	        yAxis: 1,
 	        color: '#BB8FCE',
@@ -803,8 +704,9 @@ module.exports = function(resData){
 	
 	//******************************** go cyclo ************************************
 
-	$("#gocycleChart").highcharts({
+	var pie1 = new Highcharts.Chart({
 		  chart: {
+		  		renderTo: 'gocycleChart',
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
@@ -815,7 +717,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: <br/><b>{point.y}个;</b>占比{point.percentage:.0f}%'
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false
@@ -851,8 +753,9 @@ module.exports = function(resData){
 		element.push(resData.goIssue.content[d].detail.length);
 		issueData.push(element);
 	});
-	$("#goIssue").highcharts({
+	var pie2 = new Highcharts.Chart({
 		  chart: {
+		  		renderTo: 'goIssue',
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
@@ -862,7 +765,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: {point.y}个<br>占比：{point.percentage:.0f}%'
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false
@@ -898,8 +801,9 @@ module.exports = function(resData){
 			countCodeData.push(element);
 		})
 	}
-	var chartTest = $("#goPercentage").highcharts({
+	pie3 = new Highcharts.Chart({
 		  chart: {
+		  		renderTo: 'goPercentage',
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
@@ -909,7 +813,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: {point.y}个<br>占比：{point.percentage:.0f}%'
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false
@@ -954,6 +858,49 @@ module.exports = function(resData){
 		        data: countCodeData
 		    }]
 	});
+
+	/**
+	 * update Highcharts after changing language
+	 */
+	function updateHighcharts(){
+		barChart.update({
+							series:[{
+						    	id: 'coverage',
+						        name: $.i18n('hp_coverage_legend')
+						    },
+						    {
+						    	id: 'time',
+						        name: $.i18n('hp_coverage_legend')
+						    }]
+						});
+		pie1.update({
+			tooltip: {
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
+		    },
+			series:[{
+				name: $.i18n('hp_pkg_circle_comp')
+			}]
+		});
+		pie2.update({
+			tooltip: {
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
+		    },
+			series: [{
+				name: $.i18n('hp_pkg_issues_count')
+			}]
+		});
+		pie3.update({
+			tooltip: {
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
+		    },
+			series: [{
+				name: $.i18n("hp_pkg_code_amount")
+			}]
+		})
+	}
+	return {
+		updateHighcharts: updateHighcharts
+	}
 }
 },{}],7:[function(require,module,exports){
 /***************************unitTest****************************/
@@ -964,8 +911,9 @@ module.exports = function(gotest){
 	/**
 	 * package coverage rate 
 	 */
-	$("#unitCover").highcharts({
+	var barChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'unitCover',
 			type: 'bar',
 	        alignTicks: false,
 	        height: gotest.content.pkg.length * 40 + 120
@@ -1083,8 +1031,9 @@ module.exports = function(gotest){
 	/**
 	 * time cost of package unit test distribution 
 	 */
-	$("#pie-chart").highcharts({
+	var pieChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'pie-chart',
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
 	        plotShadow: false
@@ -1093,7 +1042,7 @@ module.exports = function(gotest){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '{series.name}: {point.y}s <br>{point.percentage:.0f}%'
+	        pointFormat: '{series.name}: {point.y}s <br>' + $.i18n('unit_pct')+ '{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -1137,6 +1086,7 @@ module.exports = function(gotest){
 	    },
 	    series: [{
 	        type: 'pie',
+	        name: $.i18n('ut_time_pct_tooltip'),
 	        innerSize: '85%',
 	        data: getTimeArr()
 	    }]
@@ -1162,6 +1112,34 @@ module.exports = function(gotest){
 			result.push(element);
 		})
 		return result;
+	}
+
+	/**
+	 * update Highcharts after changing language
+	 */
+	function updateHighcharts(){
+		barChart.update({
+							series:[{
+						    	id: 'coverage',
+						        name: $.i18n('ut_coverage_legend')
+						    },
+						    {
+						    	id: 'time',
+						        name: $.i18n('ut_time_legend')
+						    }]
+						});
+		pieChart.update({
+			tooltip: {
+		        pointFormat: '{series.name}: {point.y}s <br>' + $.i18n('unit_pct')+ '{point.percentage:.0f}%'
+		    },
+		    series: [{
+		        name: $.i18n('ut_time_pct_tooltip')
+		    }]
+
+		})
+	}
+	return {
+		updateHighcharts: updateHighcharts
 	}
 }
 

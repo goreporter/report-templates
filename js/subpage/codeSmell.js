@@ -6,8 +6,9 @@ module.exports = function(codeSmell){
 	/**
 	 * time cost of package unit test distribution 
 	 */
-	$("#cycloPertChart").highcharts({
+	var pieChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'cycloPertChart',
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
 	        plotShadow: false,
@@ -18,7 +19,7 @@ module.exports = function(codeSmell){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '个数：{point.y} <br>占比：{point.percentage:.0f}%'
+	        pointFormat: $.i18n('unit_piece') + '：{point.y} <br>' + $.i18n('unit_pct') + '{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -52,8 +53,9 @@ module.exports = function(codeSmell){
 	/**
 	 * package coverage rate 
 	 */
-	$("#cycloRankChart").highcharts({
+	var barChart = new Highcharts.Chart({
 			chart: {
+				renderTo: 'cycloRankChart',
 				type: 'bar',
 				height: codeSmell.content.pkg.length * 20 + 120
 			},
@@ -141,4 +143,23 @@ module.exports = function(codeSmell){
 		var li = "<li><span>" + (index+1) + "</span><span title=" + d.path+ ">" + d.path + "</span><span>" + d.cyclo + "</span></li>";
 		$("#cycloList").append(li);
 	})
+	/**
+	 * update Highcharts after changing language
+	 */
+	function updateHighcharts(){
+		pieChart.update({
+			 tooltip: {
+			    pointFormat: $.i18n('unit_piece') + '：{point.y} <br>' + $.i18n('unit_pct') + '{point.percentage:.0f}%'
+			}
+		});
+		barChart.update({
+						series:[{
+					    	id: 'code-smell',
+					        name: $.i18n('cm_circle_comp_legend')
+					    }]
+					});
+	}
+	return {
+		updateHighcharts: updateHighcharts
+	}
 }

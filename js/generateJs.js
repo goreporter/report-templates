@@ -77,7 +77,6 @@ function changeLang(){
 		}
 	});
 	//页面内的i18n如何修改
-	$.i18n('hp_cover_pct');
 }
 
 changeLang();
@@ -85,12 +84,12 @@ changeLang();
 /**
  * 引入子页面的js文件
  */
-require('./subpage/codeCount.js')(resData.countCode);
+var codeCountPage = require('./subpage/codeCount.js')(resData.countCode);
 require('./subpage/codeOpt.js')(resData.goIssue);
-require('./subpage/codeSmell.js')(resData.codeSmell);
+var codeSmellPage = require('./subpage/codeSmell.js')(resData.codeSmell);
 require('./subpage/codeStyle.js')(resData.codeStyle);
-require('./subpage/summary.js')(resData);
-require('./subpage/unitTest.js')(resData.gotest);
+var summaryPage = require('./subpage/summary.js')(resData);
+var unitTestPage = require('./subpage/unitTest.js')(resData.gotest);
 
 /**
  * 监听语言切换按钮
@@ -105,7 +104,20 @@ $("#changeLang").on("click", function(){
 		$.i18n().locale = "zh";
 	}
 	changeLang();
+	redrawAllCharts();
 })
+
+/**
+ * redraw all highcharts after changing language
+ */
+
+function redrawAllCharts(){
+	summaryPage.updateHighcharts();
+	unitTestPage.updateHighcharts();
+	codeCountPage.updateHighcharts();
+	codeSmellPage.updateHighcharts();
+}
+
 
 
 

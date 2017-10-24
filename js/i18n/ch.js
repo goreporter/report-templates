@@ -32,6 +32,7 @@ var ch_text= {
 	"ut_time_legend": "时间",
 	"ut_coverage_legend": "覆盖率",
 	"ut_time_pct_title": "包耗时占比",
+	"ut_time_pct_tooltip": "耗时",
 	"ut_lack_test_list": "缺少单元测试的文件",
 	"co_file_nums": "文件数",
 	"co_quality_class": "质量等级",
@@ -41,11 +42,9 @@ var ch_text= {
 	"cc_comment_lines": "注释行数",
 	"cc_function_lines": "函数个数",
 	"cc_file_lines": "文件个数",
-	"cc_code_title": "代码行详情",
+	"cc_pkg_title": "代码行详情",
 	"cc_pkg_code_legend": "包代码行数",
-	"cc_comment_title": "注释行详情",
 	"cc_pkg_comment_legend": "包注释行数",
-	"cc_func_lines": "函数个数详情",
 	"cc_pkg_func_legend": "包函数个数",
 	"cc_file_title": "文件详情",
 	"cc_code_legend": "代码行数详情",
@@ -60,6 +59,8 @@ var ch_text= {
 	"cm_circle_comp_list_col2": "文件路径",
 	"cm_circle_comp_list_col3": "圈复杂度",
 	"cm_circle_comp_rank_title": "包圈复杂度排名",
-	"cm_circle_comp_legend": "圈复杂度"
+	"cm_circle_comp_legend": "圈复杂度",
+	"unit_piece": "个数：",
+	"unit_pct": "占比："
 
 }

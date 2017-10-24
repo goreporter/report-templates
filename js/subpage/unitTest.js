@@ -6,8 +6,9 @@ module.exports = function(gotest){
 	/**
 	 * package coverage rate 
 	 */
-	$("#unitCover").highcharts({
+	var barChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'unitCover',
 			type: 'bar',
 	        alignTicks: false,
 	        height: gotest.content.pkg.length * 40 + 120
@@ -125,8 +126,9 @@ module.exports = function(gotest){
 	/**
 	 * time cost of package unit test distribution 
 	 */
-	$("#pie-chart").highcharts({
+	var pieChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'pie-chart',
 	        plotBackgroundColor: null,
 	        plotBorderWidth: 0,
 	        plotShadow: false
@@ -135,7 +137,7 @@ module.exports = function(gotest){
 	        text: ''
 	    },
 	    tooltip: {
-	        pointFormat: '{series.name}: {point.y}s <br>{point.percentage:.0f}%'
+	        pointFormat: '{series.name}: {point.y}s <br>' + $.i18n('unit_pct')+ '{point.percentage:.0f}%'
 	    },
 	    credits: {
             enabled: false
@@ -179,6 +181,7 @@ module.exports = function(gotest){
 	    },
 	    series: [{
 	        type: 'pie',
+	        name: $.i18n('ut_time_pct_tooltip'),
 	        innerSize: '85%',
 	        data: getTimeArr()
 	    }]
@@ -204,5 +207,33 @@ module.exports = function(gotest){
 			result.push(element);
 		})
 		return result;
+	}
+
+	/**
+	 * update Highcharts after changing language
+	 */
+	function updateHighcharts(){
+		barChart.update({
+							series:[{
+						    	id: 'coverage',
+						        name: $.i18n('ut_coverage_legend')
+						    },
+						    {
+						    	id: 'time',
+						        name: $.i18n('ut_time_legend')
+						    }]
+						});
+		pieChart.update({
+			tooltip: {
+		        pointFormat: '{series.name}: {point.y}s <br>' + $.i18n('unit_pct')+ '{point.percentage:.0f}%'
+		    },
+		    series: [{
+		        name: $.i18n('ut_time_pct_tooltip')
+		    }]
+
+		})
+	}
+	return {
+		updateHighcharts: updateHighcharts
 	}
 }

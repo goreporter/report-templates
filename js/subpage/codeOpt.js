@@ -15,11 +15,7 @@ module.exports = function codeOpt(goIssue){
 		indexHtml += "<li><a href='#" + k + "'>" + k + "</a></li>";
 		var content = "";
 		data[k].detail.forEach(function(d){
-			if(k != 'copy_code'){
-				content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
-			}else{
-				content += "<h5>" + d.length + "</h5>" + d.map(function(cc){return "<p>" + cc +"</p>"}).join("");
-			}
+			content += "<h5>" + d.rep + "</h5>" + d.content.map(function(cc){return "<a>" + cc + "<br/></a>"}).join("");
 		});
 		var issueNum = data[k].detail.reduce(function(sum, d){
 										return sum + d.content.length;

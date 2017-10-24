@@ -106,8 +106,14 @@
 						copy_code: {
 							label: 'copy code description',
 							score: '85%',
-							detail: [["/gocode/copycode/copycode.go:77,94",'/gocode/copycode/copycode.go:77,94'],
-							         ['/gocode/copycode/copycode.go:77,94','/gocode/copycode/copycode.go:77,94']
+							detail: [
+										{
+											rep: 'Sia/',
+											content: ["/gocode/copycode/copycode.go:77,94",'/gocode/copycode/copycode.go:77,94']
+										},{
+											rep: 'type/',
+											content: ['/gocode/copycode/copycode.go:77,94','/gocode/copycode/copycode.go:77,94']
+										}
 									]
 						},
 						simple_code: {
@@ -172,7 +178,7 @@
 						cyclo_grave: 8
 					},
 					content: {
-						percentage: {'1-15': 20,'15-50', 25,'50+', 10},
+						percentage: {'1-15': 20,'15-50': 25,'50+': 10},
 						pkg: ['aa','bb','cc','dd','ee'],
 						cyclo: [15,23,12,34,41],
 						list: [{path: 'aa/bb/cc', cyclo: 88},{path: 'dd/ee/ff', cyclo: 75},{path: 'ab/cd/ef', cyclo: 60}]

@@ -45,8 +45,9 @@ module.exports = function(resData){
 	$("#mediumCycleNum").text(mediumscore);
 	$("#highCycleNum").text(highscore);
 	//******************************** gotest ************************************
-	$("#gotestChart").highcharts({
+	var barChart = new Highcharts.Chart({
 		chart: {
+			renderTo: 'gotestChart',
 			type: 'bar',
 	        alignTicks: false,
 	        height: resData.gotest.content.pkg.length * 40 + 120
@@ -138,7 +139,7 @@ module.exports = function(resData){
 	    },
 	    {
 	    	id: 'time',
-	        name: $.i18n('hp_coverage_legend'),
+	        name: $.i18n('hp_time_legend'),
 	        data: resData.gotest.content.time,
 	        yAxis: 1,
 	        color: '#BB8FCE',
@@ -159,8 +160,9 @@ module.exports = function(resData){
 	
 	//******************************** go cyclo ************************************
 
-	$("#gocycleChart").highcharts({
+	var pie1 = new Highcharts.Chart({
 		  chart: {
+		  		renderTo: 'gocycleChart',
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
@@ -171,7 +173,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: <br/><b>{point.y}个;</b>占比{point.percentage:.0f}%'
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false
@@ -207,8 +209,9 @@ module.exports = function(resData){
 		element.push(resData.goIssue.content[d].detail.length);
 		issueData.push(element);
 	});
-	$("#goIssue").highcharts({
+	var pie2 = new Highcharts.Chart({
 		  chart: {
+		  		renderTo: 'goIssue',
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
@@ -218,7 +221,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: {point.y}个<br>占比：{point.percentage:.0f}%'
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false
@@ -254,8 +257,9 @@ module.exports = function(resData){
 			countCodeData.push(element);
 		})
 	}
-	var chartTest = $("#goPercentage").highcharts({
+	pie3 = new Highcharts.Chart({
 		  chart: {
+		  		renderTo: 'goPercentage',
 		        plotBackgroundColor: null,
 		        plotBorderWidth: 0,
 		        plotShadow: false,
@@ -265,7 +269,7 @@ module.exports = function(resData){
 		        text: ''
 		    },
 		    tooltip: {
-		        pointFormat: '{series.name}: {point.y}个<br>占比：{point.percentage:.0f}%'
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
 		    },
 		    credits: {
 	            enabled: false
@@ -310,4 +314,47 @@ module.exports = function(resData){
 		        data: countCodeData
 		    }]
 	});
+
+	/**
+	 * update Highcharts after changing language
+	 */
+	function updateHighcharts(){
+		barChart.update({
+							series:[{
+						    	id: 'coverage',
+						        name: $.i18n('hp_coverage_legend')
+						    },
+						    {
+						    	id: 'time',
+						        name: $.i18n('hp_coverage_legend')
+						    }]
+						});
+		pie1.update({
+			tooltip: {
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
+		    },
+			series:[{
+				name: $.i18n('hp_pkg_circle_comp')
+			}]
+		});
+		pie2.update({
+			tooltip: {
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
+		    },
+			series: [{
+				name: $.i18n('hp_pkg_issues_count')
+			}]
+		});
+		pie3.update({
+			tooltip: {
+		        pointFormat: '{series.name}: <br>' + $.i18n('unit_piece') + '{point.y}<br>'+$.i18n('unit_pct')+'{point.percentage:.0f}%'
+		    },
+			series: [{
+				name: $.i18n("hp_pkg_code_amount")
+			}]
+		})
+	}
+	return {
+		updateHighcharts: updateHighcharts
+	}
 }

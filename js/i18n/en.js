@@ -2,7 +2,7 @@ var en_text = {
 	"homepage": "Home",
 	"unit_test": "Unit Test",
 	"code_style": "Code Spec",
-	"code_opt": "Code Prac",
+	"code_opt": "Best Prac",
 	"code_count": "Code Stat",
 	"code_main": "Code Main",
 	"hp_score": "Score",
@@ -29,9 +29,10 @@ var en_text = {
 	"ut_pkg_cover_pct": "Pkgs Test Coverage",
 	"ut_unit_test_time": "Unit Testing Time-Consuming",
 	"ut_cover_title": "Cover Coverage Details",
-	"ut_time_legend": "Time",
+	"ut_time_legend": "time",
 	"ut_coverage_legend": "Coverage",
 	"ut_time_pct_title": "Pkgs Test Time-Consuming Pie Chart",
+	"ut_time_pct_tooltip": "Time",
 	"ut_lack_test_list": "File Lists Lacking Unit Test ",
 	"co_file_nums": "File Number",
 	"co_quality_class": "Quality",
@@ -41,11 +42,9 @@ var en_text = {
 	"cc_comment_lines": "Comment Lines",
 	"cc_function_lines": "Function Number",
 	"cc_file_lines": "File Number",
-	"cc_code_title": "Code Lines Detail",
+	"cc_pkg_title": "Pkg Detail",
 	"cc_pkg_code_legend": "Pkgs Code Lines",
-	"cc_comment_title": "Comment Lines Detail",
 	"cc_pkg_comment_legend": "Pkgs Comment Lines",
-	"cc_func_lines": "Function Number Detail",
 	"cc_pkg_func_legend": "Pkgs Function Number",
 	"cc_file_title": "File Detail",
 	"cc_code_legend": "Code Line Detail",
@@ -60,6 +59,8 @@ var en_text = {
 	"cm_circle_comp_list_col2": "File Path",
 	"cm_circle_comp_list_col3": "Circle Complexity",
 	"cm_circle_comp_rank_title": "Pkgs Circle Complexity Ranking",
-	"cm_circle_comp_legend": "Circle Complexity"
+	"cm_circle_comp_legend": "Circle Complexity",
+	"unit_piece": "number: ",
+	"unit_pct": "percentage: "
 
 }
