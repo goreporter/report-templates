@@ -133,7 +133,9 @@ module.exports = function codeCount(codeCount){
 	/**
 	 * package coverage rate 
 	 */
-	console.log(codeCount.content);
+	//计算最大值
+	var maxChart1Data = Math.max(Math.max.apply(Math, codeCount.content.pkg_line_count),Math.max.apply(Math, codeCount.content.pkg_comment_count),Math.max.apply(Math, codeCount.content.pkg_function_count));
+	var maxChart2Data = Math.max(Math.max.apply(Math, codeCount.content.file_line_count),Math.max.apply(Math, codeCount.content.file_comment_count),Math.max.apply(Math, codeCount.content.file_function_count));
 	var chart1 = new Highcharts.Chart({
 		chart: {
 			renderTo: 'lineCountChart',
@@ -169,6 +171,7 @@ module.exports = function codeCount(codeCount){
 		},
 	    plotOptions: {
 	        bar: {
+	        	stacking: 'percentage',
 	            dataLabels: {
 	                enabled: true,
 	                color: "#596679",
@@ -197,14 +200,51 @@ module.exports = function codeCount(codeCount){
 	    	align: 'left'
 	    },
 	    series: [{
+	        name: null,
+	        data: codeCount.content.pkg_line_count.map(function(d){return maxChart1Data-d}),
+	        color: '#d9e4eb',
+	        stack: 'pkg_code_line',
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'pkg_code_line',
+	        enableMouseTracking:false
+	    },
+	    {
+	    	id: 'pkg_code_line',
 	        name: $.i18n('cc_pkg_code_legend'),
 	        data: codeCount.content.pkg_line_count,
-	        color: '#47bac1'
+	        color: '#47bac1',
+	        stack: 'pkg_code_line'
 	    },{
+	        name: null,
+	        data: codeCount.content.pkg_comment_count.map(function(d){return maxChart1Data-d}),
+	        color: '#d9e4eb',
+	        stack: 'pkg_comment_line',
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'pck_comment_line',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'pkg_comment_line',
+	    	stack: 'pkg_comment_line',
 	        name: $.i18n('cc_pkg_comment_legend'),
 	        data: codeCount.content.pkg_comment_count,
 	        color: '#4d73c4'
 	    },{
+	        name: null,
+	        data: codeCount.content.pkg_function_count.map(function(d){return maxChart1Data-d}),
+	        color: '#d9e4eb',
+	        stack: 'pkg_function_line',
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'pck_function_line',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'pkg_function_line',
+	    	stack: 'pkg_function_line',
 	        name: $.i18n('cc_pkg_func_legend'),
 	        data: codeCount.content.pkg_function_count,
 	        color: '#0382be'
@@ -214,7 +254,7 @@ module.exports = function codeCount(codeCount){
 		chart: {
 			renderTo: 'fileCountChart',
 			type: 'bar',
-			height: codeCount.content.pkg.length * 60 + 120
+			height: codeCount.content.file.length * 60 + 120
 		},
 		title: {
 			text: ''
@@ -245,13 +285,13 @@ module.exports = function codeCount(codeCount){
 		},
 	    plotOptions: {
 	        bar: {
+	        	stacking: 'percentage',
 	            dataLabels: {
 	                enabled: true,
 	                color: "#596679",
 	                fontSize: "10px",
-	                pointPadding: 0.2,
-	                groupPadding: 0.1,
-
+	                align: 'right',
+	                x: 40
 	            }
 	        },
 	        series: {
@@ -274,14 +314,50 @@ module.exports = function codeCount(codeCount){
 	    	align: 'left'
 	    },
 	    series: [{
+	        name: null,
+	        data: codeCount.content.file_line_count.map(function(d){return maxChart2Data-d}),
+	        color: '#d9e4eb',
+	        stack: 'file_code_count',
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'file_code_count',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'file_code_count',
+	    	stack: 'file_code_count',
 	        name: $.i18n('cc_code_legend'),
 	        data: codeCount.content.file_line_count,
 	        color: '#47bac1'
 	    },{
+	        name: null,
+	        data: codeCount.content.file_comment_count.map(function(d){return maxChart2Data-d}),
+	        color: '#d9e4eb',
+	        stack: 'file_comment_count',
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'file_comment_count',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'file_comment_count',
+	    	stack: 'file_comment_count',
 	        name: $.i18n('cc_comment_legend'),
 	        data: codeCount.content.file_comment_count,
 	        color: '#BB8FCE'
 	    },{
+	        name: null,
+	        data: codeCount.content.file_function_count.map(function(d){return maxChart2Data-d}),
+	        color: '#d9e4eb',
+	        stack: 'file_function_count',
+	        dataLabels: {
+	        	enabled: false
+	        },
+	        linkedTo: 'file_function_count',
+	        enableMouseTracking:false
+	    },{
+	    	id: 'file_function_count',
+	    	stack: 'file_function_count',
 	        name: $.i18n('cc_function_legend'),
 	        data: codeCount.content.file_function_count,
 	        color: '#2aafff'
@@ -293,19 +369,25 @@ module.exports = function codeCount(codeCount){
 	function updateHighcharts(){
 		chart1.update({
 						series:[{
+							id: 'pkg_code_line',
 					        name: $.i18n('cc_pkg_code_legend')
 					    },{
+					    	id: 'pkg_comment_line',
 					        name: $.i18n('cc_pkg_comment_legend')
 					    },{
+					    	id: 'pkg_function_line',
 					        name: $.i18n('cc_pkg_func_legend')
 					    }]
 					});
 		chart2.update({
 			 series: [{
+			 	id: 'file_code_count',
 		        name: $.i18n('cc_code_legend')
 		    },{
+		    	id: 'file_comment_count',
 		        name: $.i18n('cc_comment_legend')
 		    },{
+		    	id: 'file_function_count',
 		        name: $.i18n('cc_function_legend')
 		    }]
 		})
@@ -842,7 +924,7 @@ module.exports = function(resData){
 		    	layout: "vertical",
 		    	labelFormatter: function(){
 		    		var length = this.name.length;
-		    		var unitLength = 15;
+		    		var unitLength = 20;
 		    		var breakIndex = Math.ceil(length / unitLength);
 		    		var label = ""
 		    		for(var i=1; i<=breakIndex; i++){

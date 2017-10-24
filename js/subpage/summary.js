@@ -298,7 +298,7 @@ module.exports = function(resData){
 		    	layout: "vertical",
 		    	labelFormatter: function(){
 		    		var length = this.name.length;
-		    		var unitLength = 15;
+		    		var unitLength = 20;
 		    		var breakIndex = Math.ceil(length / unitLength);
 		    		var label = ""
 		    		for(var i=1; i<=breakIndex; i++){
