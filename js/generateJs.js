@@ -76,7 +76,6 @@ function changeLang(){
 			$("#"+dom).i18n();
 		}
 	});
-	//页面内的i18n如何修改
 }
 
 changeLang();
