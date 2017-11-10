@@ -1,9 +1,38 @@
 //解析数据
-resData.gotest = JSON.parse(resData.gotest);
-resData.codeStyle = JSON.parse(resData.codeStyle);
-resData.goIssue = JSON.parse(resData.goIssue);
-resData.codeSmell = JSON.parse(resData.codeSmell);
-resData.countCode = JSON.parse(resData.countCode);
+try{
+	resData.gotest = JSON.parse(resData.gotest);
+}catch(e){
+	resData.gotest = {};
+	console.error("gotest" + $.i18n('json_parse_error'));
+}
+
+try{
+	resData.codeStyle = JSON.parse(resData.codeStyle);
+}catch(e){
+	resData.codeStyle = {};
+	console.error("codeStyle" + $.i18n('json_parse_error'));
+}
+
+try{
+	resData.goIssue = JSON.parse(resData.goIssue);
+}catch(e){
+	resData.goIssue = {};
+	console.error("goIssue" + $.i18n('json_parse_error'));
+}
+
+try{
+	resData.codeSmell = JSON.parse(resData.codeSmell);
+}catch(e){
+	resData.codeSmell = {};
+	console.error("codeSmell" + $.i18n('json_parse_error'));
+}
+
+try{
+	resData.countCode = JSON.parse(resData.countCode);
+}catch(e){
+	resData.countCode = {};
+	console.error("countCode" + $.i18n('json_parse_error'));
+}
 
 initData(resData.gotest);
 initData(resData.codeStyle, 'detail');

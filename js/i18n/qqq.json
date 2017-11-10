@@ -61,6 +61,7 @@
 	"cm_circle_comp_rank_title": "可维护性-内容-标题-包圈复杂度排名",
 	"cm_circle_comp_legend": "可维护性-内容-图例-圈复杂度",
 	"unit_piece": "highcharts 图表tooltip单位-个",
-	"unit_pct": "highcharts图表tooltip单位-占比"
+	"unit_pct": "highcharts图表tooltip单位-占比",
+	"json_parse_error": "JSON解析出错"
 
 }

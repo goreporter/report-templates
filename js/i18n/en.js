@@ -61,6 +61,6 @@ var en_text = {
 	"cm_circle_comp_rank_title": "Pkgs Circle Complexity Ranking",
 	"cm_circle_comp_legend": "Circle Complexity",
 	"unit_piece": "number: ",
-	"unit_pct": "percentage: "
-
+	"unit_pct": "percentage: ",
+	"json_parse_error": "json parse error！"
 }

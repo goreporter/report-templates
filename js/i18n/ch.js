@@ -61,6 +61,6 @@ var ch_text= {
 	"cm_circle_comp_rank_title": "包圈复杂度排名",
 	"cm_circle_comp_legend": "圈复杂度",
 	"unit_piece": "个数：",
-	"unit_pct": "占比："
-
+	"unit_pct": "占比：",
+	"json_parse_error": "解析错误！"
 }
