@@ -2,35 +2,35 @@
 try{
 	resData.gotest = JSON.parse(resData.gotest);
 }catch(e){
-	resData.gotest = {};
+	resData.gotest = dataDefault.gotest;
 	console.error("gotest" + $.i18n('json_parse_error'));
 }
 
 try{
 	resData.codeStyle = JSON.parse(resData.codeStyle);
 }catch(e){
-	resData.codeStyle = {};
+	resData.codeStyle = dataDefault.codeStyle;
 	console.error("codeStyle" + $.i18n('json_parse_error'));
 }
 
 try{
 	resData.goIssue = JSON.parse(resData.goIssue);
 }catch(e){
-	resData.goIssue = {};
+	resData.goIssue = dataDefault.codeStyle;
 	console.error("goIssue" + $.i18n('json_parse_error'));
 }
 
 try{
 	resData.codeSmell = JSON.parse(resData.codeSmell);
 }catch(e){
-	resData.codeSmell = {};
+	resData.codeSmell = dataDefault.codeSmell;
 	console.error("codeSmell" + $.i18n('json_parse_error'));
 }
 
 try{
 	resData.countCode = JSON.parse(resData.countCode);
 }catch(e){
-	resData.countCode = {};
+	resData.countCode = dataDefault.countCode;
 	console.error("countCode" + $.i18n('json_parse_error'));
 }
 
